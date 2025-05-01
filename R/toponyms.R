@@ -1,0 +1,74 @@
+#' Toponyms
+#' @description
+#' Get geographic names including toponyms and endonyms.
+#'
+#' @inheritParams bkg_plates
+#'
+#' @returns A dataframe containing the following columns:
+#'
+#' @export
+bkg_toponyms <- function(..., epsg = 3035, properties = NULL, max = NULL) {
+  filter <- cql_filter(
+    ...,
+    bbox = bbox,
+    poly = poly,
+    predicate = predicate
+  )
+  epsg <- sprintf("EPSG:%s", epsg)
+
+  bkg_wfs(
+    "gn:GnObjekt",
+    endpoint = "gnde",
+    format = "text/xml; subtype=gml/3.2.1",
+    layer = "GnObjekt",
+    count = max,
+    ...
+  )[-1]
+}
+
+
+bkg_toponyms_admin <- function(..., properties = NULL, filter = NULL, max = NULL) {
+  bkg_wfs(
+    "gn:Ags",
+    endpoint = "gnde",
+    format = "text/xml; subtype=gml/3.2.1",
+    layer = "Ags",
+    count = max,
+    PropertyName = properties,
+    filter = filter %||% cql_filter(...)
+  )[-1]
+}
+
+
+bkg_endonyms <- function(properties)
+
+
+all_properties <- list(
+  ags = "Official municipality key (Allgemeiner Gemeindeschlüssel, AGS)",
+  ars = "Official regional key (Allgemeiner Regionalschlüssel, ARS)",
+  rs = "Regionalschlüssel (legacy, now called ARS)",
+  nnid = "National name identifier (Nationaler Namensidentifikator)",
+  landesCode = "Federal state identifier",
+  beschreibung = "Description",
+  geoLaenge = "Geographical length (in degrees)",
+  geoBreite = "Geographical width (in degrees)",
+  hoehe = "Elevation above sea level",
+  hoeheger = "Computed elevation (only for localities)",
+  groesse = "Size",
+  ewz = "Population of administrative areas",
+  ewzger = "Computed population (only for localities)",
+  gemteil = "Is the object part of a municipality?",
+  virtuell = "Is the object name missing a real locality?",
+  tukelement = "Unknown",
+  hatLand_href = "Unknown",
+  hatAgs_href = "Unknown",
+  hatRs_href = "Unknown",
+  hatArs_href = "Unknown",
+  hasObjektart_href = "Unknown",
+  hatEndonym_href = "Unknown",
+  hatDlmLink_href = "Unknown",
+  hatBearbeitung_href = "Unknown",
+  hatZusatzLink_href = "Unknown",
+  hatVorwahlLink_href = "Unknown",
+  box = "Smallest enclosing rectangle for an object"
+)
