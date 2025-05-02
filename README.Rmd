@@ -44,27 +44,83 @@ pak::pak("jslth/ffm")
 
 Retrieving data is pretty straightforward:
 
-```{r example}
+```{r simple_call}
 library(ffm)
-districts <- bkg_admin(level = "krs")
-plot(districts$geometry)
+districts <- bkg_admin(level = "krs", scale = "5000")
+```
+
+<details>
+<summary>
+Code for the plot
+</summary>
+```{r, eval=FALSE}
+library(ggplot2)
+
+ggplot(districts) +
+  geom_sf(fill = NA) +
+  theme_void()
+```
+</details>
+
+```{r, echo=FALSE}
+library(ggplot2)
+
+ggplot(districts) +
+  geom_sf(fill = NA) +
+  theme_void()
 ```
 
 The package makes it easy to go deeper than just getting the data. In many
 functions, you can use spatial filters.
 
-```{r cars}
+```{r spat_filters}
 districts <- bkg_admin(
   level = "krs",
-  bbox = c(xmin = 300000, ymin = 5500000, xmax = 600000, ymax = 5700000),
-  predicate = "disjoint"
+  scale = "5000",
+  bbox = c(xmin = 700000, ymin = 5900000, xmax = 850000, ymax = 6000000),
+  predicate = "intersects"
 )
-plot(districts$geometry)
+districts$label <- ifelse(
+  districts$bez == "Kreisfreie Stadt",
+  paste("Stadt", districts$gen),
+  districts$gen
+)
+```
+
+<details>
+<summary>
+Code for the plot
+</summary>
+```{r, eval=FALSE}
+library(ggrepel)
+
+ggplot(districts) +
+  geom_sf(fill = NA) +
+  geom_text_repel(
+    aes(label = label, geometry = geometry),
+    stat = "sf_coordinates",
+    size = 3
+  ) +
+  theme_void()
+```
+</details>
+
+```{r, echo=FALSE}
+library(ggrepel)
+
+ggplot(districts) +
+  geom_sf(fill = NA) +
+  geom_text_repel(
+    aes(label = label, geometry = geometry),
+    stat = "sf_coordinates",
+    size = 3
+  ) +
+  theme_void()
 ```
 
 Attribute filters are supported using a R-like syntax.
 
-```{r pressure, echo = FALSE}
+```{r att_filters}
 munics <- bkg_admin(
   level = "gem",
   cutoff = "3112",
@@ -77,8 +133,6 @@ munics <- bkg_admin(
 Code for the plot
 </summary>
 ```{r, eval=FALSE}
-library(ggplot2)
-
 munics$popdens <- munics$ewz / munics$kfl
 munics$popdens[munics$popdens == 0] <- NA
 ggplot(munics) +

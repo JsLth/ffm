@@ -35,27 +35,8 @@ Retrieving data is pretty straightforward:
 
 ``` r
 library(ffm)
-districts <- bkg_admin(level = "krs")
-plot(districts$geometry)
+districts <- bkg_admin(level = "krs", scale = "5000")
 ```
-
-<img src="man/figures/README-example-1.png" width="100%" />
-
-The package makes it easy to go deeper than just getting the data. In
-many functions, you can use spatial filters.
-
-``` r
-districts <- bkg_admin(
-  level = "krs",
-  bbox = c(xmin = 300000, ymin = 5500000, xmax = 600000, ymax = 5700000),
-  predicate = "disjoint"
-)
-plot(districts$geometry)
-```
-
-<img src="man/figures/README-cars-1.png" width="100%" />
-
-Attribute filters are supported using a R-like syntax.
 
 <details>
 <summary>
@@ -65,6 +46,70 @@ Code for the plot
 ``` r
 library(ggplot2)
 
+ggplot(districts) +
+  geom_sf(fill = NA) +
+  theme_void()
+```
+
+</details>
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+The package makes it easy to go deeper than just getting the data. In
+many functions, you can use spatial filters.
+
+``` r
+districts <- bkg_admin(
+  level = "krs",
+  scale = "5000",
+  bbox = c(xmin = 700000, ymin = 5900000, xmax = 850000, ymax = 6000000),
+  predicate = "intersects"
+)
+districts$label <- ifelse(
+  districts$bez == "Kreisfreie Stadt",
+  paste("Stadt", districts$gen),
+  districts$gen
+)
+```
+
+<details>
+<summary>
+Code for the plot
+</summary>
+
+``` r
+library(ggrepel)
+
+ggplot(districts) +
+  geom_sf(fill = NA) +
+  geom_text_repel(
+    aes(label = label, geometry = geometry),
+    stat = "sf_coordinates",
+    size = 3
+  ) +
+  theme_void()
+```
+
+</details>
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+Attribute filters are supported using a R-like syntax.
+
+``` r
+munics <- bkg_admin(
+  level = "gem",
+  cutoff = "3112",
+  sn_l %in% c("08", "09")
+)
+```
+
+<details>
+<summary>
+Code for the plot
+</summary>
+
+``` r
 munics$popdens <- munics$ewz / munics$kfl
 munics$popdens[munics$popdens == 0] <- NA
 ggplot(munics) +
@@ -76,4 +121,4 @@ ggplot(munics) +
 
 </details>
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
