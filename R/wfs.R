@@ -17,7 +17,17 @@ bkg_wfs <- function(type_name,
                     version = "2.0.0",
                     format = "application/json",
                     layer = NULL,
+                    epsg = NULL,
+                    properties = NULL,
                     ...) {
+  if (!is.null(epsg)) {
+    epsg <- sprintf("EPSG:%s", epsg)
+  }
+
+  if (!is.null(properties)) {
+    properties <- c(properties, "geom")
+  }
+
   req <- httr2::request(sgx_base())
   req <- httr2::req_url_path(req, sprintf("wfs_%s", endpoint))
   req <- httr2::req_url_query(
@@ -26,6 +36,8 @@ bkg_wfs <- function(type_name,
     version = version,
     request = "GetFeature",
     outputFormat = format,
+    srsName = epsg,
+    PropertyName = properties,
     ...,
     .multi = "comma"
   )
@@ -43,16 +55,17 @@ bkg_wfs <- function(type_name,
   req <- httr2::req_cache(req, path = tempfile())
   req <- httr2::req_error(req, body = function(resp) {
     content <- httr2::resp_body_string(resp)
+    msg <- NULL
 
-    if (grepl("exceptionCode", content, fixed = TRUE)) {
-      code <- regex_match(content, "exceptionCode=\"(.*?)\"", i = 2)
+    code <- if (grepl("exceptionCode", content, fixed = TRUE)) {
+      regex_match(content, "exceptionCode=\"(.*?)\"", i = 2)
     }
 
-    if (grepl("ExceptionText", content, fixed = TRUE)) {
-      msg <- regex_match(content, "<ows:ExceptionText>(.*?)</ows:ExceptionText>", i = 2)
+    msg <- if (grepl("ExceptionText", content, fixed = TRUE)) {
+      regex_match(content, "<ows:ExceptionText>(.*?)</ows:ExceptionText>", i = 2)
     }
 
-    paste(c(code, msg), collapse = ": ")
+    paste(c(code, msg), collapse = ": ") %zchar% NULL
   })
 
   if (!grepl("xml|gml", format)) {

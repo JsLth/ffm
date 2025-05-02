@@ -108,7 +108,7 @@ plot(grid)
 if (requireNamespace("terra")) {
   library(terra)
   raster <- rast(vect(grid_full["p_wasser"]), type = "xyz")
-  plot(raster)
+  plot(raster, main = "Share of water area")
 }}
 }
 \seealso{

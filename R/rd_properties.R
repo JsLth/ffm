@@ -1,4 +1,4 @@
-rd_properties_list <- function(..., case = "lower") {
+rd_properties_list <- function(..., case = "lower", extra = NULL) {
   args <- rlang::enquos(...)
   prop_names <- vapply(
     unname(args),
@@ -19,6 +19,7 @@ rd_properties_list <- function(..., case = "lower") {
   }
 
   props <- rd_properties[prop_names]
+  props <- c(props, extra)
   prop_names <- names(props)
   if (identical(case, "upper")) {
     prop_names <- toupper(prop_names)
@@ -140,3 +141,8 @@ rd_properties <- list(
   p_land = "Share of land area in the grid cell",
   p_wasser = "Share of water area in the grid cell"
 )
+
+
+ffm_run_examples <- function() {
+  isTRUE(as.logical(Sys.getenv("FFM_RUN_EXAMPLES", FALSE)))
+}

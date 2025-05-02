@@ -26,6 +26,11 @@ in the new year. If \code{resolution == "250"}, the \code{cutoff} value also
 determines whether to include population data. If \code{"3112"}, population
 data is attached, otherwise not. Defaults to "0101".}
 
+\item{year}{Version year of the dataset. You can use \code{latest} to
+retrieve the latest dataset version available on the BKG's geodata center.
+Older versions can be browsed using the
+\href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.}
+
 \item{timeout}{Timeout value for the data download passed to
 \code{\link[httr2]{req_timeout}}. Adjust this if your internet connection is
 slow or you are downloading larger datasets.}

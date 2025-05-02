@@ -18,15 +18,14 @@ bkg_plates <- function(...,
     poly = poly,
     predicate = predicate
   )
-  epsg <- sprintf("EPSG:%s", epsg)
 
   bkg_wfs(
     "kfz250",
     version = "1.1.0",
     maxfeatures = max,
     cql_filter = filter,
-    srsName = epsg,
-    PropertyName = properties,
+    epsg = epsg,
+    properties = properties,
     ...
   )
 }

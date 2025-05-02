@@ -47,10 +47,12 @@
 #' @param bbox An sf geometry or a boundary box vector of the format
 #' \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
 #' only those geometries that relate to \code{bbox} according to the predicate
-#' specified in \code{predicate}.
+#' specified in \code{predicate}. Coordinates have to be provided in
+#' ESPG:25832 (the default CRS).
 #' @param poly An sf geometry. Used as a geometric filter to include
 #' only those geometries that relate to \code{poly} according to the predicate
-#' specified in \code{predicate}.
+#' specified in \code{predicate}. Coordinates have to be provided in
+#' ESPG:25832 (the default CRS).
 #' @param predicate A spatial predicate that is used to relate the output
 #' geometries with the object specified in \code{bbox} or \code{poly}. For
 #' example, if \code{predicate = "within"}, and \code{bbox} is specified,
@@ -112,7 +114,6 @@ bkg_admin <- function(...,
     poly = poly,
     predicate = predicate
   )
-  epsg <- sprintf("EPSG:%s", epsg)
 
   endpoint <- sprintf("vg%s", scale)
   service <- sprintf("%s_%s", endpoint, level)
@@ -129,10 +130,10 @@ bkg_admin <- function(...,
     service,
     endpoint = endpoint,
     count = max,
-    PropertyName = properties,
-    srsName = epsg,
+    properties = properties,
+    epsg = epsg,
     cql_filter = filter
-  )
+  )[-1]
 }
 
 
@@ -146,6 +147,10 @@ bkg_admin <- function(...,
 #' @param timeout Timeout value for the data download passed to
 #' \code{\link[httr2]{req_timeout}}. Adjust this if your internet connection is
 #' slow or you are downloading larger datasets.
+#' @param year Version year of the dataset. You can use \code{latest} to
+#' retrieve the latest dataset version available on the BKG's geodata center.
+#' Older versions can be browsed using the
+#' \href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.
 #' @param update_cache By default, downloaded files are cached in the
 #' \code{tempdir()} directory of R. When downloading the same data again,
 #' the data is not downloaded but instead taken from the cache. Sometimes
