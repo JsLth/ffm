@@ -6,13 +6,18 @@
 #' \code{\link{bkg_clc}} or \code{bkb_geonames}).
 #'
 #' @inheritParams bkg_admin
+#' @param default_crs A WFS defines a default CRS in which coordinates for
+#' spatial filtering have to be provided. For BKG services, this is usually
+#' EPSG:25832. All sf objects provided through \code{bbox} or \code{poly} are first
+#' transformed to this CRS before creating the query.
 #' @param lang Query language to use for constructing the query. One of
 #' \code{"cql"} and \code{"xml"}. By default, almost all \code{ffm} functions
 #' use CQL because it is simpler and less prone to errors. However, CQL is
 #' limited in terms of query size. Especially when providing a \code{poly},
 #' URLs can become so long that the WFS server will decline them. XML can be a
 #' valid alternative to construct large queries. Additionally, some services
-#' like the one used by \code{\link{bkg_geonames}} only support XML.
+#' like the one used by \code{\link{bkg_geonames}} only support XML. If
+#' \code{NULL}, defaults to \code{getOption("ffm_query_language")}.
 #'
 #' @returns A CQL query or an XML query depending on the \code{lang} argument.
 #'
@@ -30,6 +35,7 @@ wfs_filter <- function(...,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
+                       default_crs = 25832,
                        lang = NULL) {
   lang <- lang %||% getOption("ffm_query_language", "cql")
   filter_fun <- switch(lang, cql = cql_filter, xml = xml_filter)
@@ -38,7 +44,8 @@ wfs_filter <- function(...,
     ...,
     bbox = bbox,
     poly = poly,
-    predicate = predicate
+    predicate = predicate,
+    default_crs = default_crs
   )
 }
 

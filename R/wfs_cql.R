@@ -15,7 +15,16 @@ cql_filter <- function(...,
   )
 
   all_filters <- c(ops, geom_filter)
-  paste(all_filters, collapse = " AND ", recycle0 = TRUE) %zchar% NULL
+  filter <- paste(all_filters, collapse = " AND ", recycle0 = TRUE) %zchar% NULL
+  class(filter) <- "cql_filter"
+  filter
+}
+
+
+#' @export
+print.cql_filter <- function(x, ...) {
+  cat(x, "\n", ...)
+  invisible(x)
 }
 
 

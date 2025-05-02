@@ -25,25 +25,24 @@
 #' consist of a property name on the left, an aribtrary vector on the right,
 #' and an operator that links both sides. If multiple queries are provided,
 #' they will be chained with \code{AND}. The following operators and their
-#' respective equivalents in CQL are supported:
+#' respective equivalents in CQL and XML are supported:
 #'
-#' \tabular{ll}{
-#' \strong{R} \tab \strong{CQL}\cr
-#' \code{==}      \tab \code{=}    \cr
-#' \code{!=}      \tab \code{<>}   \cr
-#' \code{<}       \tab \code{<}    \cr
-#' \code{>}       \tab \code{>}    \cr
-#' \code{>=}      \tab \code{>=}   \cr
-#' \code{<=}      \tab \code{<=}   \cr
-#' \code{~}       \tab \code{~}    \cr
-#' \code{\%!~\%}    \tab \code{!~}   \cr
-#' \code{\%LIKE\%}  \tab \code{LIKE} \cr
-#' \code{\%ILIKE\%} \tab \code{ILIKE}\cr
-#' \code{\%in\%}    \tab \code{IN}
+#' \tabular{lll}{
+#' \strong{R} \tab \strong{CQL} \tab \strong{XML}\cr
+#' \code{==} \tab \code{=} \tab \code{PropertyIsEqualTo}\cr
+#' \code{!=} \tab \code{<>} \tab \code{PropertyIsNotEqualTo}\cr
+#' \code{<} \tab \code{<} \tab \code{PropertyIsLessThan}\cr
+#' \code{>} \tab \code{>} \tab \code{PropertyIsGreaterThan}\cr
+#' \code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
+#' \code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
+#' \code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
+#' \code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
+#' \code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
 #'}
 #'
 #' To construct more complex queries, you can use the \code{filter} argument
-#' to pass CQL queries directly.
+#' to pass CQL queries directly. Also note that you can switch between
+#' CQL and XML queries using \code{options(ffm_query_language = "xml")}.
 #' @param bbox An sf geometry or a boundary box vector of the format
 #' \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
 #' only those geometries that relate to \code{bbox} according to the predicate
@@ -91,12 +90,11 @@
 #' @section Query language:
 #' By default, WFS requests use CQL (Contextual Query Language) queries for
 #' simplicity. CQL queries only work together with GET requests. This means
-#' that when the URL is longer than 2048 characters, they fail. If this is the
-#' case, \code{\link{bkg_wfs}} falls back to XML queries using POST requests.
-#' While POST requests are much more flexible, XML is really a pain to work with
-#' and I'm not confident in my approach to construct XML queries. You can
-#' control whether to send GET or POST requests by setting
-#' \code{options(ffm_query_language = "XML")}
+#' that when the URL is longer than 2048 characters, they fail.
+#' While POST requests are much more flexible and able to accommodate long
+#' queries, XML is really a pain to work with and I'm not confident in my
+#' approach to construct XML queries. You can control whether to send GET or
+#' POST requests by setting \code{options(ffm_query_language = "XML")}
 #' or \code{options(ffm_query_language = "CQL")}.
 #'
 #' @examples

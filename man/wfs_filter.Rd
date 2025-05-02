@@ -9,7 +9,8 @@ wfs_filter(
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
-  lang = c("cql", "xml")
+  default_crs = 25832,
+  lang = NULL
 )
 }
 \arguments{
@@ -18,25 +19,24 @@ syntax that is converted to CQL queries internally. These queries basically
 consist of a property name on the left, an aribtrary vector on the right,
 and an operator that links both sides. If multiple queries are provided,
 they will be chained with \code{AND}. The following operators and their
-respective equivalents in CQL are supported:
+respective equivalents in CQL and XML are supported:
 
-\tabular{ll}{
-\strong{R} \tab \strong{CQL}\cr
-\code{==}      \tab \code{=}    \cr
-\code{!=}      \tab \code{<>}   \cr
-\code{<}       \tab \code{<}    \cr
-\code{>}       \tab \code{>}    \cr
-\code{>=}      \tab \code{>=}   \cr
-\code{<=}      \tab \code{<=}   \cr
-\code{~}       \tab \code{~}    \cr
-\code{\%!~\%}    \tab \code{!~}   \cr
-\code{\%LIKE\%}  \tab \code{LIKE} \cr
-\code{\%ILIKE\%} \tab \code{ILIKE}\cr
-\code{\%in\%}    \tab \code{IN}
+\tabular{lll}{
+\strong{R} \tab \strong{CQL} \tab \strong{XML}\cr
+\code{==} \tab \code{=} \tab \code{PropertyIsEqualTo}\cr
+\code{!=} \tab \code{<>} \tab \code{PropertyIsNotEqualTo}\cr
+\code{<} \tab \code{<} \tab \code{PropertyIsLessThan}\cr
+\code{>} \tab \code{>} \tab \code{PropertyIsGreaterThan}\cr
+\code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
+\code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
+\code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
+\code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
+\code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
 }
 
 To construct more complex queries, you can use the \code{filter} argument
-to pass CQL queries directly.}
+to pass CQL queries directly. Also note that you can switch between
+CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
 
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
@@ -59,13 +59,19 @@ returns only those geometries that lie within \code{bbox}. Can be one of
 \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
 \code{"intersects"}.}
 
-\item{lang}{Query language to use for constructing the query. By default,
-almost all \code{ffm} functions use CQL because it is simpler and less
-prone to errors. However, CQL is limited in terms of query size. Especially
-when providing a \code{poly}, URLs can become so long that the WFS server
-will decline them. XML can be a valid alternative to construct large queries.
-Additionally, some services like the one used by \code{\link{bkg_geonames}}
-only support XML.}
+\item{default_crs}{A WFS defines a default CRS in which coordinates for
+spatial filtering have to be provided. For BKG services, this is usually
+EPSG:25832. All sf objects provided through \code{bbox} or \code{poly} are first
+transformed to this CRS before creating the query.}
+
+\item{lang}{Query language to use for constructing the query. One of
+\code{"cql"} and \code{"xml"}. By default, almost all \code{ffm} functions
+use CQL because it is simpler and less prone to errors. However, CQL is
+limited in terms of query size. Especially when providing a \code{poly},
+URLs can become so long that the WFS server will decline them. XML can be a
+valid alternative to construct large queries. Additionally, some services
+like the one used by \code{\link{bkg_geonames}} only support XML. If
+\code{NULL}, defaults to \code{getOption("ffm_query_language")}.}
 }
 \value{
 A CQL query or an XML query depending on the \code{lang} argument.

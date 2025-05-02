@@ -25,25 +25,24 @@ syntax that is converted to CQL queries internally. These queries basically
 consist of a property name on the left, an aribtrary vector on the right,
 and an operator that links both sides. If multiple queries are provided,
 they will be chained with \code{AND}. The following operators and their
-respective equivalents in CQL are supported:
+respective equivalents in CQL and XML are supported:
 
-\tabular{ll}{
-\strong{R} \tab \strong{CQL}\cr
-\code{==}      \tab \code{=}    \cr
-\code{!=}      \tab \code{<>}   \cr
-\code{<}       \tab \code{<}    \cr
-\code{>}       \tab \code{>}    \cr
-\code{>=}      \tab \code{>=}   \cr
-\code{<=}      \tab \code{<=}   \cr
-\code{~}       \tab \code{~}    \cr
-\code{\%!~\%}    \tab \code{!~}   \cr
-\code{\%LIKE\%}  \tab \code{LIKE} \cr
-\code{\%ILIKE\%} \tab \code{ILIKE}\cr
-\code{\%in\%}    \tab \code{IN}
+\tabular{lll}{
+\strong{R} \tab \strong{CQL} \tab \strong{XML}\cr
+\code{==} \tab \code{=} \tab \code{PropertyIsEqualTo}\cr
+\code{!=} \tab \code{<>} \tab \code{PropertyIsNotEqualTo}\cr
+\code{<} \tab \code{<} \tab \code{PropertyIsLessThan}\cr
+\code{>} \tab \code{>} \tab \code{PropertyIsGreaterThan}\cr
+\code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
+\code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
+\code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
+\code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
+\code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
 }
 
 To construct more complex queries, you can use the \code{filter} argument
-to pass CQL queries directly.}
+to pass CQL queries directly. Also note that you can switch between
+CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
 
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include

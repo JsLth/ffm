@@ -6,7 +6,7 @@ xml_filter <- function(...,
   rlang::check_dots_unnamed()
   dots <- rlang::enquos(...)
 
-  ops <- unbox(lapply(dots, xml_operators))
+  ops <- unbox(lapply(dots, xml_operators, link = if (length(dots) > 1) "And"))
   geom_filter <- xml_spatial(
     bbox = bbox,
     poly = poly,
@@ -14,7 +14,7 @@ xml_filter <- function(...,
     default_crs = default_crs
   )
 
-  filter <- make_node("fes:Filter", list(ops, geom_filter))
+  filter <- make_node("fes:Filter", c(ops, geom_filter))
   class(filter) <- "xml_filter"
   filter
 }
@@ -90,7 +90,7 @@ st_as_gml <- function(x) {
 }
 
 
-xml_operators <- function(quo) {
+xml_operators <- function(quo, link = NULL) {
   query <- parse_pseudo_query(quo)
   rhs <- query$rhs
   lhs <- query$lhs
@@ -108,27 +108,33 @@ xml_operators <- function(quo) {
 
   query <- make_node(
     sprintf("fes:%s", operator),
-    lapply(rhs, xml_filter_single, lhs)
+    lapply(rhs, xml_filter_single, lhs, link = if (length(rhs) > 1) "Or")
   )
 
-  if (length(rhs) > 1) {
-    query <- make_node("fes:Or", query)
+  if (!is.null(link)) {
+    query <- make_node("And", query)
   }
 
   query
 }
 
 
-xml_filter_single <- function(rhs, lhs) {
-  list(
+xml_filter_single <- function(rhs, lhs, link = NULL) {
+  filter <- list(
     make_node("fes:ValueReference", lhs),
     make_node("fes:Literal", rhs)
   )
+
+  if (!is.null(link)) {
+    filter <- make_node(link, filter)
+  }
+
+  filter
 }
 
 
 make_node <- function(name, text = NULL, attrs = list()) {
-  text <- list(text)
+  text <- if (is.list(text)) text else list(text)
   attributes(text) <- attrs
   node <- list(text)
   names(node) <- name
