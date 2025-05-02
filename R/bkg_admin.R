@@ -47,11 +47,12 @@
 #' @param bbox An sf geometry or a boundary box vector of the format
 #' \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
 #' only those geometries that relate to \code{bbox} according to the predicate
-#' specified in \code{predicate}. Coordinates have to be provided in
-#' ESPG:25832 (the default CRS).
+#' specified in \code{predicate}. If an sf geometry is provided, coordinates
+#' are automatically transformed to ESPG:25832 (the default CRS), otherwise
+#' they are expected to be in EPSG:25832.
 #' @param poly An sf geometry. Used as a geometric filter to include
 #' only those geometries that relate to \code{poly} according to the predicate
-#' specified in \code{predicate}. Coordinates have to be provided in
+#' specified in \code{predicate}. Coordinates are automatically transformed to
 #' ESPG:25832 (the default CRS).
 #' @param predicate A spatial predicate that is used to relate the output
 #' geometries with the object specified in \code{bbox} or \code{poly}. For
@@ -86,6 +87,17 @@
 #' \code{\link{bkg_nuts}} for retrieving EU administrative areas
 #'
 #' @export
+#'
+#' @section Query language:
+#' By default, WFS requests use CQL (Contextual Query Language) queries for
+#' simplicity. CQL queries only work together with GET requests. This means
+#' that when the URL is longer than 2048 characters, they fail. If this is the
+#' case, \code{\link{bkg_wfs}} falls back to XML queries using POST requests.
+#' While POST requests are much more flexible, XML is really a pain to work with
+#' and I'm not confident in my approach to construct XML queries. You can
+#' control whether to send GET or POST requests by setting
+#' \code{options(ffm_query_language = "XML")}
+#' or \code{options(ffm_query_language = "CQL")}.
 #'
 #' @examples
 #' # You can use R-like operators to query the WFS

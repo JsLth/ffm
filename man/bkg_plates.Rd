@@ -43,11 +43,14 @@ to pass CQL queries directly.}
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
 only those geometries that relate to \code{bbox} according to the predicate
-specified in \code{predicate}.}
+specified in \code{predicate}. If an sf geometry is provided, coordinates
+are automatically transformed to ESPG:25832 (the default CRS), otherwise
+they are expected to be in EPSG:25832.}
 
 \item{poly}{An sf geometry. Used as a geometric filter to include
 only those geometries that relate to \code{poly} according to the predicate
-specified in \code{predicate}.}
+specified in \code{predicate}. Coordinates are automatically transformed to
+ESPG:25832 (the default CRS).}
 
 \item{predicate}{A spatial predicate that is used to relate the output
 geometries with the object specified in \code{bbox} or \code{poly}. For
