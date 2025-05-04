@@ -9,6 +9,7 @@ bkg_kilometrage(
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
+  filter = NULL,
   epsg = 3035,
   properties = NULL,
   max = NULL

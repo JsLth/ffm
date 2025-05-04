@@ -5,6 +5,7 @@
 #' both land cover and land use.
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns An sf dataframe with polygon geometries and the following columns:
 #' \itemize{
@@ -17,7 +18,7 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf ffm_run_examples()
 #' # Get glaciers in Germany
 #' bkg_clc(clc18 == "335")
 #'
@@ -32,11 +33,13 @@ bkg_clc <- function(...,
                     bbox = NULL,
                     poly = NULL,
                     predicate = "intersects",
+                    filter = NULL,
                     epsg = 3035,
                     properties = NULL,
                     max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -49,6 +52,6 @@ bkg_clc <- function(...,
     epsg = epsg,
     count = max,
     properties = properties,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }

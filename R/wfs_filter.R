@@ -6,6 +6,27 @@
 #' \code{\link{bkg_clc}} or \code{bkb_geonames}).
 #'
 #' @inheritParams bkg_admin
+#' @param filter A character string containing a valid CQL or XML filter. This
+#' string is appended to the query constructed through \code{...}. Use this
+#' argument to construct more complex filters. Defaults to \code{NULL}.
+#' @param bbox An sf geometry or a boundary box vector of the format
+#' \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
+#' only those geometries that relate to \code{bbox} according to the predicate
+#' specified in \code{predicate}. If an sf geometry is provided, coordinates
+#' are automatically transformed to ESPG:25832 (the default CRS), otherwise
+#' they are expected to be in EPSG:25832.
+#' @param poly An sf geometry. Used as a geometric filter to include
+#' only those geometries that relate to \code{poly} according to the predicate
+#' specified in \code{predicate}. Coordinates are automatically transformed to
+#' ESPG:25832 (the default CRS).
+#' @param predicate A spatial predicate that is used to relate the output
+#' geometries with the object specified in \code{bbox} or \code{poly}. For
+#' example, if \code{predicate = "within"}, and \code{bbox} is specified,
+#' returns only those geometries that lie within \code{bbox}. Can be one of
+#' \code{"equals"}, \code{"disjoint"}, \code{"intersects"}, \code{"touches"},
+#' \code{"crosses"}, \code{"within"}, \code{"contains"}, \code{"overlaps"},
+#' \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
+#' \code{"intersects"}.
 #' @param default_crs A WFS defines a default CRS in which coordinates for
 #' spatial filtering have to be provided. For BKG services, this is usually
 #' EPSG:25832. All sf objects provided through \code{bbox} or \code{poly} are first
@@ -32,16 +53,19 @@
 #' wfs_filter(bbox = bbox, lang = "cql")
 #' wfs_filter(bbox = bbox, lang = "xml")
 wfs_filter <- function(...,
+                       filter = NULL,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
                        default_crs = 25832,
                        lang = NULL) {
   lang <- lang %||% getOption("ffm_query_language", "cql")
+  rlang::arg_match(lang, c("xml", "cql"))
   filter_fun <- switch(lang, cql = cql_filter, xml = xml_filter)
 
   filter_fun(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate,
@@ -79,4 +103,9 @@ parse_pseudo_query <- function(quo) {
 
 
   list(lhs = lhs, rhs = rhs, operator = operator)
+}
+
+
+query_lang <- function() {
+  getOption("ffm_query_language", "cql")
 }

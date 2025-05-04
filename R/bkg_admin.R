@@ -13,11 +13,11 @@
 #' (1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
 #' or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
 #' in the output. Defaults to \code{"250"}.
-#' @param cutoff For \code{resolution \%in\% c("250", "5000")}, specifies the key
+#' @param key_date For \code{resolution \%in\% c("250", "5000")}, specifies the key
 #' date from which to download administrative data. Can be either \code{"0101"}
 #' (January 1) or \code{"3112"} (December 31). The latter is able to
 #' georeference statistical data while the first integrates changes made
-#' in the new year. If \code{resolution == "250"}, the \code{cutoff} value also
+#' in the new year. If \code{resolution == "250"}, the \code{key_date} value also
 #' determines whether to include population data. If \code{"3112"}, population
 #' data is attached, otherwise not. Defaults to "0101".
 #' @param ... Used to construct CQL filters. Dot arguments accept an R-like
@@ -43,30 +43,13 @@
 #' To construct more complex queries, you can use the \code{filter} argument
 #' to pass CQL queries directly. Also note that you can switch between
 #' CQL and XML queries using \code{options(ffm_query_language = "xml")}.
-#' @param bbox An sf geometry or a boundary box vector of the format
-#' \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
-#' only those geometries that relate to \code{bbox} according to the predicate
-#' specified in \code{predicate}. If an sf geometry is provided, coordinates
-#' are automatically transformed to ESPG:25832 (the default CRS), otherwise
-#' they are expected to be in EPSG:25832.
-#' @param poly An sf geometry. Used as a geometric filter to include
-#' only those geometries that relate to \code{poly} according to the predicate
-#' specified in \code{predicate}. Coordinates are automatically transformed to
-#' ESPG:25832 (the default CRS).
-#' @param predicate A spatial predicate that is used to relate the output
-#' geometries with the object specified in \code{bbox} or \code{poly}. For
-#' example, if \code{predicate = "within"}, and \code{bbox} is specified,
-#' returns only those geometries that lie within \code{bbox}. Can be one of
-#' \code{"equals"}, \code{"disjoint"}, \code{"intersects"}, \code{"touches"},
-#' \code{"crosses"}, \code{"within"}, \code{"contains"}, \code{"overlaps"},
-#' \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
-#' \code{"intersects"}.
 #' @param epsg An EPSG code specifying a coordinate reference system of the
 #' output. If you're unsure what this means, try running
 #' \code{sf::st_crs(...)$epsg} on a spatial object that you are working with.
 #' Defaults to 3035.
 #' @param properties Vector of columns to include in the output.
 #' @param max Maximum number of results to return.
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe with different columns depending on the geometry type.
 #' Areal geometries generally have the following columns:
@@ -107,10 +90,11 @@
 bkg_admin <- function(...,
                       level = "krs",
                       scale = c("250", "1000", "2500", "5000"),
-                      cutoff = "0101",
+                      key_date = "0101",
                       bbox = NULL,
                       poly = NULL,
                       predicate = "intersects",
+                      filter = NULL,
                       epsg = 3035,
                       properties = NULL,
                       max = NULL) {
@@ -118,22 +102,24 @@ bkg_admin <- function(...,
   level <- rlang::arg_match(level, all_levels)
   scale <- rlang::arg_match(scale)
 
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
   )
+  filter <- paste(c(dot_filter, filter), collapse = " AND ")
 
   endpoint <- sprintf("vg%s", scale)
   service <- sprintf("%s_%s", endpoint, level)
 
-  if (scale == 250 && identical(cutoff, "3112")) {
+  if (scale == 250 && identical(key_date, "3112")) {
     endpoint <- paste0(endpoint, "-ew")
   }
 
   if (scale == 5000) {
-    endpoint <- sprintf("%s_%s", endpoint, cutoff)
+    endpoint <- sprintf("%s_%s", endpoint, key_date)
   }
 
   bkg_wfs(
@@ -142,7 +128,7 @@ bkg_admin <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -187,16 +173,16 @@ bkg_admin <- function(...,
 #' bkg_nuts(level = "3")}
 bkg_nuts <- function(level = c("1", "2", "3"),
                      scale = c("250", "1000", "2500", "5000"),
-                     cutoff = c("0101", "3112"),
+                     key_date = c("0101", "3112"),
                      year = "latest",
                      timeout = 120,
                      update_cache = FALSE) {
   level <- rlang::arg_match(level)
   scale <- rlang::arg_match(scale)
-  cutoff <- rlang::arg_match(cutoff)
-  cutoff_fmt <- switch(cutoff, "0101" = "01-01", "3112" = "31-12")
-  file <- sprintf("nuts%s_%s.utm32s.shape.zip", scale, cutoff_fmt)
-  product <- sprintf("nuts%s_%s", scale, cutoff)
+  key_date <- rlang::arg_match(key_date)
+  key_date_fmt <- switch(key_date, "0101" = "01-01", "3112" = "31-12")
+  file <- sprintf("nuts%s_%s.utm32s.shape.zip", scale, key_date_fmt)
+  product <- sprintf("nuts%s_%s", scale, key_date)
   out_path <- bkg_download(
     file,
     product = product,

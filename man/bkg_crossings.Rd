@@ -9,6 +9,7 @@ bkg_crossings(
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
+  filter = NULL,
   epsg = 3035,
   properties = NULL,
   max = NULL
@@ -59,6 +60,10 @@ returns only those geometries that lie within \code{bbox}. Can be one of
 \code{"crosses"}, \code{"within"}, \code{"contains"}, \code{"overlaps"},
 \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
 \code{"intersects"}.}
+
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
 
 \item{epsg}{An EPSG code specifying a coordinate reference system of the
 output. If you're unsure what this means, try running

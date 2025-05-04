@@ -99,7 +99,7 @@ Attribute filters are supported using a R-like syntax.
 ``` r
 munics <- bkg_admin(
   level = "gem",
-  cutoff = "3112",
+  key_date = "3112",
   sn_l %in% c("08", "09")
 )
 ```

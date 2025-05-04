@@ -7,7 +7,7 @@
 bkg_nuts(
   level = c("1", "2", "3"),
   scale = c("250", "1000", "2500", "5000"),
-  cutoff = c("0101", "3112"),
+  key_date = c("0101", "3112"),
   year = "latest",
   timeout = 120,
   update_cache = FALSE
@@ -18,11 +18,11 @@ bkg_nuts(
 \code{"2"} (inconsistent, something between states and government regions),
 or \code{"3"} (districts). Defaults to federal states.}
 
-\item{cutoff}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
+\item{key_date}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
 date from which to download administrative data. Can be either \code{"0101"}
 (January 1) or \code{"3112"} (December 31). The latter is able to
 georeference statistical data while the first integrates changes made
-in the new year. If \code{resolution == "250"}, the \code{cutoff} value also
+in the new year. If \code{resolution == "250"}, the \code{key_date} value also
 determines whether to include population data. If \code{"3112"}, population
 data is attached, otherwise not. Defaults to "0101".}
 

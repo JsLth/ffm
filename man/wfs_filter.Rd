@@ -6,6 +6,7 @@
 \usage{
 wfs_filter(
   ...,
+  filter = NULL,
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
@@ -37,6 +38,10 @@ respective equivalents in CQL and XML are supported:
 To construct more complex queries, you can use the \code{filter} argument
 to pass CQL queries directly. Also note that you can switch between
 CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
+
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
 
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include

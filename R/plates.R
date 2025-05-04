@@ -3,17 +3,20 @@
 #' description
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #'
 bkg_plates <- function(...,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
+                       filter = NULL,
                        epsg = 3035,
                        properties = NULL,
                        max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -23,7 +26,7 @@ bkg_plates <- function(...,
     "kfz250",
     version = "1.1.0",
     maxfeatures = max,
-    cql_filter = filter,
+    filter = filter,
     epsg = epsg,
     properties = properties,
     ...

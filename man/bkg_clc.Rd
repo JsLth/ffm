@@ -14,6 +14,7 @@ bkg_clc(
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
+  filter = NULL,
   epsg = 3035,
   properties = NULL,
   max = NULL
@@ -65,6 +66,10 @@ returns only those geometries that lie within \code{bbox}. Can be one of
 \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
 \code{"intersects"}.}
 
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
+
 \item{epsg}{An EPSG code specifying a coordinate reference system of the
 output. If you're unsure what this means, try running
 \code{sf::st_crs(...)$epsg} on a spatial object that you are working with.
@@ -92,6 +97,7 @@ is a way to project by the European Commission to consistenly classify
 both land cover and land use.
 }
 \examples{
+\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get glaciers in Germany
 bkg_clc(clc18 == "335")
 
@@ -101,4 +107,5 @@ bkg_clc(clc18 \%LIKE\% "42\%")
 # Get only wetlands in Lower Saxony
 lowsax <- bkg_admin(level = "lan", scale = "5000", sn_l == "03", gf == 9)
 bkg_clc(clc18 \%LIKE\% "4\%", poly = lowsax)
+\dontshow{\}) # examplesIf}
 }

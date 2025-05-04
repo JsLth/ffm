@@ -7,9 +7,14 @@
 #' @returns A dataframe containing the following columns:
 #'
 #' @export
-bkg_toponyms <- function(..., epsg = 3035, properties = NULL, max = NULL) {
-  filter <- cql_filter(
+bkg_toponyms <- function(...,
+                         filter = NULL,
+                         epsg = 3035,
+                         properties = NULL,
+                         max = NULL) {
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -27,7 +32,20 @@ bkg_toponyms <- function(..., epsg = 3035, properties = NULL, max = NULL) {
 }
 
 
-bkg_toponyms_admin <- function(..., properties = NULL, filter = NULL, max = NULL) {
+bkg_toponyms_admin <- function(...,
+                               filter = NULL,
+                               epsg = 3035,
+                               properties = NULL,
+                               max = NULL) {
+  filter <- wfs_filter(
+    ...,
+    filter = filter,
+    bbox = bbox,
+    poly = poly,
+    predicate = predicate
+  )
+  epsg <- sprintf("EPSG:%s", epsg)
+
   bkg_wfs(
     "gn:Ags",
     endpoint = "gnde",
@@ -35,7 +53,7 @@ bkg_toponyms_admin <- function(..., properties = NULL, filter = NULL, max = NULL
     layer = "Ags",
     count = max,
     PropertyName = properties,
-    filter = filter %||% cql_filter(...)
+    filter = filter
   )[-1]
 }
 

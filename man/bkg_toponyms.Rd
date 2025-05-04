@@ -4,7 +4,7 @@
 \alias{bkg_toponyms}
 \title{Toponyms}
 \usage{
-bkg_toponyms(..., epsg = 3035, properties = NULL, max = NULL)
+bkg_toponyms(..., filter = NULL, epsg = 3035, properties = NULL, max = NULL)
 }
 \arguments{
 \item{...}{Used to construct CQL filters. Dot arguments accept an R-like
@@ -30,6 +30,10 @@ respective equivalents in CQL and XML are supported:
 To construct more complex queries, you can use the \code{filter} argument
 to pass CQL queries directly. Also note that you can switch between
 CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
+
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
 
 \item{epsg}{An EPSG code specifying a coordinate reference system of the
 output. If you're unsure what this means, try running

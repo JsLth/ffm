@@ -9,6 +9,7 @@ bkg_trauma_centers(
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
+  filter = NULL,
   epsg = 3035,
   properties = NULL,
   max = NULL
@@ -60,6 +61,10 @@ returns only those geometries that lie within \code{bbox}. Can be one of
 \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
 \code{"intersects"}.}
 
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
+
 \item{epsg}{An EPSG code specifying a coordinate reference system of the
 output. If you're unsure what this means, try running
 \code{sf::st_crs(...)$epsg} on a spatial object that you are working with.
@@ -106,6 +111,28 @@ bkg_trauma_centers(abteilung \%LIKE\% "\%orthopäd\%")
 
 # Get only local trauma centers
 bkg_trauma_centers(typ == "LTZ")
+
+if (requireNamespace("ggplot2")) {
+  library(ggplot2)
+  centers <- bkg_trauma_centers()
+  ggplot() +
+  geom_sf(
+    data = centers[centers$typ \%in\% "LTZ",],
+    size = 1,
+    color = "lightblue1"
+  ) +
+  geom_sf(
+    data = centers[centers$typ \%in\% "RTZ",],
+    size = 2,
+    color = "lightblue3"
+  ) +
+  geom_sf(
+    data = centers[centers$typ \%in\% "ÜTZ",],
+    size = 3,
+    color = "lightblue4"
+  ) +
+  theme_void()
+}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

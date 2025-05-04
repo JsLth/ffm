@@ -4,6 +4,7 @@
 #' landing sites are not included.
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'   \item{\code{name}}: Geographical name of the POI
@@ -40,11 +41,13 @@ bkg_airports <- function(...,
                          bbox = NULL,
                          poly = NULL,
                          predicate = "intersects",
+                         filter = NULL,
                          epsg = 3035,
                          properties = NULL,
                          max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -56,7 +59,7 @@ bkg_airports <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -68,6 +71,7 @@ bkg_airports <- function(...,
 #' This includes ferry connections but not dirt roads.
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe with the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
@@ -98,11 +102,13 @@ bkg_crossings <- function(...,
                           bbox = NULL,
                           poly = NULL,
                           predicate = "intersects",
+                          filter = NULL,
                           epsg = 3035,
                           properties = NULL,
                           max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -114,7 +120,7 @@ bkg_crossings <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -128,6 +134,7 @@ bkg_crossings <- function(...,
 #' at a bus stop).
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe with the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
@@ -173,11 +180,13 @@ bkg_stations <- function(...,
                          bbox = NULL,
                          poly = NULL,
                          predicate = "intersects",
+                         filter = NULL,
                          epsg = 3035,
                          properties = NULL,
                          max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -189,7 +198,7 @@ bkg_stations <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -200,6 +209,7 @@ bkg_stations <- function(...,
 #' classification of aerial imagery.
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe with the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
@@ -280,11 +290,13 @@ bkg_heliports <- function(...,
                           bbox = NULL,
                           poly = NULL,
                           predicate = "intersects",
+                          filter = NULL,
                           epsg = 3035,
                           properties = NULL,
                           max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -296,7 +308,7 @@ bkg_heliports <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -338,11 +350,13 @@ bkg_kilometrage <- function(...,
                             bbox = NULL,
                             poly = NULL,
                             predicate = "intersects",
+                            filter = NULL,
                             epsg = 3035,
                             properties = NULL,
                             max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -354,7 +368,7 @@ bkg_kilometrage <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -364,6 +378,7 @@ bkg_kilometrage <- function(...,
 #' Retrieve seaports to the North and Baltic Sea in Northern Germany.
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'   \item{\code{name}}: Geographical name of the POI
@@ -408,11 +423,13 @@ bkg_seaports <- function(...,
                          bbox = NULL,
                          poly = NULL,
                          predicate = "intersects",
+                         filter = NULL,
                          epsg = 3035,
                          properties = NULL,
                          max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -424,7 +441,7 @@ bkg_seaports <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }
 
@@ -438,6 +455,7 @@ bkg_seaports <- function(...,
 #' transregional centers.
 #'
 #' @inheritParams bkg_admin
+#' @inheritParams wfs_filter
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'   \item{\code{name}}: Geographical name of the POI
@@ -474,15 +492,39 @@ bkg_seaports <- function(...,
 #'
 #' # Get only local trauma centers
 #' bkg_trauma_centers(typ == "LTZ")
+#'
+#' if (requireNamespace("ggplot2")) {
+#'   library(ggplot2)
+#'   centers <- bkg_trauma_centers()
+#'   ggplot() +
+#'   geom_sf(
+#'     data = centers[centers$typ %in% "LTZ",],
+#'     size = 1,
+#'     color = "lightblue1"
+#'   ) +
+#'   geom_sf(
+#'     data = centers[centers$typ %in% "RTZ",],
+#'     size = 2,
+#'     color = "lightblue3"
+#'   ) +
+#'   geom_sf(
+#'     data = centers[centers$typ %in% "ÜTZ",],
+#'     size = 3,
+#'     color = "lightblue4"
+#'   ) +
+#'   theme_void()
+#' }
 bkg_trauma_centers <- function(...,
                                bbox = NULL,
                                poly = NULL,
                                predicate = "intersects",
+                               filter = NULL,
                                epsg = 3035,
                                properties = NULL,
                                max = NULL) {
-  filter <- cql_filter(
+  filter <- wfs_filter(
     ...,
+    filter = filter,
     bbox = bbox,
     poly = poly,
     predicate = predicate
@@ -494,6 +536,6 @@ bkg_trauma_centers <- function(...,
     count = max,
     properties = properties,
     epsg = epsg,
-    cql_filter = filter
+    filter = filter
   )[-1]
 }

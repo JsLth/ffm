@@ -8,10 +8,11 @@ bkg_admin(
   ...,
   level = "krs",
   scale = c("250", "1000", "2500", "5000"),
-  cutoff = "0101",
+  key_date = "0101",
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
+  filter = NULL,
   epsg = 3035,
   properties = NULL,
   max = NULL
@@ -49,11 +50,11 @@ CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
 \code{"li"} (boundary lines), or \code{"pk"} (municipality centroids).
 Defaults to districts.}
 
-\item{cutoff}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
+\item{key_date}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
 date from which to download administrative data. Can be either \code{"0101"}
 (January 1) or \code{"3112"} (December 31). The latter is able to
 georeference statistical data while the first integrates changes made
-in the new year. If \code{resolution == "250"}, the \code{cutoff} value also
+in the new year. If \code{resolution == "250"}, the \code{key_date} value also
 determines whether to include population data. If \code{"3112"}, population
 data is attached, otherwise not. Defaults to "0101".}
 
@@ -77,6 +78,10 @@ returns only those geometries that lie within \code{bbox}. Can be one of
 \code{"crosses"}, \code{"within"}, \code{"contains"}, \code{"overlaps"},
 \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
 \code{"intersects"}.}
+
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
 
 \item{epsg}{An EPSG code specifying a coordinate reference system of the
 output. If you're unsure what this means, try running

@@ -15,13 +15,16 @@ bkg_info <- function(product, ..., max = NULL) {
 bkg_wfs <- function(type_name,
                     endpoint = type_name,
                     version = "2.0.0",
-                    method = c("GET", "POST"),
+                    method = NULL,
                     format = "application/json",
                     layer = NULL,
-                    epsg = NULL,
+                    epsg = 3035,
                     properties = NULL,
+                    filter = NULL,
                     ...) {
-  method <- rlang::arg_match(method)
+  method <- method %||%
+    switch(class(filter)[1], xml_filter = "POST", cql_filter = "GET") %||%
+    switch(query_lang(), cql = "GET", xml = "POST")
 
   if (!is.null(epsg)) {
     epsg <- sprintf("EPSG:%s", epsg)
@@ -43,6 +46,7 @@ bkg_wfs <- function(type_name,
       format = format,
       epsg = epsg,
       properties = properties,
+      filter = filter,
       ...
     ),
     GET = bkg_wfs_get_query(
@@ -52,6 +56,7 @@ bkg_wfs <- function(type_name,
       format = format,
       epsg = epsg,
       properties = properties,
+      filter = filter,
       ...
     )
   )
@@ -59,26 +64,35 @@ bkg_wfs <- function(type_name,
   if (nchar(req$url) > 2048) {
     cli::cli_abort(c(
       "Query is too large to be handled by CQL queries.",
-      "i" = "Consider setting `options(ffm_query_language = \"XML\")`.",
+      "i" = "Consider setting `options(ffm_query_language = \"xml\")`.",
       "i" = "Alternatively, try to reduce the size of your query."
     ))
   }
 
-  if (isTRUE(getOption("bkg_debug", FALSE))) {
-    cli::cli_verbatim(utils::URLdecode(req$url))
+  if (isTRUE(getOption("ffm_debug", FALSE))) {
+    switch(
+      method,
+      GET = cli::cli_verbatim(utils::URLdecode(req$url)),
+      POST = cli::cli_verbatim(req$body$data)
+    )
   }
 
   req <- httr2::req_error(req, body = get_resp_error_details)
 
-  if (!grepl("xml|gml", format)) {
+  if (grepl("json", format)) {
     resp <- httr2::req_perform(req)
     res <- httr2::resp_body_string(resp)
     sf::read_sf(res)
   } else {
-    sf::read_sf(req$url, layer = layer)
+    tempf <- tempfile()
+    on.exit(unlink(tempf))
+    resp <- httr2::req_perform(req, path = tempf)
+    if (is.null(layer)) {
+      sf::read_sf(tempf)
+    } else {
+      sf::read_sf(tempf, layer = layer)
+    }
   }
-
-
 }
 
 
@@ -108,6 +122,7 @@ bkg_wfs_get_query <- function(req,
                               format = "application/json",
                               epsg = 3035,
                               properties = NULL,
+                              filter = NULL,
                               ...) {
   req <- httr2::req_url_query(
     req,
@@ -117,6 +132,7 @@ bkg_wfs_get_query <- function(req,
     outputFormat = format,
     srsName = epsg,
     PropertyName = properties,
+    cql_filter = filter,
     ...,
     .multi = "comma"
   )
@@ -132,22 +148,36 @@ bkg_wfs_get_query <- function(req,
 
 
 get_resp_error_details <- function(resp) {
-  content <- httr2::resp_body_string(resp)
-  msg <- NULL
-
-  code <- if (grepl("exceptionCode", content, fixed = TRUE)) {
-    regex_match(content, "exceptionCode=\"(.*?)\"", i = 2)
-  }
-
-  if (is.null(code) && grepl("code=", content, fixed = TRUE)) {
-    code <- regex_match(content, "code=\"(.*?)\"", i = 2)
-  }
-
-  msg <- if (grepl("ExceptionText", content, fixed = TRUE)) {
-    regex_match(content, "<ows:ExceptionText>(.*?)</ows:ExceptionText>", i = 2)
-  }
-
-  paste(c(code, msg), collapse = ": ") %zchar% NULL
+  content <- httr2::resp_body_xml(resp)
+  parse_wfs_error(content) %||%
+    parse_service_error(content)
 }
 
 
+parse_wfs_error <- function(xml) {
+  if (identical(xml2::xml_name(xml), "ExceptionReport")) {
+    exception <- xml2::xml_find_first(xml, "ows:Exception")
+    code <- xml2::xml_attrs(exception)["exceptionCode"]
+    text <- xml2::xml_find_first(exception, "ows:ExceptionText")
+    text <- unescape_xml(xml2::xml_text(text))
+    text <- strsplit(text, "\n")[[1]]
+    text[1] <- paste(c(code, text[1]), collapse = ": ")
+    names(text)[1] <- "x"
+    names(text)[-1] <- "i"
+    text
+  }
+}
+
+
+parse_service_error <- function(xml) {
+  if (identical(xml2::xml_name(xml), "ServiceExceptionReport")) {
+    exception <- xml2::xml_find_first(xml, "d1:ServiceException")
+    code <- xml2::xml_attr(exception, "code")
+    c("x" = code)
+  }
+}
+
+
+unescape_xml <- function(x) {
+  xml2::xml_text(xml2::read_xml(sprintf("<x>%s</x>", x)))
+}

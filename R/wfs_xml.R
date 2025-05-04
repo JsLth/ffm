@@ -1,4 +1,5 @@
 xml_filter <- function(...,
+                       filter = NULL,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
@@ -14,9 +15,8 @@ xml_filter <- function(...,
     default_crs = default_crs
   )
 
-  filter <- make_node("fes:Filter", c(ops, geom_filter))
-  class(filter) <- "xml_filter"
-  filter
+  filter <- make_node("fes:Filter", c(ops, filter, geom_filter))
+  new_filter(filter, type = "xml")
 }
 
 
@@ -108,7 +108,12 @@ xml_operators <- function(quo, link = NULL) {
 
   query <- make_node(
     sprintf("fes:%s", operator),
-    lapply(rhs, xml_filter_single, lhs, link = if (length(rhs) > 1) "Or")
+    lapply(rhs, xml_filter_single, lhs, link = if (length(rhs) > 1) "Or"),
+    attrs = list(
+      wildCard = "%",
+      singleChar = "_",
+      escapeChar = "\\"
+    )
   )
 
   if (!is.null(link)) {
@@ -156,14 +161,11 @@ make_wfs_xml <- function(type_name,
     )
   }
 
-  if (!is.null(filter)) {
-    filter <- make_node("fes:Filter", filter)
-  }
-
   query <- make_node(
     "wfs:Query",
     list(
-      properties
+      properties,
+      filter
     ),
     attrs = list(typeNames = type_name, srsName = epsg)
   )

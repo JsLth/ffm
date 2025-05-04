@@ -1,4 +1,5 @@
 cql_filter <- function(...,
+                       filter = NULL,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
@@ -14,9 +15,18 @@ cql_filter <- function(...,
     default_crs = default_crs
   )
 
-  all_filters <- c(ops, geom_filter)
+  all_filters <- c(ops, filter, geom_filter)
   filter <- paste(all_filters, collapse = " AND ", recycle0 = TRUE) %zchar% NULL
-  class(filter) <- "cql_filter"
+  new_filter(filter, type = "cql")
+}
+
+
+new_filter <- function(filter, type = "cql") {
+  if (is.null(filter)) {
+    return(NULL)
+  }
+
+  class(filter) <- sprintf("%s_filter", type)
   filter
 }
 

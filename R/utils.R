@@ -15,6 +15,11 @@ regex_match <- function (text, pattern, i = NULL, ...) {
 }
 
 
+loadable <- function (x) {
+  suppressPackageStartupMessages(requireNamespace(x, quietly = TRUE))
+}
+
+
 as_df <- function(x) {
   if (loadable("tibble")) {
     tibble::as_tibble(x)
