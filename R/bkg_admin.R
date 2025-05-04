@@ -51,7 +51,8 @@
 #' @param max Maximum number of results to return.
 #' @inheritParams wfs_filter
 #'
-#' @returns A dataframe with different columns depending on the geometry type.
+#' @returns An sf dataframe with multipolygon geometries and different columns
+#' depending on the geometry type.
 #' Areal geometries generally have the following columns:
 #' `r rd_properties_list(objid, beginn, ade, gf, bsg, ars, ags, sdv_ars, gen, bez, ibz, bem, nbd, nuts, ars_0, ags_0, wsk, sn_l, sn_r, sn_k, sn_v1, sn_v2, sn_g, fk_3, dkm_id, ewz, kfl)`
 #'

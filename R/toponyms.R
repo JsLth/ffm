@@ -8,6 +8,9 @@
 #'
 #' @export
 bkg_toponyms <- function(...,
+                         bbox = NULL,
+                         poly = NULL,
+                         predicate = "intersects",
                          filter = NULL,
                          epsg = 3035,
                          properties = NULL,
@@ -17,34 +20,46 @@ bkg_toponyms <- function(...,
     filter = filter,
     bbox = bbox,
     poly = poly,
-    predicate = predicate
+    predicate = predicate,
+    lang = "xml"
   )
-  epsg <- sprintf("EPSG:%s", epsg)
 
   bkg_wfs(
     "gn:GnObjekt",
     endpoint = "gnde",
     format = "text/xml; subtype=gml/3.2.1",
     layer = "GnObjekt",
-    count = max,
-    ...
+    filter = filter,
+    epsg = epsg,
+    properties = properties,
+    count = max
   )[-1]
 }
 
 
-bkg_toponyms_admin <- function(...,
-                               filter = NULL,
-                               epsg = 3035,
-                               properties = NULL,
-                               max = NULL) {
-  filter <- wfs_filter(
-    ...,
+bkg_endonyms <- function(...,
+                         filter = NULL,
+                         properties = NULL,
+                         max = NULL) {
+  filter <- wfs_filter(..., filter = filter, lang = "xml")
+
+  bkg_wfs(
+    "gn:Endonym",
+    endpoint = "gnde",
+    format = "text/xml; subtype=gml/3.2.1",
+    layer = "Endonym",
     filter = filter,
-    bbox = bbox,
-    poly = poly,
-    predicate = predicate
-  )
-  epsg <- sprintf("EPSG:%s", epsg)
+    properties = properties,
+    count = max
+  )[-1]
+}
+
+
+bkg_admin_names <- function(...,
+                            filter = NULL,
+                            properties = NULL,
+                            max = NULL) {
+  filter <- wfs_filter(..., filter = filter)
 
   bkg_wfs(
     "gn:Ags",
@@ -52,13 +67,36 @@ bkg_toponyms_admin <- function(...,
     format = "text/xml; subtype=gml/3.2.1",
     layer = "Ags",
     count = max,
-    PropertyName = properties,
+    properties = properties,
     filter = filter
   )[-1]
 }
 
 
-bkg_endonyms <- function(properties)
+bkg_country_names <- function(...) {
+  filter <- wfs_filter(...)
+
+  bkg_wfs(
+    "gn:Land",
+    endpoint = "gnde",
+    format = "text/xml; subtype=gml/3.2.1",
+    layer = "Land",
+    filter = filter
+  )[-1]
+}
+
+
+bkg_languages <- function(...) {
+  filter <- wfs_filter(...)
+
+  bkg_wfs(
+    "gn:Sprache",
+    endpoint = "gnde",
+    format = "text/xml; subtype=gml/3.2.1",
+    layer = "Sprache",
+    filter = filter
+  )[-1]
+}
 
 
 all_properties <- list(

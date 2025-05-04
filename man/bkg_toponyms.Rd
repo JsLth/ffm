@@ -6,44 +6,6 @@
 \usage{
 bkg_toponyms(..., filter = NULL, epsg = 3035, properties = NULL, max = NULL)
 }
-\arguments{
-\item{...}{Used to construct CQL filters. Dot arguments accept an R-like
-syntax that is converted to CQL queries internally. These queries basically
-consist of a property name on the left, an aribtrary vector on the right,
-and an operator that links both sides. If multiple queries are provided,
-they will be chained with \code{AND}. The following operators and their
-respective equivalents in CQL and XML are supported:
-
-\tabular{lll}{
-\strong{R} \tab \strong{CQL} \tab \strong{XML}\cr
-\code{==} \tab \code{=} \tab \code{PropertyIsEqualTo}\cr
-\code{!=} \tab \code{<>} \tab \code{PropertyIsNotEqualTo}\cr
-\code{<} \tab \code{<} \tab \code{PropertyIsLessThan}\cr
-\code{>} \tab \code{>} \tab \code{PropertyIsGreaterThan}\cr
-\code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
-\code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
-\code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
-\code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
-\code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
-}
-
-To construct more complex queries, you can use the \code{filter} argument
-to pass CQL queries directly. Also note that you can switch between
-CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
-
-\item{filter}{A character string containing a valid CQL or XML filter. This
-string is appended to the query constructed through \code{...}. Use this
-argument to construct more complex filters. Defaults to \code{NULL}.}
-
-\item{epsg}{An EPSG code specifying a coordinate reference system of the
-output. If you're unsure what this means, try running
-\code{sf::st_crs(...)$epsg} on a spatial object that you are working with.
-Defaults to 3035.}
-
-\item{properties}{Vector of columns to include in the output.}
-
-\item{max}{Maximum number of results to return.}
-}
 \value{
 A dataframe containing the following columns:
 }

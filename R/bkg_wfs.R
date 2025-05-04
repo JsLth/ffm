@@ -77,7 +77,11 @@ bkg_wfs <- function(type_name,
     )
   }
 
-  req <- httr2::req_error(req, body = get_resp_error_details)
+  req <- httr2::req_error(
+    req,
+    is_error = is_wfs_error,
+    body = get_resp_error_details
+  )
 
   if (grepl("json", format)) {
     resp <- httr2::req_perform(req)
@@ -93,6 +97,25 @@ bkg_wfs <- function(type_name,
       sf::read_sf(tempf, layer = layer)
     }
   }
+}
+
+
+bkg_feature_types <- function(endpoint) {
+  req <- httr2::request(sgx_base())
+  req <- httr2::req_url_path(req, sprintf("wfs_%s", endpoint))
+  req <- httr2::req_url_query(req, request = "GetCapabilities", service = "wfs")
+  req <- httr2::req_error(
+    req,
+    is_error = is_wfs_error,
+    body = get_resp_error_details
+  )
+  resp <- httr2::req_perform(req)
+  doc <- httr2::resp_body_xml(resp)
+
+  types <- xml2::xml_find_all(doc, ".//wfs:FeatureType")
+  names <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Name"))
+  titles <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Title"))
+  as_df(data.frame(name = names, title = titles))
 }
 
 
@@ -144,6 +167,13 @@ bkg_wfs_get_query <- function(req,
   }
 
   req
+}
+
+
+# necessary because some endpoints return HTTP200 although an error occured
+is_wfs_error <- function(resp) {
+  grepl("ExceptionReport", httr2::resp_body_string(resp)) ||
+    !identical(httr2::resp_status(resp), 200L)
 }
 
 

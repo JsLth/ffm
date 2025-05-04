@@ -7,7 +7,7 @@ xml_filter <- function(...,
   rlang::check_dots_unnamed()
   dots <- rlang::enquos(...)
 
-  ops <- unbox(lapply(dots, xml_operators, link = if (length(dots) > 1) "And"))
+  ops <- unbox(lapply(dots, xml_operators)) %__% NULL
   geom_filter <- xml_spatial(
     bbox = bbox,
     poly = poly,
@@ -15,7 +15,12 @@ xml_filter <- function(...,
     default_crs = default_crs
   )
 
-  filter <- make_node("fes:Filter", c(ops, filter, geom_filter))
+  filter_expr <- c(ops, filter, geom_filter)
+  if (length(filter_expr) > 1) {
+    filter_expr <- make_node("fes:And", filter_expr)
+  }
+
+  filter <- make_node("fes:Filter", filter_expr)
   new_filter(filter, type = "xml")
 }
 
@@ -27,7 +32,7 @@ print.xml_filter <- function(x, ...) {
     x,
     attrs = list(`xmlns:fes` = "http://www.opengis.net/fes/2.0")
   )
-  x <- as_xml_document(unclass(x))
+  x <- xml2::as_xml_document(unclass(x))
   x <- xml2::xml_find_first(x, ".//fes:Filter")
   cat(as.character(x))
 }
@@ -106,25 +111,27 @@ xml_operators <- function(quo, link = NULL) {
 
   operator <- do.call(switch, c(list(operator), xml_all_operators))
 
-  query <- make_node(
-    sprintf("fes:%s", operator),
-    lapply(rhs, xml_filter_single, lhs, link = if (length(rhs) > 1) "Or"),
-    attrs = list(
-      wildCard = "%",
-      singleChar = "_",
-      escapeChar = "\\"
+  query <- lapply(rhs, function(x) {
+    make_node(
+      sprintf("fes:%s", operator),
+      xml_filter_single(lhs, x),
+      attrs = list(
+        wildCard = "%",
+        singleChar = "_",
+        escapeChar = "\\"
+      )
     )
-  )
+  })
 
-  if (!is.null(link)) {
-    query <- make_node("And", query)
+  if (length(rhs) > 1) {
+    query <- make_node("fes:Or", query)
   }
 
   query
 }
 
 
-xml_filter_single <- function(rhs, lhs, link = NULL) {
+xml_filter_single <- function(lhs, rhs, link = NULL) {
   filter <- list(
     make_node("fes:ValueReference", lhs),
     make_node("fes:Literal", rhs)
@@ -138,7 +145,8 @@ xml_filter_single <- function(rhs, lhs, link = NULL) {
 }
 
 
-make_node <- function(name, text = NULL, attrs = list()) {
+make_node <- function(name, text = list(), attrs = list()) {
+  if (is.null(text)) return()
   text <- if (is.list(text)) text else list(text)
   attributes(text) <- attrs
   node <- list(text)
@@ -174,7 +182,7 @@ make_wfs_xml <- function(type_name,
     "wfs:GetFeature",
     query,
     attrs = list(
-      service = "wfs",
+      service = "WFS",
       version = version,
       outputFormat = format,
       `xmlns:wfs` = "http://www.opengis.net/wfs/2.0",

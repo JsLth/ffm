@@ -29,9 +29,9 @@ bkg_dlm <- function(feature,
 
 
 bkg_dlm_features <- function() {
-  doc <- xml2::read_xml("https://sgx.geodatenzentrum.de/wfs_dlm250_inspire?request=GetCapabilities&service=wfs")
-  types <- xml2::xml_find_all(doc, ".//wfs:FeatureType")
-  names <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Name"))
-  titles <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Title"))
-  as_df(data.frame(name = names, title = titles))
+  httr2::url_modify(
+    "https://sgx.geodatenzentrum.de/",
+    path = "wfs_dlm250_inspire",
+    query = "request=GetCapabilities&service=wfs"
+  )
 }

@@ -98,7 +98,8 @@ or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
 in the output. Defaults to \code{"250"}.}
 }
 \value{
-A dataframe with different columns depending on the geometry type.
+An sf dataframe with multipolygon geometries and different columns
+depending on the geometry type.
 Areal geometries generally have the following columns:
 \itemize{
 \item{\code{objid}}: Unique object identifier

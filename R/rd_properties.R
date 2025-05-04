@@ -139,7 +139,18 @@ rd_properties <- list(
   f_wasser = "Water area in the grid cell in square meters",
   p_staat = "Share of state area in the grid cell",
   p_land = "Share of land area in the grid cell",
-  p_wasser = "Share of water area in the grid cell"
+  p_wasser = "Share of water area in the grid cell",
+  debkgid = "Identifier in the digital landscape model DLM250",
+  nnid = "National name identifier",
+  name = "Name of the geographical object",
+  oba = "Name of the ATKIS object type",
+  kfz = "Vehicle registration area code, comma-separated in case of multiple codes",
+  geola = "Geographical longitude",
+  geobr = "Geographical latitude",
+  gkre = "Gauß-Krüger easting",
+  gkho = "Gauß-Krüger northing",
+  utmre = "UTM easting",
+  utmho = "UTM northing"
 )
 
 
