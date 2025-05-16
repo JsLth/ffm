@@ -99,6 +99,7 @@ rd_properties <- list(
     government region, if \\code{\"K\"}, indicates the district",
   dkm_id = "Identifier in the digital landscape model (DLM250)",
   ewz = "Number of inhabitants",
+  ewzger = "Computed number of inhabitants",
   kfl = "Land register area in square kilometers",
   rdg = "Legal definition of a border. Can be 1 (determined),
     2 (not determined) or 9 (coastline)",
@@ -147,10 +148,21 @@ rd_properties <- list(
   kfz = "Vehicle registration area code, comma-separated in case of multiple codes",
   geola = "Geographical longitude",
   geobr = "Geographical latitude",
+  geoLaenge = "Geographical longitude",
+  geoBreite = "Geographical latitude",
   gkre = "Gauß-Krüger easting",
   gkho = "Gauß-Krüger northing",
   utmre = "UTM easting",
-  utmho = "UTM northing"
+  utmho = "UTM northing",
+  hoehe = "Elevation above sea level",
+  hoeheger = "Computed elevation above sea level",
+  groesse = "Undocumented, but I guess this relates to the suggested print
+    size of the labels",
+  landesCode = "Country identifier; 276 is Germany.",
+  beschreibung = "Optional details",
+  gemteil = "Whether the place is part of a municipality",
+  virtuell = "Whether the place is a real or virtual locality",
+  geschlecht = "If applicable, the grammatical gender of a geographical name"
 )
 
 

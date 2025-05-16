@@ -316,8 +316,8 @@ bkg_heliports <- function(...,
 #' Kilometrage
 #' @description
 #' Get kilometrages of German federal motorways. Kilometrages are markers
-#' for each kilometer of a highway.
-#'
+#' for each kilometer of a highway. They can be used to create
+#' linear referencing systems (LRS).
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI

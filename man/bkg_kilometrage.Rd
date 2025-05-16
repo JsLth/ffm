@@ -30,7 +30,8 @@ A dataframe containing the following columns: \itemize{
 }
 \description{
 Get kilometrages of German federal motorways. Kilometrages are markers
-for each kilometer of a highway.
+for each kilometer of a highway. They can be used to create
+linear referencing systems (LRS).
 }
 \examples{
 \dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

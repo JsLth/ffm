@@ -21,6 +21,8 @@
 #'
 #' \code{\link{bkg_admin}}
 #'
+#' @family non-administrative regions
+#'
 #' @examplesIf ffm_run_examples() && requireNamespace("ggplot2")
 #' library(ggplot2)
 #'

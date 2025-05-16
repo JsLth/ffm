@@ -27,6 +27,8 @@
 #' \code{"crosses"}, \code{"within"}, \code{"contains"}, \code{"overlaps"},
 #' \code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
 #' \code{"intersects"}.
+#' @param geom_property Name of the geometry property included in the WFS.
+#' In most cases, this is \code{"geom"}, but there are some exceptions.
 #' @param default_crs A WFS defines a default CRS in which coordinates for
 #' spatial filtering have to be provided. For BKG services, this is usually
 #' EPSG:25832. All sf objects provided through \code{bbox} or \code{poly} are first
@@ -52,11 +54,24 @@
 #' bbox <- c(xmin = 5, ymin = 50, xmax = 7, ymax = 52)
 #' wfs_filter(bbox = bbox, lang = "cql")
 #' wfs_filter(bbox = bbox, lang = "xml")
+#'
+#' # Using `filter`, more complex queries can be built
+#' wfs_filter(ars %LIKE% "%0", filter = "regierungs NOT IS NULL")
+#'
+#' wfs_filter(
+#'   filter = "<fes:Not>
+#'     <fes:PropertyIsNull>
+#'       <fes:ValueReference>aussprache</fes:ValueReference>
+#'     </fes:PropertyIsNull>
+#'   </fes:Not>",
+#'   lang = "xml"
+#' )
 wfs_filter <- function(...,
                        filter = NULL,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
+                       geom_property = "geom",
                        default_crs = 25832,
                        lang = NULL) {
   lang <- lang %||% getOption("ffm_query_language", "cql")
@@ -69,6 +84,7 @@ wfs_filter <- function(...,
     bbox = bbox,
     poly = poly,
     predicate = predicate,
+    geom_property = geom_property,
     default_crs = default_crs
   )
 }

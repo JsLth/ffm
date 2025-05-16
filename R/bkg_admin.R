@@ -43,6 +43,7 @@
 #' To construct more complex queries, you can use the \code{filter} argument
 #' to pass CQL queries directly. Also note that you can switch between
 #' CQL and XML queries using \code{options(ffm_query_language = "xml")}.
+#' See also \code{\link{wfs_filter}}.
 #' @param epsg An EPSG code specifying a coordinate reference system of the
 #' output. If you're unsure what this means, try running
 #' \code{sf::st_crs(...)$epsg} on a spatial object that you are working with.
@@ -65,7 +66,7 @@
 #' @seealso
 #' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf}{\code{vg250-ew} documentation}
 #'
-#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=4A9DCE2B-DCCA-4939-BA01-54364D11C46D}{MIS record for \code{vg250-ew}}
+#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=4A9DCE2B-DCCA-4939-BA01-54364D11C46D}{\code{vg250-ew} MIS record}
 #'
 #' \code{\link{bkg_nuts}} for retrieving EU administrative areas
 #'

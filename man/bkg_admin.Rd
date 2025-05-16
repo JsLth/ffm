@@ -41,7 +41,8 @@ respective equivalents in CQL and XML are supported:
 
 To construct more complex queries, you can use the \code{filter} argument
 to pass CQL queries directly. Also note that you can switch between
-CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
+CQL and XML queries using \code{options(ffm_query_language = "xml")}.
+See also \code{\link{wfs_filter}}.}
 
 \item{level}{Administrative level to download. Must be one of
 \code{"sta"} (Germany), \code{"lan"} (federal states), \code{"rbz"}
@@ -226,7 +227,7 @@ bkg_admin(kfl <= 100) # districts with low land register area
 \seealso{
 \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf}{\code{vg250-ew} documentation}
 
-\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=4A9DCE2B-DCCA-4939-BA01-54364D11C46D}{MIS record for \code{vg250-ew}}
+\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=4A9DCE2B-DCCA-4939-BA01-54364D11C46D}{\code{vg250-ew} MIS record}
 
 \code{\link{bkg_nuts}} for retrieving EU administrative areas
 }

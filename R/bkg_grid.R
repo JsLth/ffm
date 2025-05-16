@@ -52,6 +52,9 @@
 #'
 #' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=02A7E63D-CAAA-4DED-B6FF-1F1E73FAF883}{GeoGitter MIS record}
 #'
+#' @family non-administrative regions
+#' @name bkg_grid
+#'
 #' @examples \donttest{# Return a bare-bones version of the INSPIRE grid
 #' grid <- bkg_grid_fast(year = "2019", resolution = "100km")
 #'
@@ -85,7 +88,7 @@ bkg_grid_fast <- function(year = c("2019", "2018", "2017", "2015"),
 }
 
 
-#' @rdname bkg_grid_fast
+#' @rdname bkg_grid
 #' @export
 bkg_grid_full <- function(year = "latest",
                           resolution = c("100km", "10km", "5km", "1km", "250m", "100m"),

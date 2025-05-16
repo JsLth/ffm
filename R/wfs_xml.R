@@ -3,15 +3,22 @@ xml_filter <- function(...,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
+                       geom_property = "geom",
                        default_crs = 25832) {
   rlang::check_dots_unnamed()
   dots <- rlang::enquos(...)
+
+  if (!is.null(filter)) {
+    filter <- chr_as_xml(filter)
+    filter <- xml2::as_list(filter, ns = xml2::xml_ns(filter))
+  }
 
   ops <- unbox(lapply(dots, xml_operators)) %__% NULL
   geom_filter <- xml_spatial(
     bbox = bbox,
     poly = poly,
     predicate = predicate,
+    geom = geom_property,
     default_crs = default_crs
   )
 
@@ -25,15 +32,41 @@ xml_filter <- function(...,
 }
 
 
-#' @export
-print.xml_filter <- function(x, ...) {
+chr_as_xml <- function(x) {
+  x <- sprintf(
+    paste(
+      '<wfs:GetFeature xmlns:wfs="http://www.opengis.net/wfs/2.0"',
+      'xmlns:fes="http://www.opengis.net/fes/2.0">%s</wfs:GetFeature>'
+    ),
+    x
+  )
+
+  xml2::as_xml_document(x)
+}
+
+
+list_as_xml <- function(x, find = NULL) {
   x <- make_node(
     "wfs:GetFeature",
     x,
-    attrs = list(`xmlns:fes` = "http://www.opengis.net/fes/2.0")
+    attrs = list(
+      `xmlns:fes` = "http://www.opengis.net/fes/2.0",
+      `xmlns:gml` = "http://www.opengis.net/gml/3.2"
+    )
   )
   x <- xml2::as_xml_document(unclass(x))
-  x <- xml2::xml_find_first(x, ".//fes:Filter")
+
+  if (!is.null(find)) {
+    x <- xml2::xml_find_first(x, find)
+  }
+
+  x
+}
+
+
+#' @export
+print.xml_filter <- function(x, ...) {
+  x <- list_as_xml(x, find = ".//fes:Filter")
   cat(as.character(x))
 }
 
@@ -41,12 +74,14 @@ print.xml_filter <- function(x, ...) {
 xml_spatial <- function(bbox = NULL,
                         poly = NULL,
                         predicate = "intersects",
+                        geom = "geom",
                         default_crs = 25832) {
   if (!is.null(poly)) {
     poly <- sf::st_union(poly)
     poly <- xml_predicate(
       poly,
       predicate = predicate,
+      geom = geom,
       default_crs = default_crs
     )
   }
@@ -56,6 +91,7 @@ xml_spatial <- function(bbox = NULL,
     bbox <- xml_predicate(
       bbox,
       predicate = predicate,
+      geom = geom,
       default_crs = default_crs
     )
   }
@@ -76,7 +112,7 @@ xml_predicate <- function(poly,
 
   gml <- st_as_gml(sf::st_geometry(poly))
   make_node(sprintf("fes:%s", to_title(predicate)), list(
-    make_node("fes:ValueReference", text = "geom"),
+    make_node("fes:ValueReference", text = geom),
     gml
   ))
 }
@@ -86,12 +122,9 @@ st_as_gml <- function(x) {
   tempf <- tempfile()
   sf::st_write(x, tempf, driver = "GML", quiet = TRUE)
   poly_gml <- xml2::read_xml(tempf)
-  poly_gml <- xml2::xml_find_first(
-    poly_gml,
-    ".//gml:Polygon",
-    ns = xml2::xml_ns(poly_gml)
-  )
-  xml2::as_list(poly_gml)
+  ns <- xml2::xml_ns(poly_gml)
+  poly_gml <- xml2::xml_find_first(poly_gml, ".//ogr:geometryProperty", ns = ns)
+  xml2::as_list(poly_gml, ns = ns)
 }
 
 

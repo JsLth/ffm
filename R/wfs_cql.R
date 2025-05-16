@@ -3,6 +3,7 @@ cql_filter <- function(...,
                        bbox = NULL,
                        poly = NULL,
                        predicate = "intersects",
+                       geom_property = "geom",
                        default_crs = 25832) {
   rlang::check_dots_unnamed()
   dots <- rlang::enquos(...)
@@ -12,6 +13,7 @@ cql_filter <- function(...,
     bbox = bbox,
     poly = poly,
     predicate = predicate,
+    geom = geom_property,
     default_crs = default_crs
   )
 
@@ -41,12 +43,14 @@ print.cql_filter <- function(x, ...) {
 cql_spatial <- function(bbox = NULL,
                         poly = NULL,
                         predicate = "intersects",
+                        geom = "geom",
                         default_crs = 25832) {
   if (!is.null(poly)) {
     poly <- sf::st_union(poly)
     poly <- cql_predicate(
       poly,
       predicate = predicate,
+      geom = geom,
       default_crs = default_crs
     )
   }
@@ -56,6 +60,7 @@ cql_spatial <- function(bbox = NULL,
     bbox <- cql_predicate(
       bbox,
       predicate = predicate,
+      geom = geom,
       default_crs = default_crs
     )
   }

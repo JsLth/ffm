@@ -38,7 +38,8 @@ respective equivalents in CQL and XML are supported:
 
 To construct more complex queries, you can use the \code{filter} argument
 to pass CQL queries directly. Also note that you can switch between
-CQL and XML queries using \code{options(ffm_query_language = "xml")}.}
+CQL and XML queries using \code{options(ffm_query_language = "xml")}.
+See also \code{\link{wfs_filter}}.}
 
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
@@ -122,4 +123,10 @@ ggplot(kfz) +
 \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=171BF073-C17B-47F7-891F-F27E5EDD7643}{\code{kfz250} MIS record}
 
 \code{\link{bkg_admin}}
+
+Other non-administrative regions: 
+\code{\link{bkg_authorities}()},
+\code{\link{bkg_grid}},
+\code{\link{bkg_ror}()}
 }
+\concept{non-administrative regions}
