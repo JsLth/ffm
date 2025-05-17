@@ -104,7 +104,7 @@ depending on the geometry type.
 Areal geometries generally have the following columns:
 \itemize{
 \item{\code{objid}}: Unique object identifier
-\item{\code{beginn}}: Date at which the dataset was last added or changed
+\item{\code{beginn}}: Creation of the object in the DLM
 \item{\code{ade}}: Integer representing the administrative level. Can
 be one of \itemize{
 \item{1: Germany}

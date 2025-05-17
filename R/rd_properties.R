@@ -14,7 +14,7 @@ rd_properties_list <- function(..., case = "lower", extra = NULL) {
 
   props_duped <- duplicated(names(rd_properties))
   if (any(props_duped)) {
-    duped <- prop_names[props_duped]
+    duped <- names(rd_properties)[props_duped]
     cli::cli_abort("Some properties are documented more than once: {duped}")
   }
 
@@ -32,7 +32,6 @@ rd_properties_list <- function(..., case = "lower", extra = NULL) {
 
 rd_properties <- list(
   objid = "Unique object identifier",
-  beginn = "Date at which the dataset was last added or changed",
   agz = "Type of border. Can be one of \\itemize{
     \\item{1: National border}
     \\item{2: State border}
@@ -162,7 +161,17 @@ rd_properties <- list(
   beschreibung = "Optional details",
   gemteil = "Whether the place is part of a municipality",
   virtuell = "Whether the place is a real or virtual locality",
-  geschlecht = "If applicable, the grammatical gender of a geographical name"
+  geschlecht = "If applicable, the grammatical gender of a geographical name",
+  id = "Identifier of an object",
+  land = "ISO-2 code of the country, usually DE",
+  modellart = "Model type",
+  objart = "Feature type of the digital landscape model (DLM)",
+  objart_txt = "Title of the feature type",
+  hdu_x = "Whether the object is related to an underpass (0/1)",
+  beginn = "Creation of the object in the DLM",
+  ende = "Deletion of the object from the DLM",
+  objart_z = "Object type of the composite object (ZUSO)",
+  objid_z = "Object type of the composite object (ZUSO)"
 )
 
 

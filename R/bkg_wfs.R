@@ -115,7 +115,8 @@ bkg_feature_types <- function(endpoint) {
   types <- xml2::xml_find_all(doc, ".//wfs:FeatureType")
   names <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Name"))
   titles <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Title"))
-  as_df(data.frame(name = names, title = titles))
+  abstracts <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Abstract"))
+  as_df(data.frame(name = names, title = titles, abstract = abstracts))
 }
 
 
