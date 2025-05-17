@@ -111,7 +111,6 @@ bkg_admin <- function(...,
     poly = poly,
     predicate = predicate
   )
-  filter <- paste(c(dot_filter, filter), collapse = " AND ")
 
   endpoint <- sprintf("vg%s", scale)
   service <- sprintf("%s_%s", endpoint, level)
