@@ -31,8 +31,12 @@ Retrieve the digital elevation model (DEM) for the territory of Germany.
 }
 \examples{
 \dontshow{if (ffm_run_examples() && rlang::is_installed("terra")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-bbox <- c(xmin = 4095987, ymin = 3131570, xmax = 4428170, ymax = 3421365)
-dem <- bkg_dem(bbox = bbox)
+library(sf)
+
+# Elevation around Hanover
+han <- st_sfc(st_point(c(9.738611, 52.374444)), crs = 4326)
+han <- st_buffer(st_transform(han, 3035), dist = 2000)
+dem <- bkg_dem(bbox = han)
 terra::plot(dem)
 \dontshow{\}) # examplesIf}
 }

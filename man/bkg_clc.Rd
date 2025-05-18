@@ -91,11 +91,7 @@ of all CLC classes can be found in the
 }
 }
 \description{
-Corine Land Cover
-Retrieve land cover polygons in Germany based on the Corine Land Cover (CLC)
-nomenclature. \href{https://land.copernicus.eu/en/products/corine-land-cover}{Corine Land Cover}
-is a way to project by the European Commission to consistenly classify
-both land cover and land use.
+This function interfaces the \code{wfs_clc5_*} products of the BKG.
 }
 \examples{
 \dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

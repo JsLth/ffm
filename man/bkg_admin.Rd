@@ -2,6 +2,8 @@
 % Please edit documentation in R/bkg_admin.R
 \name{bkg_admin}
 \alias{bkg_admin}
+\alias{bkg_admin_archive}
+\alias{bkg_admin_highres}
 \title{Administrative areas}
 \usage{
 bkg_admin(
@@ -16,6 +18,23 @@ bkg_admin(
   epsg = 3035,
   properties = NULL,
   max = NULL
+)
+
+bkg_admin_archive(
+  level = "krs",
+  scale = c("250", "1000", "2500", "5000"),
+  key_date = c("0101", "1231"),
+  year = "latest",
+  timeout = 120,
+  update_cache = FALSE
+)
+
+bkg_admin_highres(
+  level = "krs",
+  year = "latest",
+  layer = NULL,
+  timeout = 120,
+  update_cache = FALSE
 )
 }
 \arguments{
@@ -55,9 +74,9 @@ Defaults to districts.}
 date from which to download administrative data. Can be either \code{"0101"}
 (January 1) or \code{"3112"} (December 31). The latter is able to
 georeference statistical data while the first integrates changes made
-in the new year. If \code{resolution == "250"}, the \code{key_date} value also
-determines whether to include population data. If \code{"3112"}, population
-data is attached, otherwise not. Defaults to "0101".}
+in the new year. If \code{"3112"}, population data is attached, otherwise
+not. Note that population data is not available at all scales (usually
+250 and 1000). Defaults to "0101".}
 
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
@@ -93,6 +112,8 @@ Defaults to 3035.}
 
 \item{max}{Maximum number of results to return.}
 
+\item{layer}{description}
+
 \item{resolution}{Resolution of the geometries. Can be \code{"250"}
 (1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
 or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
@@ -124,7 +145,7 @@ Can be one of \itemize{
 \item{4: Structured, land}
 }
 \item{\code{bsg}}: Special areas, can be 1 (Germany) or 9 (Lake Constance)
-\item{\code{ars}}: Official regional key (Amtlicher Regionalschlüssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -203,6 +224,17 @@ Point geometries (\code{"pk"}) have the following additional columns:
 \description{
 Retrieve polygon geometries of administrative areas in Germany. All
 administrative levels are supported at different spatial resolutions.
+
+\itemize{
+\item{\code{bkg_admin} interfaces a WFS that allows prefiltering but
+provides no historical data and allows a maximum scale of 1:250,000.}
+\item{\code{bkg_admin_archive} allows access to historical data but
+has no prefiltering.}
+\item{\code{bkg_admin_highres} (\code{vg25}) allows access to
+high-resolution data going as low as 1:25,000 but allows no prefiltering.}
+}
+
+These functions interface the \code{vg*} products of the BKG.
 }
 \section{Query language}{
 
@@ -223,6 +255,12 @@ bkg_admin(sn_l == "05") # does the same thing
 bkg_admin(gen \%LIKE\% "Ber\%") # districts starting with Ber*
 bkg_admin(ewz > 100000) # districts over 100k people
 bkg_admin(kfl <= 100) # districts with low land register area
+
+# download historical data
+bkg_admin_archive(scale = "5000", level = "sta", year = "2019")
+
+# Download high-resolution data
+bkg_admin_highres(level = "lan")
 }
 \seealso{
 \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf}{\code{vg250-ew} documentation}
@@ -230,4 +268,9 @@ bkg_admin(kfl <= 100) # districts with low land register area
 \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=4A9DCE2B-DCCA-4939-BA01-54364D11C46D}{\code{vg250-ew} MIS record}
 
 \code{\link{bkg_nuts}} for retrieving EU administrative areas
+
+\code{\link{bkg_admin_hierarchy}} for the administrative hierarchy
+
+\code{\link{bkg_ror}}, \code{\link{bkg_grid}}, \code{\link{bkg_kfz}},
+\code{\link{bkg_authorities}} for non-administrative regions
 }

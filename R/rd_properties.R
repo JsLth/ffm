@@ -60,7 +60,7 @@ rd_properties <- list(
       \\item{4: Structured, land}
     }",
   bsg = "Special areas, can be 1 (Germany) or 9 (Lake Constance)",
-  ars = "Official regional key (Amtlicher Regionalschlüssel).
+  ars = "Territorial code (Amtlicher Regionalschlüssel).
     The ARS is stuctured hierarchically as follows: \\itemize{
       \\item{Position 1-2: Federal state}
       \\item{Position 3: Government region}

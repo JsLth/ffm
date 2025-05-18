@@ -11,6 +11,8 @@
 #' \href{https://www.adv-online.de/GeoInfoDok/Aktuelle-Anwendungsschemata/AAA-Anwendungsschema-7.1.2-Referenz-7.1/binarywriterservlet?imgUid=f2f70989-a7b6-0581-9393-b216067bef8a&uBasVariant=11111111-1111-1111-1111-111111111111}{GeoInfoDok}
 #' object type catalog.
 #'
+#' This function interfaces the \code{dlm*} products of the BKG.
+#'
 #' @param type Feature type of the DLM. Can either be the identifier
 #' (e.g., 41010) or its description (e.g., Siedlungsflaeche). The description
 #' can either be prefixed with \code{AX_} or not. Providing an identifier
@@ -59,8 +61,8 @@
 #' # Directly providing the identifier is faster
 #' bkg_dlm("42014", shape = "line", poly = lzg)
 bkg_dlm <- function(type,
-                    shape = c("point", "line", "polygon"),
                     ...,
+                    shape = c("point", "line", "polygon"),
                     scale = c("250", "1000"),
                     bbox = NULL,
                     poly = NULL,

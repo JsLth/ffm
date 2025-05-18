@@ -11,6 +11,11 @@ bkg_download <- function(file,
   year <- switch(year, latest = "aktuell", year)
   url_path <- paste("produkte", group, product, year, file, sep = "/")
   url <- httr2::url_modify(daten_base(), path = url_path)
+
+  if (isTRUE(getOption("ffm_debug", FALSE))) {
+    cli::cli_verbatim(utils::URLdecode(url))
+  }
+
   download(url, path = path, timeout = timeout, update_cache = update_cache)
 }
 
@@ -31,7 +36,15 @@ download <- function(url, path = NULL, timeout = 600, update_cache = FALSE) {
 
 
 unzip_ext <- function(path, ext, regex = NULL, exdir = dirname(path)) {
-  zipfiles <- unzip(path, list = TRUE)$Name
+  zipfiles <- tryCatch(
+    unzip(path, list = TRUE)$Name,
+    error = function(e) {
+      cli::cli_abort(c(
+        "Corrupted file detected in cache.",
+        "i" = "Consider refreshing the cache using `update_cache = TRUE`."
+      ), .envir = parent.frame())
+    }
+  )
   target_files <- zipfiles[has_file_ext(zipfiles, ext)]
   if (!is.null(regex)) {
     target_files <- target_files[grepl(regex, target_files, ignore.case = TRUE)]

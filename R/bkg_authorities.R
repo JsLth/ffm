@@ -5,6 +5,8 @@
 #' directorates of the Federal Employment Agency as well as local, regional,
 #' and higher regional courts.
 #'
+#' This function interfaces the \code{wfs_bzb-open} product of the BKG.
+#'
 #' @param authority Type of authority for which to retrieve regions of
 #' responsibility. Must be one of \code{"employment_agencies"},
 #' \code{"employment_offices"}, \code{"job_centers"}, \code{"directorates"},

@@ -6,6 +6,8 @@
 #' was registered. These regions partially overlap with districts but are not
 #' entirely identical.
 #'
+#' This function interfaces the \code{wfs_kfz250} product of the BKG.
+#'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
 #'

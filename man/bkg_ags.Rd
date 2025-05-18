@@ -53,6 +53,8 @@ association.
 Retrieve geographical names associated with official municipality keys
 and regional keys. To retrieve their polygon geometries, see
 \code{\link{bkg_admin}}.
+
+These functions interface the \code{wfs_gnde} product of the BKG.
 }
 \examples{
 # Either get geographical names for identifiers

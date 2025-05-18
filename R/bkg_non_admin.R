@@ -15,7 +15,12 @@
 #'  \item{\code{bkg_mkro}: Verdichtungsräume (Conurbations)}
 #' }
 #'
+#' These functions interface the \code{ge*} product of the BKG.
+#'
 #' @inheritParams bkg_nuts
+#'
+#' @returns An sf tibble with multipolygon geometries and two features,
+#' a regional identifier and the region endonyms.
 #'
 #' @export
 #'
@@ -29,7 +34,7 @@ bkg_ror <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/ror/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -42,7 +47,7 @@ bkg_rg <- function(scale = c("250", "1000", "2500", "5000"),
                    year = "latest",
                    timeout = 120,
                    update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/rg/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -55,7 +60,7 @@ bkg_amr <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/amr/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -68,7 +73,7 @@ bkg_bkr <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/bkr/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -81,7 +86,7 @@ bkg_krg <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/krg/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -94,7 +99,7 @@ bkg_mbe <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/mbe/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -107,7 +112,7 @@ bkg_ggr <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/ggr/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -120,7 +125,7 @@ bkg_kmr <- function(scale = c("250", "1000", "2500", "5000"),
                     year = "latest",
                     timeout = 120,
                     update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/kmr/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
@@ -134,14 +139,17 @@ bkg_mkro <- function(scale = c("250", "1000", "2500", "5000"),
                      year = "latest",
                      timeout = 120,
                      update_cache = FALSE) {
-  out_path <- download_ge(scale, timeout, update_cache)
+  out_path <- download_ge(scale, year, timeout, update_cache)
   out_path <- unzip_ext(out_path, shp_exts, regex = "/mkro/")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
 }
 
 
-download_ge <- function(scale, timeout, update_cache) {
+download_ge <- function(scale = c("250", "1000", "2500", "5000"),
+                        year = "latest",
+                        timeout = 120,
+                        update_cache = FALSE) {
   scale <- rlang::arg_match(scale)
   file <- sprintf("ge%s.utm32s.shape.zip", scale)
   product <- sprintf("ge%s", scale)

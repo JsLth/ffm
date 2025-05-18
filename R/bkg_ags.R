@@ -4,6 +4,8 @@
 #' and regional keys. To retrieve their polygon geometries, see
 #' \code{\link{bkg_admin}}.
 #'
+#' These functions interface the \code{wfs_gnde} product of the BKG.
+#'
 #' @inheritParams bkg_admin
 #' @returns A dataframe containing the respective identifier and geographical
 #' names related to their state, government region, district and municipality.

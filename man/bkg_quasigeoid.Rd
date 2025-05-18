@@ -47,6 +47,8 @@ heights above the earth's surface that is based on more practical assumptions
 than a true geoid. It defines heights in meters that can be more meaningful
 than ellipsoidal heights in many applications like surveying, hydrological
 modeling, engineering, or spatial analysis.
+
+This function interfaces the \code{quasigeoid} product of the BKG.
 }
 \examples{
 \dontshow{if (ffm_run_examples() && rlang::is_installed("terra")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

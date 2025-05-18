@@ -92,6 +92,10 @@ this can be not the desired behavior. If you want to overwrite the cache,
 pass \code{TRUE}. Defaults to \code{FALSE}, i.e. always adopt the cache
 if possible.}
 }
+\value{
+An sf tibble with multipolygon geometries and two features,
+a regional identifier and the region endonyms.
+}
 \description{
 Retrieve areal data related to what the BKG calls non-administrative
 regions. This includes:
@@ -107,6 +111,8 @@ regions. This includes:
 \item{\code{bkg_kmr}: Metropolregionen (Metropolitan regions)}
 \item{\code{bkg_mkro}: Verdichtungsräume (Conurbations)}
 }
+
+These functions interface the \code{ge*} product of the BKG.
 }
 \seealso{
 \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge5000.pdf}{\code{ge5000 documentation}}

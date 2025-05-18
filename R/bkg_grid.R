@@ -13,6 +13,8 @@
 #'
 #' \preformatted{terra::rast(out)}
 #'
+#' These functions interface the \code{GeoGitter} product of the BKG.
+#'
 #' @param year Version of the grid. Can be \code{"2015"}, \code{"2017"},
 #' \code{"2018"} or \code{"2019"}. For \code{bkg_grid_fast}, \code{"latest"}
 #' downloads the latest version of the grid.

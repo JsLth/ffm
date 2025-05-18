@@ -81,7 +81,7 @@ columns: \itemize{
 \item{\code{debkgid}}: Identifier in the digital landscape model DLM250
 \item{\code{nnid}}: National name identifier
 \item{\code{name}}: Name of the geographical object
-\item{\code{ars}}: Official regional key (Amtlicher Regionalschlüssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -105,6 +105,8 @@ plate regions are discerned by their area code
 (\emph{Unterscheidungszeichen}) which indicate the place where a vehicle
 was registered. These regions partially overlap with districts but are not
 entirely identical.
+
+This function interfaces the \code{wfs_kfz250} product of the BKG.
 }
 \examples{
 \dontshow{if (ffm_run_examples() && requireNamespace("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

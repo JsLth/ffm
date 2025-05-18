@@ -3,6 +3,8 @@
 #' Retrieve international, regional, and special airports in Germany. Small
 #' landing sites are not included.
 #'
+#' These functions interface the \code{wfs_poi_open} product of the BKG.
+#'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
 #'

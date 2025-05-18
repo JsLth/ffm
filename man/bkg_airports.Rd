@@ -95,6 +95,8 @@ A dataframe containing the following columns: \itemize{
 \description{
 Retrieve international, regional, and special airports in Germany. Small
 landing sites are not included.
+
+These functions interface the \code{wfs_poi_open} product of the BKG.
 }
 \examples{
 \dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

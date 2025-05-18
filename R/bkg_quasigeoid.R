@@ -9,6 +9,8 @@
 #' than ellipsoidal heights in many applications like surveying, hydrological
 #' modeling, engineering, or spatial analysis.
 #'
+#' This function interfaces the \code{quasigeoid} product of the BKG.
+#'
 #' @param region Subterritory of Germany. \code{"all"} returns the data for
 #' all of Germany, \code{"coast"} returns only coastal regions and \code{"no"},
 #' \code{"nw"}, \code{"s"} and \code{"w"} refer to cardinal directions. Defaults

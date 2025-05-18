@@ -125,7 +125,7 @@ follows: \itemize{
 }
 \item{\code{gemteil}}: Whether the place is part of a municipality
 \item{\code{virtuell}}: Whether the place is a real or virtual locality
-\item{\code{ars}}: Official regional key (Amtlicher Regionalschlüssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -154,6 +154,8 @@ retrieves the geographical "objects" based on the digital landscape model
 (DLM). These objects contain a set of metadata and a national name identifier
 (NNID). These NNIDs can be used to join with the endonyms related to a
 geographical object (\code{bkg_endonyms}).
+
+These functions interface the \code{wfs_gnde} product of the BKG.
 }
 \details{
 These functions make use of the GN-DE WFS, just like \code{\link{bkg_ags}},

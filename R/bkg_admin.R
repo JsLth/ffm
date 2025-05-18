@@ -3,6 +3,17 @@
 #' Retrieve polygon geometries of administrative areas in Germany. All
 #' administrative levels are supported at different spatial resolutions.
 #'
+#' \itemize{
+#'  \item{\code{bkg_admin} interfaces a WFS that allows prefiltering but
+#'  provides no historical data and allows a maximum scale of 1:250,000.}
+#'  \item{\code{bkg_admin_archive} allows access to historical data but
+#'  has no prefiltering.}
+#'  \item{\code{bkg_admin_highres} (\code{vg25}) allows access to
+#'  high-resolution data going as low as 1:25,000 but allows no prefiltering.}
+#' }
+#'
+#' These functions interface the \code{vg*} products of the BKG.
+#'
 #' @param level Administrative level to download. Must be one of
 #' \code{"sta"} (Germany), \code{"lan"} (federal states), \code{"rbz"}
 #' (governmental districts), \code{"krs"} (districts), \code{"vwg"}
@@ -17,9 +28,9 @@
 #' date from which to download administrative data. Can be either \code{"0101"}
 #' (January 1) or \code{"3112"} (December 31). The latter is able to
 #' georeference statistical data while the first integrates changes made
-#' in the new year. If \code{resolution == "250"}, the \code{key_date} value also
-#' determines whether to include population data. If \code{"3112"}, population
-#' data is attached, otherwise not. Defaults to "0101".
+#' in the new year. If \code{"3112"}, population data is attached, otherwise
+#' not. Note that population data is not available at all scales (usually
+#' 250 and 1000). Defaults to "0101".
 #' @param ... Used to construct CQL filters. Dot arguments accept an R-like
 #' syntax that is converted to CQL queries internally. These queries basically
 #' consist of a property name on the left, an aribtrary vector on the right,
@@ -50,6 +61,7 @@
 #' Defaults to 3035.
 #' @param properties Vector of columns to include in the output.
 #' @param max Maximum number of results to return.
+#' @param layer description
 #' @inheritParams wfs_filter
 #'
 #' @returns An sf dataframe with multipolygon geometries and different columns
@@ -70,6 +82,11 @@
 #'
 #' \code{\link{bkg_nuts}} for retrieving EU administrative areas
 #'
+#' \code{\link{bkg_admin_hierarchy}} for the administrative hierarchy
+#'
+#' \code{\link{bkg_ror}}, \code{\link{bkg_grid}}, \code{\link{bkg_kfz}},
+#' \code{\link{bkg_authorities}} for non-administrative regions
+#'
 #' @export
 #'
 #' @section Query language:
@@ -89,6 +106,12 @@
 #' bkg_admin(gen %LIKE% "Ber%") # districts starting with Ber*
 #' bkg_admin(ewz > 100000) # districts over 100k people
 #' bkg_admin(kfl <= 100) # districts with low land register area
+#'
+#' # download historical data
+#' bkg_admin_archive(scale = "5000", level = "sta", year = "2019")
+#'
+#' # Download high-resolution data
+#' bkg_admin_highres(level = "lan")
 bkg_admin <- function(...,
                       level = "krs",
                       scale = c("250", "1000", "2500", "5000"),
@@ -115,11 +138,11 @@ bkg_admin <- function(...,
   endpoint <- sprintf("vg%s", scale)
   service <- sprintf("%s_%s", endpoint, level)
 
-  if (scale == 250 && identical(key_date, "3112")) {
+  if (scale == "250" && identical(key_date, "3112")) {
     endpoint <- paste0(endpoint, "-ew")
   }
 
-  if (scale == 5000) {
+  if (scale == "5000") {
     endpoint <- sprintf("%s_%s", endpoint, key_date)
   }
 
@@ -134,56 +157,45 @@ bkg_admin <- function(...,
 }
 
 
-#' NUTS regions
-#' @description
-#' Retrieve polygons of NUTS regions.
-#'
-#' @param level NUTS level to download. Can be \code{"1"} (federal states),
-#' \code{"2"} (inconsistent, something between states and government regions),
-#' or \code{"3"} (districts). Defaults to federal states.
-#' @param timeout Timeout value for the data download passed to
-#' \code{\link[httr2]{req_timeout}}. Adjust this if your internet connection is
-#' slow or you are downloading larger datasets.
-#' @param year Version year of the dataset. You can use \code{latest} to
-#' retrieve the latest dataset version available on the BKG's geodata center.
-#' Older versions can be browsed using the
-#' \href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.
-#' @param update_cache By default, downloaded files are cached in the
-#' \code{tempdir()} directory of R. When downloading the same data again,
-#' the data is not downloaded but instead taken from the cache. Sometimes
-#' this can be not the desired behavior. If you want to overwrite the cache,
-#' pass \code{TRUE}. Defaults to \code{FALSE}, i.e. always adopt the cache
-#' if possible.
-#' @inheritParams bkg_admin
-#'
-#' @returns An sf dataframe with multipolygon geometries and the following
-#' columns:
-#'
-#' `r rd_properties_list(gf, nuts_level, nuts_code, nuts_name, case = "upper")`
-#'
-#' @note
-#' This function does not query a WFS so you are only able to download
-#' entire datasets without the ability to filter beforehand.
-#'
+#' @rdname bkg_admin
 #' @export
-#'
-#' @examples \donttest{# Download NUTS state data from 2020
-#' bkg_nuts(scale = "5000", year = 2020)
-#'
-#' # Download the latest NUTS district data
-#' bkg_nuts(level = "3")}
-bkg_nuts <- function(level = c("1", "2", "3"),
-                     scale = c("250", "1000", "2500", "5000"),
-                     key_date = c("0101", "3112"),
-                     year = "latest",
-                     timeout = 120,
-                     update_cache = FALSE) {
-  level <- rlang::arg_match(level)
+bkg_admin_archive <- function(level = "krs",
+                              scale = c("250", "1000", "2500", "5000"),
+                              key_date = c("0101", "1231"),
+                              year = "latest",
+                              timeout = 120,
+                              update_cache = FALSE) {
+  all_levels <- c("sta", "lan", "rbz", "krs", "vwg", "gem", "li", "pk")
+  level <- rlang::arg_match(level, all_levels)
   scale <- rlang::arg_match(scale)
   key_date <- rlang::arg_match(key_date)
-  key_date_fmt <- switch(key_date, "0101" = "01-01", "3112" = "31-12")
-  file <- sprintf("nuts%s_%s.utm32s.shape.zip", scale, key_date_fmt)
-  product <- sprintf("nuts%s_%s", scale, key_date)
+
+  product <- sprintf("vg%s", scale)
+  can_ew <- scale %in% c("250", "1000")
+  has_ew <- can_ew && identical(key_date, "3112")
+
+  if (has_ew) {
+    product <- paste0(product, "-ew")
+  }
+
+  if (can_ew) {
+    product <- paste0(product, "_ebenen")
+  }
+
+  if (!scale %in% "2500") {
+    product <- paste0(product, "_", key_date)
+  } else {
+    key_date <- "1231"
+  }
+
+  key_date_fmt <- switch(key_date, "0101" = "01-01", "1231" = "12-31")
+  file <- sprintf(
+    "vg%s%s_%s.utm32s.shape%s.zip",
+    scale,
+    if (has_ew) "-ew" else "",
+    key_date_fmt,
+    if (can_ew || scale %in% "5000") ".ebenen" else ""
+  )
   out_path <- bkg_download(
     file,
     product = product,
@@ -193,7 +205,78 @@ bkg_nuts <- function(level = c("1", "2", "3"),
     update_cache = update_cache
   )
 
-  out_path <- unzip_ext(out_path, shp_exts, regex = sprintf("NUTS%s", level))
+  out_path <- unzip_ext(out_path, shp_exts, regex = sprintf("VG%s_%s", scale, level))
+  out_path <- out_path[has_file_ext(out_path, "shp")]
+  sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
+}
+
+
+#' @rdname bkg_admin
+#' @export
+bkg_admin_highres <- function(level = "krs",
+                              year = "latest",
+                              layer = NULL,
+                              timeout = 120,
+                              update_cache = FALSE) {
+  all_levels <- c("sta", "lan", "rbz", "krs", "vwg", "gem", "li")
+  level <- rlang::arg_match(level, all_levels)
+
+  out_path <- bkg_download(
+    "vg25.utm32s.gpkg.zip",
+    product = "vg25_ebenen",
+    year = year,
+    group = "vg",
+    timeout = timeout,
+    update_cache = update_cache
+  )
+
+  out_path <- unzip_ext(out_path, "gpkg")
+  out_path <- out_path[has_file_ext(out_path, "gpkg")]
+  sf::read_sf(
+    out_path,
+    drivers = "GPKG",
+    quiet = TRUE,
+    layer = layer %||% sprintf("vg25_%s", level)
+  )
+}
+
+
+#' Administrative hierarchy
+#' @description
+#' Retrieve polygon geometries of municipalities in Germany with details on
+#' their relationships to administrative areas of higher levels in the
+#' territorial hierarchy. The output of this functions contains the identifiers
+#' and names of the NUTS1 to NUTS3 areas that each municipality belongs to.
+#'
+#' @inheritParams bkg_nuts
+#'
+#' @returns An sf tibble with multipolygon geometries similar to the output
+#' of \code{\link{bkg_admin}(level = "gem")}. The tibble additionally contains
+#' columns \code{NUTS*_CODE} and \code{NUTS*_NAME} giving the identifiers and
+#' names of the administrative areas the municipalities belong to.
+#'
+#' @export
+#'
+#' @examplesIf ffm_run_examples()
+#' bkg_admin_hierarchy()
+bkg_admin_hierarchy <- function(key_date = c("0101", "3112"),
+                                year = "latest",
+                                timeout = 120,
+                                update_cache = FALSE) {
+  key_date <- rlang::arg_match(key_date)
+  key_date_fmt <- switch(key_date, "0101" = "01-01", "3112" = "31-12")
+  file <- sprintf("vz250_%s.utm32s.shape.zip", key_date_fmt)
+  product <- sprintf("vz250_%s", key_date)
+  out_path <- bkg_download(
+    file,
+    product = product,
+    year = year,
+    group = "vg",
+    timeout = timeout,
+    update_cache = update_cache
+  )
+
+  out_path <- unzip_ext(out_path, shp_exts)
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
 }

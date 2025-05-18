@@ -98,6 +98,8 @@ Retrieve regions of administrative responsibility for job centers,
 employment agencies, offices of employment agencies, regional
 directorates of the Federal Employment Agency as well as local, regional,
 and higher regional courts.
+
+This function interfaces the \code{wfs_bzb-open} product of the BKG.
 }
 \examples{
 \dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

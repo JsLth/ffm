@@ -6,8 +6,8 @@
 \usage{
 bkg_dlm(
   type,
-  shape = c("point", "line", "polygon"),
   ...,
+  shape = c("point", "line", "polygon"),
   scale = c("250", "1000"),
   bbox = NULL,
   poly = NULL,
@@ -28,10 +28,6 @@ by requesting the \code{GetCapabilities} endpoint of the service.
 Note that not all feature types are available for all shapes (see the
 \code{shape} argument). To see all available feature types, you can run
 \code{bkg_feature_types("dlm250")} or \code{bkg_feature_types("dlm1000")}.}
-
-\item{shape}{Geometry type of the feature type. Must be one of \code{"point"},
-\code{"line"}, or \code{"polygon"}. Defaults to \code{"point"}. Not all
-shapes are available for all feature types.}
 
 \item{...}{Used to construct CQL filters. Dot arguments accept an R-like
 syntax that is converted to CQL queries internally. These queries basically
@@ -57,6 +53,10 @@ To construct more complex queries, you can use the \code{filter} argument
 to pass CQL queries directly. Also note that you can switch between
 CQL and XML queries using \code{options(ffm_query_language = "xml")}.
 See also \code{\link{wfs_filter}}.}
+
+\item{shape}{Geometry type of the feature type. Must be one of \code{"point"},
+\code{"line"}, or \code{"polygon"}. Defaults to \code{"point"}. Not all
+shapes are available for all feature types.}
 
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
@@ -123,6 +123,8 @@ output actually mean. Since the DLM gets pretty complicated, you are advised
 to take a look at the
 \href{https://www.adv-online.de/GeoInfoDok/Aktuelle-Anwendungsschemata/AAA-Anwendungsschema-7.1.2-Referenz-7.1/binarywriterservlet?imgUid=f2f70989-a7b6-0581-9393-b216067bef8a&uBasVariant=11111111-1111-1111-1111-111111111111}{GeoInfoDok}
 object type catalog.
+
+This function interfaces the \code{dlm*} products of the BKG.
 }
 \examples{
 \dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

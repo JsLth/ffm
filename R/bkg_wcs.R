@@ -1,3 +1,34 @@
+#' BKG WCS
+#' @description
+#' Low-level interface to BKG-style web coverage services (WCS). This function
+#' is used in all high-level functions of \code{ffm} that depend on a WCS,
+#' e.g., \code{\link{bkg_dem}}.
+#'
+#' @param coverage_id Coverage ID. When in doubt, inspect the
+#' \code{GetCapabilities} of the service.
+#' @param endpoint Endpoint to interface. Note that \code{wfs_} is appended
+#' and only the rest of the product name must be provided. For example,
+#' \code{wfs_vg250} becomes \code{vg250}. Defaults to the value of
+#' \code{coverage_id}.
+#' @param version Service version of the WCS. Defaults to \code{2.0.1}.
+#' @param format Content type of the output. This value heavily depends
+#' the endpoint queried. Defaults to \code{"image/tiff;application=geotiff"}.
+#' @param interpolation Method used to interpolate the coverage raster.
+#' Allowed methods depend on the capabilities of the WCS.
+#' @inheritParams bkg_wfs
+#'
+#' @returns A \code{\link[terra:rast]{SpatRaster}}.
+#'
+#' @export
+#'
+#' @examplesIf ffm_run_examples()
+#' # Boundaries can be provided using two subset arguments
+#' bkg_wcs(
+#'   "dgm200_inspire__EL.GridCoverage",
+#'   endpoint = "dgm200_inspire",
+#'   subset = "E(548282,552280)",
+#'   subset = "N(5800943,5804942)"
+#' )
 bkg_wcs <- function(coverage_id,
                     endpoint = coverage_id,
                     version = "2.0.1",

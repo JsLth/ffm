@@ -6,6 +6,8 @@
 #' (NNID). These NNIDs can be used to join with the endonyms related to a
 #' geographical object (\code{bkg_endonyms}).
 #'
+#' These functions interface the \code{wfs_gnde} product of the BKG.
+#'
 #' @param names If \code{TRUE}, includes endonyms of the geographical
 #' objects in the output using \code{bkg_endonyms}. Technically, this can be
 #' \code{FALSE}, because the endpoint only returns meta data on geographical

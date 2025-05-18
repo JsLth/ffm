@@ -4,6 +4,8 @@
 #' is a way to project by the European Commission to consistenly classify
 #' both land cover and land use.
 #'
+#' This function interfaces the \code{wfs_clc5_*} products of the BKG.
+#'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
 #'

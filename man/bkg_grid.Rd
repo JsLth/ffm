@@ -79,6 +79,8 @@ want to work with rasters instead. To convert a given object \code{out},
 type the following (\code{terra} package required):
 
 \preformatted{terra::rast(out)}
+
+These functions interface the \code{GeoGitter} product of the BKG.
 }
 \details{
 The following table gives a rough idea of how much less data
