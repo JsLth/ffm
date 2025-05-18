@@ -4,6 +4,7 @@
 # ffm
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 `{ffm}` is an R package that provides quick and easy access to data from
@@ -18,6 +19,18 @@ not being able to quickly link them to their spatial representations.
 
 The name `ffm` is based on the colloquial short name of Frankfurt am
 Main where the BKG’s headquarters are located.
+
+## Gallery
+
+The following examples were created using `{ffm}`. You can see their
+code in the `examples/` directory.
+
+<div style="display: flex; gap: 10px;">
+
+<img src="man/figures/munic_access.png" height="600"/>
+<img src="man/figures/hesse_relief.png" height="600"/>
+
+</div>
 
 ## Installation
 
@@ -39,7 +52,9 @@ districts <- bkg_admin(level = "krs", scale = "5000")
 ```
 
 <details>
+
 <summary>
+
 Code for the plot
 </summary>
 
@@ -73,7 +88,9 @@ districts$label <- ifelse(
 ```
 
 <details>
+
 <summary>
+
 Code for the plot
 </summary>
 
@@ -105,7 +122,9 @@ munics <- bkg_admin(
 ```
 
 <details>
+
 <summary>
+
 Code for the plot
 </summary>
 

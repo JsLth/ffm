@@ -1,8 +1,8 @@
 #' BKG WFS
 #' @description
 #' Low-level interface to BKG-style web feature services (WFS). This function
-#' is used in all high-level functions of \code{ffm}, e.g.,
-#' \code{\link{bkg_admin}}.
+#' is used in all high-level functions of \code{ffm} that depend on a WFS,
+#' e.g., \code{\link{bkg_admin}}.
 #'
 #' @param type_name Feature type of the WFS to retrieve.
 #' @param endpoint Endpoint to interface. Note that \code{wfs_} is appended

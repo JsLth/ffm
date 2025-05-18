@@ -68,8 +68,8 @@ An sf tibble
 }
 \description{
 Low-level interface to BKG-style web feature services (WFS). This function
-is used in all high-level functions of \code{ffm}, e.g.,
-\code{\link{bkg_admin}}.
+is used in all high-level functions of \code{ffm} that depend on a WFS,
+e.g., \code{\link{bkg_admin}}.
 }
 \examples{
 \dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

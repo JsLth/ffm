@@ -6,10 +6,10 @@
 #'
 #' @param coverage_id Coverage ID. When in doubt, inspect the
 #' \code{GetCapabilities} of the service.
-#' @param endpoint Endpoint to interface. Note that \code{wfs_} is appended
+#' @param endpoint Endpoint to interface. Note that \code{wcs_} is appended
 #' and only the rest of the product name must be provided. For example,
-#' \code{wfs_vg250} becomes \code{vg250}. Defaults to the value of
-#' \code{coverage_id}.
+#' \code{wcs_dgm200_inspire} becomes \code{dgm200_inspire}. Defaults to the
+#' value of \code{coverage_id}.
 #' @param version Service version of the WCS. Defaults to \code{2.0.1}.
 #' @param format Content type of the output. This value heavily depends
 #' the endpoint queried. Defaults to \code{"image/tiff;application=geotiff"}.

@@ -35,6 +35,21 @@ spatial representations.
 The name `ffm` is based on the colloquial short name of Frankfurt am Main where
 the BKG's headquarters are located.
 
+## Gallery
+
+The following examples were created using `{ffm}`. You can see their code in
+the `examples/` directory.
+
+```{r gallery, echo = FALSE, results = "asis"}
+library(htmltools)
+cat(as.character(div(
+  style = "display: flex; gap: 10px;",
+  img(src = "man/figures/munic_access.png", height = 600),
+  img(src = "man/figures/hesse_relief.png", height = 600)
+)))
+```
+
+
 ## Installation
 
 You can install the development version of ffm from [GitHub](https://github.com/) with:

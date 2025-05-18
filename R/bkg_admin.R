@@ -107,7 +107,11 @@
 #' bkg_admin(ewz > 100000) # districts over 100k people
 #' bkg_admin(kfl <= 100) # districts with low land register area
 #'
-#' # download historical data
+#' # Using `gf == 9`, you can exclude waterbodies like oceans
+#' states <- bkg_admin(scale = "5000", level = "lan", gf == 9)
+#' plot(states$geometry)
+#'
+#' # Download historical data
 #' bkg_admin_archive(scale = "5000", level = "sta", year = "2019")
 #'
 #' # Download high-resolution data
