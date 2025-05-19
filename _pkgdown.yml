@@ -1,0 +1,62 @@
+url: https://jslth.github.io/ffm/
+pkwurl: ~
+template:
+  bootstrap: 5
+  bootswatch: litera
+  math-rendering: mathjax
+  bslib:
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Roboto Slab"}
+    code_font: {google: "JetBrains Mono"}
+    link-color: "#0054AD"
+
+
+navbar:
+  title: "ffm"
+  left:
+    - text: Overview
+      icon: fa-home
+      href: index.html
+    - text: "Reference"
+      icon: fa-search
+      href: reference/index.html
+
+reference:
+  - title: Administrative areas
+    contents:
+      - bkg_admin
+      - bkg_admin_hierarchy
+      - bkg_nuts
+      - bkg_ags
+
+  - title: Non-administrative areas
+    contents:
+      - bkg_ror
+      - bkg_area_codes
+      - bkg_authorities
+      - bkg_grid
+      - bkg_kfz
+
+  - title: Points of interest
+    contents:
+      - bkg_dlm
+      - bkg_geonames
+      - bkg_kilometrage
+      - bkg_airports
+      - bkg_crossings
+      - bkg_heliports
+      - bkg_seaports
+      - bkg_stations
+      - bkg_trauma_centers
+
+  - title: Earth observation
+    contents:
+      - bkg_clc
+      - bkg_dem
+      - bkg_quasigeoid
+
+  - title: Low-level functions
+    contents:
+      - bkg_wfs
+      - bkg_wcs
+      - wfs_filter
