@@ -198,7 +198,8 @@ make_wfs_xml <- function(type_name,
                          epsg = 3035,
                          properties = NULL,
                          filter = NULL,
-                         count = NULL) {
+                         count = NULL,
+                         ...) {
   if (!is.null(properties)) {
     properties <- lapply(
       properties,
@@ -215,21 +216,31 @@ make_wfs_xml <- function(type_name,
     attrs = list(typeNames = type_name, srsName = epsg)
   )
 
-  root <- make_node(
-    "wfs:GetFeature",
-    query,
-    attrs = list(
-      service = "WFS",
-      version = version,
-      outputFormat = format,
-      `xmlns:wfs` = "http://www.opengis.net/wfs/2.0",
-      `xmlns:fes` = "http://www.opengis.net/fes/2.0",
-      `xmlns:gml` = "http://www.opengis.net/gml/3.2",
-      `xmlns:xsi` = "http://www.w3.org/2001/XMLSchema-instance",
-      count = count
-    )
+  attrs <- list(
+    service = "WFS",
+    version = version,
+    outputFormat = format,
+    `xmlns:wfs` = "http://www.opengis.net/wfs/2.0",
+    `xmlns:fes` = "http://www.opengis.net/fes/2.0",
+    `xmlns:gml` = "http://www.opengis.net/gml/3.2",
+    `xmlns:xsi` = "http://www.w3.org/2001/XMLSchema-instance",
+    ...,
+    count = count
   )
 
+  # detect namespace in type name
+  if (grepl(":", type_name, fixed = TRUE)) {
+    prefix <- strsplit(type_name, ":")[[1]][1]
+    extra_ns <- list(paste0("http://www.opengis.net/", prefix))
+    names(extra_ns) <- paste0("xmlns:", prefix)
+
+    # only add it if it doesnt exist yet
+    if (!names(extra_ns) %in% names(attrs)) {
+      attrs <- c(attrs, extra_ns)
+    }
+  }
+
+  root <- make_node("wfs:GetFeature", query, attrs = attrs)
   xml2::as_xml_document(root)
 }
 
