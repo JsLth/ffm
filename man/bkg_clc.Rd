@@ -46,6 +46,11 @@ to pass CQL queries directly. Also note that you can switch between
 CQL and XML queries using \code{options(ffm_query_language = "xml")}.
 See also \code{\link{wfs_filter}}.}
 
+\item{year}{Version year of the dataset. You can use \code{latest} to
+retrieve the latest dataset version available on the BKG's geodata center.
+Older versions can be browsed using the
+\href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.}
+
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
 only those geometries that relate to \code{bbox} according to the predicate
@@ -93,8 +98,20 @@ of all CLC classes can be found in the
 \description{
 This function interfaces the \code{wfs_clc5_*} products of the BKG.
 }
+\section{Query language}{
+
+By default, WFS requests use CQL (Contextual Query Language) queries for
+simplicity. CQL queries only work together with GET requests. This means
+that when the URL is longer than 2048 characters, they fail.
+While POST requests are much more flexible and able to accommodate long
+queries, XML is really a pain to work with and I'm not confident in my
+approach to construct XML queries. You can control whether to send GET or
+POST requests by setting \code{options(ffm_query_language = "XML")}
+or \code{options(ffm_query_language = "CQL")}.
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get glaciers in Germany
 bkg_clc(clc18 == "335")
 
@@ -102,7 +119,10 @@ bkg_clc(clc18 == "335")
 bkg_clc(clc18 \%LIKE\% "42\%")
 
 # Get only wetlands in Lower Saxony
+rlang::local_options(ffm_query_language = "xml")
 lowsax <- bkg_admin(level = "lan", scale = "5000", sn_l == "03", gf == 9)
-bkg_clc(clc18 \%LIKE\% "4\%", poly = lowsax)
+wetlands <- bkg_clc(clc18 \%LIKE\% "4\%", poly = lowsax)
+plot(lowsax$geometry)
+plot(wetlands$geometry, add = TRUE)
 \dontshow{\}) # examplesIf}
 }

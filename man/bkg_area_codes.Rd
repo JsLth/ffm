@@ -80,8 +80,15 @@ An sf dataframe containing polygon geometries and the area code
 Retrieves area code regions (\emph{Vorwahlgebiete}) in Germany. Area code
 regions are based on the number of registered telephone numbers.
 }
+\section{Query language}{
+
+While other WFS interfaces like \code{\link{bkg_admin}} allow querying
+using CQL or XML, \code{bkg_area_codes} ONLY supports XML. This has
+implications for the allowed query filters (see \code{\link{wfs_filter}}).
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 vorwahlen <- bkg_area_codes(vorwahl \%LIKE\% "0215\%")
 plot(vorwahlen$geometry)
 \dontshow{\}) # examplesIf}

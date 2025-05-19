@@ -49,7 +49,7 @@ territorial hierarchy. The output of this functions contains the identifiers
 and names of the NUTS1 to NUTS3 areas that each municipality belongs to.
 }
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 bkg_admin_hierarchy()
 \dontshow{\}) # examplesIf}
 }

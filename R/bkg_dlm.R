@@ -26,7 +26,10 @@
 #' @param shape Geometry type of the feature type. Must be one of \code{"point"},
 #' \code{"line"}, or \code{"polygon"}. Defaults to \code{"point"}. Not all
 #' shapes are available for all feature types.
+#' @param scale Scale of the geometries. Can be \code{"250"}
+#' (1:250,000) or \code{"1000"} (1:1,000,000). Defaults to \code{"250"}.
 #' @inheritParams bkg_admin
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns An sf tibble with the geometry suggested by \code{shape}.
 #' The columns can vary depending of the selected feature type. The meanings
@@ -43,7 +46,7 @@
 #'
 #' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=d6d50b87-b896-4696-9efb-66d1adc62337}{\code{dlm250} MIS record}
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Retrieve all train tracks in Leipzig
 #' library(sf)
 #' lzg <- st_sfc(st_point(c(12.37475, 51.340333)), crs = 4326)

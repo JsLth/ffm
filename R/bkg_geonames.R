@@ -46,6 +46,12 @@
 #' \code{\link{bkg_wfs}} to manually explore the service's endpoints if
 #' required.
 #'
+#' @section Query language:
+#' While other WFS interfaces like \code{\link{bkg_admin}} allow querying
+#' using CQL or XML, \code{bkg_geonames} and \code{bkg_endonyms} (using the
+#' GNDE service) ONLY support XML. This has implications for the allowed
+#' query filters (see \code{\link{wfs_filter}}).
+#'
 #' @seealso
 #' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=f1fe5b66-25d6-44c7-b26a-88625aca9573}{\code{wfs_gnde} MIS record}
 #'
@@ -56,7 +62,7 @@
 #'
 #' @export
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")
 #' # Plot geographical objects in Cologne
 #' library(sf)
 #' library(ggplot2)
@@ -65,7 +71,7 @@
 #'
 #' cgn_names <- bkg_geonames(poly = cgn)
 #' st_geometry(cgn_names) <- st_centroid(st_geometry(cgn_names))
-#' cgn_names <- sf::st_filter(cgn_names, cgn, .predicate = sf::st_within)
+#' cgn_names <- cgn_names[lengths(st_intersects(cgn_names, cgn)) > 0, ]
 #' ggplot(cgn_names) + geom_sf_text(aes(label = name)) + theme_void()
 bkg_geonames <- function(...,
                          names = TRUE,
@@ -101,6 +107,7 @@ bkg_geonames <- function(...,
   )[-1]
 
   if (names) {
+    nnid <- NULL
     names <- bkg_endonyms(nnid %in% unique(res$nnid))
     res <- merge(res, names[c("nnid", "name", "geschlecht")], by = "nnid")
   }

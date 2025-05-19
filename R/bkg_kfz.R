@@ -25,7 +25,7 @@
 #'
 #' @family non-administrative regions
 #'
-#' @examplesIf ffm_run_examples() && requireNamespace("ggplot2")
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")
 #' library(ggplot2)
 #'
 #' kfz <- bkg_kfz(ars %LIKE% "053%")

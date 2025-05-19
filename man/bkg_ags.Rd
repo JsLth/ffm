@@ -56,10 +56,20 @@ and regional keys. To retrieve their polygon geometries, see
 
 These functions interface the \code{wfs_gnde} product of the BKG.
 }
+\section{Query language}{
+
+While other WFS interfaces like \code{\link{bkg_admin}} allow querying
+using CQL or XML, \code{bkg_ags} and \code{bkg_ars} (using the GNDE service)
+ONLY support XML. This has implications for the allowed query filters
+(see \code{\link{wfs_filter}}).
+}
+
 \examples{
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Either get geographical names for identifiers
 bkg_ars(ars == "01")
 
 # ... or identifiers for geographical names
 bkg_ars(gemeinde == "Köln")
+\dontshow{\}) # examplesIf}
 }

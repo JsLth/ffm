@@ -115,7 +115,7 @@ A dataframe containing the following columns:
 size of the labels
 \item{\code{ewz}}: Number of inhabitants
 \item{\code{ewzger}}: Computed number of inhabitants
-\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlüssel).
+\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlu00fcssel).
 Related to the ARS but shortened to omit position 6 to 9. Structured as
 follows: \itemize{
 \item{Position 1-2: Federal state}
@@ -125,7 +125,7 @@ follows: \itemize{
 }
 \item{\code{gemteil}}: Whether the place is part of a municipality
 \item{\code{virtuell}}: Whether the place is a real or virtual locality
-\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlu00fcssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -165,8 +165,16 @@ up to these standards. You can use \code{\link{bkg_feature_types}} and
 \code{\link{bkg_wfs}} to manually explore the service's endpoints if
 required.
 }
+\section{Query language}{
+
+While other WFS interfaces like \code{\link{bkg_admin}} allow querying
+using CQL or XML, \code{bkg_geonames} and \code{bkg_endonyms} (using the
+GNDE service) ONLY support XML. This has implications for the allowed
+query filters (see \code{\link{wfs_filter}}).
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Plot geographical objects in Cologne
 library(sf)
 library(ggplot2)
@@ -175,7 +183,7 @@ cgn <- st_buffer(st_transform(cgn, 3035), dist = 500)
 
 cgn_names <- bkg_geonames(poly = cgn)
 st_geometry(cgn_names) <- st_centroid(st_geometry(cgn_names))
-cgn_names <- sf::st_filter(cgn_names, cgn, .predicate = sf::st_within)
+cgn_names <- cgn_names[lengths(st_intersects(cgn_names, cgn)) > 0, ]
 ggplot(cgn_names) + geom_sf_text(aes(label = name)) + theme_void()
 \dontshow{\}) # examplesIf}
 }

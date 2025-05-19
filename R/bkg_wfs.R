@@ -4,7 +4,12 @@
 #' is used in all high-level functions of \code{ffm} that depend on a WFS,
 #' e.g., \code{\link{bkg_admin}}.
 #'
-#' @param type_name Feature type of the WFS to retrieve.
+#' \code{bkg_feature_types} lists all available feature types for a given
+#' endpoint.
+#'
+#' @param type_name Feature type of the WFS to retrieve. You can use
+#' \code{bkg_feature_types} to retrieve a list of feature type names for a
+#' given endpoint.
 #' @param endpoint Endpoint to interface. Note that \code{wfs_} is appended
 #' and only the rest of the product name must be provided. For example,
 #' \code{wfs_vg250} becomes \code{vg250}. Defaults to the value of
@@ -49,7 +54,9 @@
 #'
 #' \code{\link{wfs_filter}} for filter constructors
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
+#' bkg_feature_types("vg5000_0101")
+#'
 #' bkg_wfs(
 #'   "vg5000_lan",
 #'   endpoint = "vg5000_0101",
@@ -62,7 +69,7 @@
 #' bkg_wfs(
 #'   "vg5000_krs",
 #'   endpoint = "vg5000_0101",
-#'   properties = "gen"
+#'   properties = "gen",
 #'   filter = wfs_filter(sn_l == 10)
 #' )[-1]
 bkg_wfs <- function(type_name,
@@ -135,6 +142,8 @@ bkg_wfs <- function(type_name,
     body = get_resp_error_details
   )
 
+  req <- maybe_retry(req)
+
   if (grepl("json", format)) {
     resp <- httr2::req_perform(req)
     res <- httr2::resp_body_string(resp)
@@ -152,6 +161,8 @@ bkg_wfs <- function(type_name,
 }
 
 
+#' @rdname bkg_wfs
+#' @export
 bkg_feature_types <- function(endpoint) {
   req <- httr2::request(sgx_base())
   req <- httr2::req_url_path(req, sprintf("wfs_%s", endpoint))
@@ -263,6 +274,20 @@ parse_service_error <- function(xml) {
 
 unescape_xml <- function(x) {
   xml2::xml_text(xml2::read_xml(sprintf("<x>%s</x>", x)))
+}
+
+
+maybe_retry <- function(req) {
+  retries <- getOption(
+    "ffm_retries",
+    suppressWarnings(as.integer(Sys.getenv("FFM_RETRIES", "0"))) %|||% 0
+  )
+
+  if (retries > 0) {
+    req <- httr2::req_retry(req, max_tries = retries)
+  }
+
+  req
 }
 
 

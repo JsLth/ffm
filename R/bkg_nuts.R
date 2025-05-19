@@ -33,23 +33,31 @@
 #'
 #' @export
 #'
-#' @examples \donttest{# Download NUTS state data from 2020
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
+#' # Download NUTS state data from 2020
 #' bkg_nuts(scale = "5000", year = 2020)
 #'
 #' # Download the latest NUTS district data
-#' bkg_nuts(level = "3")}
+#' bkg_nuts(level = "3")
 bkg_nuts <- function(level = c("1", "2", "3"),
                      scale = c("250", "1000", "2500", "5000"),
-                     key_date = c("0101", "3112"),
+                     key_date = c("0101", "1231"),
                      year = "latest",
                      timeout = 120,
                      update_cache = FALSE) {
   level <- rlang::arg_match(level)
   scale <- rlang::arg_match(scale)
   key_date <- rlang::arg_match(key_date)
-  key_date_fmt <- switch(key_date, "0101" = "01-01", "3112" = "31-12")
+
+  if (scale %in% c("250", "1000")) {
+    product <- sprintf("nuts%s_%s", scale, key_date)
+  } else {
+    key_date <- "1231"
+    product <- sprintf("nuts%s", scale)
+  }
+
+  key_date_fmt <- switch(key_date, "0101" = "01-01", "1231" = "12-31")
   file <- sprintf("nuts%s_%s.utm32s.shape.zip", scale, key_date_fmt)
-  product <- sprintf("nuts%s_%s", scale, key_date)
   out_path <- bkg_download(
     file,
     product = product,
@@ -59,7 +67,9 @@ bkg_nuts <- function(level = c("1", "2", "3"),
     update_cache = update_cache
   )
 
-  out_path <- unzip_ext(out_path, shp_exts, regex = sprintf("NUTS%s", level))
+  out_path <- unzip_ext(out_path, shp_exts, regex = sprintf(
+    "(nuts)?%s_n(uts)?%s", scale, level
+  ))
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
 }

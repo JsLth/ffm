@@ -2,6 +2,7 @@
 % Please edit documentation in R/bkg_wfs.R
 \name{bkg_wfs}
 \alias{bkg_wfs}
+\alias{bkg_feature_types}
 \title{BKG WFS}
 \usage{
 bkg_wfs(
@@ -16,9 +17,13 @@ bkg_wfs(
   filter = NULL,
   ...
 )
+
+bkg_feature_types(endpoint)
 }
 \arguments{
-\item{type_name}{Feature type of the WFS to retrieve.}
+\item{type_name}{Feature type of the WFS to retrieve. You can use
+\code{bkg_feature_types} to retrieve a list of feature type names for a
+given endpoint.}
 
 \item{endpoint}{Endpoint to interface. Note that \code{wfs_} is appended
 and only the rest of the product name must be provided. For example,
@@ -70,9 +75,14 @@ An sf tibble
 Low-level interface to BKG-style web feature services (WFS). This function
 is used in all high-level functions of \code{ffm} that depend on a WFS,
 e.g., \code{\link{bkg_admin}}.
+
+\code{bkg_feature_types} lists all available feature types for a given
+endpoint.
 }
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+bkg_feature_types("vg5000_0101")
+
 bkg_wfs(
   "vg5000_lan",
   endpoint = "vg5000_0101",
@@ -85,7 +95,7 @@ bkg_wfs(
 bkg_wfs(
   "vg5000_krs",
   endpoint = "vg5000_0101",
-  properties = "gen"
+  properties = "gen",
   filter = wfs_filter(sn_l == 10)
 )[-1]
 \dontshow{\}) # examplesIf}

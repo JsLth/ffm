@@ -10,7 +10,7 @@ bkg_admin(
   ...,
   level = "krs",
   scale = c("250", "1000", "2500", "5000"),
-  key_date = "0101",
+  key_date = c("0101", "1231"),
   bbox = NULL,
   poly = NULL,
   predicate = "intersects",
@@ -33,7 +33,7 @@ bkg_admin_highres(
   level = "krs",
   year = "latest",
   layer = NULL,
-  timeout = 120,
+  timeout = 600,
   update_cache = FALSE
 )
 }
@@ -69,6 +69,11 @@ See also \code{\link{wfs_filter}}.}
 (administrative associations), \code{"gem"} (municipalities),
 \code{"li"} (boundary lines), or \code{"pk"} (municipality centroids).
 Defaults to districts.}
+
+\item{scale}{Scale of the geometries. Can be \code{"250"}
+(1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
+or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
+in the output. Defaults to \code{"250"}.}
 
 \item{key_date}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
 date from which to download administrative data. Can be either \code{"0101"}
@@ -112,12 +117,25 @@ Defaults to 3035.}
 
 \item{max}{Maximum number of results to return.}
 
-\item{layer}{description}
+\item{year}{Version year of the dataset. You can use \code{latest} to
+retrieve the latest dataset version available on the BKG's geodata center.
+Older versions can be browsed using the
+\href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.}
 
-\item{resolution}{Resolution of the geometries. Can be \code{"250"}
-(1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
-or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
-in the output. Defaults to \code{"250"}.}
+\item{timeout}{Timeout value for the data download passed to
+\code{\link[httr2]{req_timeout}}. Adjust this if your internet connection is
+slow or you are downloading larger datasets.}
+
+\item{update_cache}{By default, downloaded files are cached in the
+\code{tempdir()} directory of R. When downloading the same data again,
+the data is not downloaded but instead taken from the cache. Sometimes
+this can be not the desired behavior. If you want to overwrite the cache,
+pass \code{TRUE}. Defaults to \code{FALSE}, i.e. always adopt the cache
+if possible.}
+
+\item{layer}{The \code{vg25} product used in \code{bkg_admin_highres}
+contains a couple of metadata files. You can set a layer name to read these
+files, otherwise the main file is read.}
 }
 \value{
 An sf dataframe with multipolygon geometries and different columns
@@ -145,7 +163,7 @@ Can be one of \itemize{
 \item{4: Structured, land}
 }
 \item{\code{bsg}}: Special areas, can be 1 (Germany) or 9 (Lake Constance)
-\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlu00fcssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -153,7 +171,7 @@ The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 6-9: Administrative association}
 \item{Position 10-12: Municipality}
 }
-\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlüssel).
+\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlu00fcssel).
 Related to the ARS but shortened to omit position 6 to 9. Structured as
 follows: \itemize{
 \item{Position 1-2: Federal state}
@@ -249,18 +267,28 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # You can use R-like operators to query the WFS
 bkg_admin(ags \%LIKE\% "05\%") # districts in NRW
 bkg_admin(sn_l == "05") # does the same thing
 bkg_admin(gen \%LIKE\% "Ber\%") # districts starting with Ber*
-bkg_admin(ewz > 100000) # districts over 100k people
-bkg_admin(kfl <= 100) # districts with low land register area
 
-# download historical data
-bkg_admin_archive(scale = "5000", level = "sta", year = "2019")
+# To query population and area, the key date must be December 31
+bkg_admin(ewz > 500000, key_date = "1231") # districts over 500k people
+bkg_admin(kfl <= 100, key_date = "1231") # districts with low land register area
 
-# Download high-resolution data
+# Using `gf == 9`, you can exclude waterbodies like oceans
+states <- bkg_admin(scale = "5000", level = "lan", gf == 9)
+plot(states$geometry)
+
+# Download historical data
+bkg_admin_archive(scale = "5000", level = "sta", year = "2021")
+
+\dontrun{
+# Download high-resolution data (takes a long time!)
 bkg_admin_highres(level = "lan")
+}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf}{\code{vg250-ew} documentation}

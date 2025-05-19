@@ -5,11 +5,16 @@
 #'
 #' @inheritParams bkg_admin
 #'
+#' @section Query language:
+#' While other WFS interfaces like \code{\link{bkg_admin}} allow querying
+#' using CQL or XML, \code{bkg_area_codes} ONLY supports XML. This has
+#' implications for the allowed query filters (see \code{\link{wfs_filter}}).
+#'
 #' @returns An sf dataframe containing polygon geometries and the area code
 #' (\code{vorwahl}) associated with the region.
 #' @export
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' vorwahlen <- bkg_area_codes(vorwahl %LIKE% "0215%")
 #' plot(vorwahlen$geometry)
 bkg_area_codes <- function(...,

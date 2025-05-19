@@ -103,12 +103,26 @@ A dataframe containing the following columns: \itemize{
 \description{
 Retrieve seaports to the North and Baltic Sea in Northern Germany.
 }
+\section{Query language}{
+
+By default, WFS requests use CQL (Contextual Query Language) queries for
+simplicity. CQL queries only work together with GET requests. This means
+that when the URL is longer than 2048 characters, they fail.
+While POST requests are much more flexible and able to accommodate long
+queries, XML is really a pain to work with and I'm not confident in my
+approach to construct XML queries. You can control whether to send GET or
+POST requests by setting \code{options(ffm_query_language = "XML")}
+or \code{options(ffm_query_language = "CQL")}.
+}
+
 \examples{
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get only seaports that co-function as inland ports
 ports <- bkg_seaports(typ == "See- und Binnenhafen")
 germany <- bkg_admin(level = "sta", scale = "5000", gf == 9)
 plot(germany$geometry)
 plot(ports$geometry, add = TRUE)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf}{\code{wfs_poi_open} documentation}

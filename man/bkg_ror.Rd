@@ -76,6 +76,11 @@ bkg_mkro(
 )
 }
 \arguments{
+\item{scale}{Scale of the geometries. Can be \code{"250"}
+(1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
+or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
+in the output. Defaults to \code{"250"}.}
+
 \item{year}{Version year of the dataset. You can use \code{latest} to
 retrieve the latest dataset version available on the BKG's geodata center.
 Older versions can be browsed using the

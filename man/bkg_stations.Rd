@@ -102,8 +102,20 @@ structural facilities as hierarchically superior objects and stops are
 hierarchically inferiors parts of a station (e.g., a single platform
 at a bus stop).
 }
+\section{Query language}{
+
+By default, WFS requests use CQL (Contextual Query Language) queries for
+simplicity. CQL queries only work together with GET requests. This means
+that when the URL is longer than 2048 characters, they fail.
+While POST requests are much more flexible and able to accommodate long
+queries, XML is really a pain to work with and I'm not confident in my
+approach to construct XML queries. You can control whether to send GET or
+POST requests by setting \code{options(ffm_query_language = "XML")}
+or \code{options(ffm_query_language = "CQL")}.
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get all long-distance train stations
 bkg_stations(verkehrsm \%LIKE\% "\%Fernzug\%", art == "Station")
 

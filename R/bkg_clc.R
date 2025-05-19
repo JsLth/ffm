@@ -8,6 +8,7 @@
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns An sf dataframe with polygon geometries and the following columns:
 #' \itemize{
@@ -20,7 +21,7 @@
 #'
 #' @export
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get glaciers in Germany
 #' bkg_clc(clc18 == "335")
 #'
@@ -28,8 +29,11 @@
 #' bkg_clc(clc18 %LIKE% "42%")
 #'
 #' # Get only wetlands in Lower Saxony
+#' rlang::local_options(ffm_query_language = "xml")
 #' lowsax <- bkg_admin(level = "lan", scale = "5000", sn_l == "03", gf == 9)
-#' bkg_clc(clc18 %LIKE% "4%", poly = lowsax)
+#' wetlands <- bkg_clc(clc18 %LIKE% "4%", poly = lowsax)
+#' plot(lowsax$geometry)
+#' plot(wetlands$geometry, add = TRUE)
 bkg_clc <- function(...,
                     year = "2018",
                     bbox = NULL,

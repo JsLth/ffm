@@ -7,7 +7,7 @@
 bkg_nuts(
   level = c("1", "2", "3"),
   scale = c("250", "1000", "2500", "5000"),
-  key_date = c("0101", "3112"),
+  key_date = c("0101", "1231"),
   year = "latest",
   timeout = 120,
   update_cache = FALSE
@@ -17,6 +17,11 @@ bkg_nuts(
 \item{level}{NUTS level to download. Can be \code{"1"} (federal states),
 \code{"2"} (inconsistent, something between states and government regions),
 or \code{"3"} (districts). Defaults to federal states.}
+
+\item{scale}{Scale of the geometries. Can be \code{"250"}
+(1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
+or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
+in the output. Defaults to \code{"250"}.}
 
 \item{key_date}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
 date from which to download administrative data. Can be either \code{"0101"}
@@ -81,9 +86,11 @@ This function does not query a WFS so you are only able to download
 entire datasets without the ability to filter beforehand.
 }
 \examples{
-\donttest{# Download NUTS state data from 2020
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Download NUTS state data from 2020
 bkg_nuts(scale = "5000", year = 2020)
 
 # Download the latest NUTS district data
-bkg_nuts(level = "3")}
+bkg_nuts(level = "3")
+\dontshow{\}) # examplesIf}
 }

@@ -101,8 +101,20 @@ and higher regional courts.
 
 This function interfaces the \code{wfs_bzb-open} product of the BKG.
 }
+\section{Query language}{
+
+By default, WFS requests use CQL (Contextual Query Language) queries for
+simplicity. CQL queries only work together with GET requests. This means
+that when the URL is longer than 2048 characters, they fail.
+While POST requests are much more flexible and able to accommodate long
+queries, XML is really a pain to work with and I'm not confident in my
+approach to construct XML queries. You can control whether to send GET or
+POST requests by setting \code{options(ffm_query_language = "XML")}
+or \code{options(ffm_query_language = "CQL")}.
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get only local courts that are subordinates of the regional court Cottbus
 bkg_authorities(
   authority = "local_courts",

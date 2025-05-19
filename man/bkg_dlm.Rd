@@ -58,6 +58,9 @@ See also \code{\link{wfs_filter}}.}
 \code{"line"}, or \code{"polygon"}. Defaults to \code{"point"}. Not all
 shapes are available for all feature types.}
 
+\item{scale}{Scale of the geometries. Can be \code{"250"}
+(1:250,000) or \code{"1000"} (1:1,000,000). Defaults to \code{"250"}.}
+
 \item{bbox}{An sf geometry or a boundary box vector of the format
 \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
 only those geometries that relate to \code{bbox} according to the predicate
@@ -126,8 +129,20 @@ object type catalog.
 
 This function interfaces the \code{dlm*} products of the BKG.
 }
+\section{Query language}{
+
+By default, WFS requests use CQL (Contextual Query Language) queries for
+simplicity. CQL queries only work together with GET requests. This means
+that when the URL is longer than 2048 characters, they fail.
+While POST requests are much more flexible and able to accommodate long
+queries, XML is really a pain to work with and I'm not confident in my
+approach to construct XML queries. You can control whether to send GET or
+POST requests by setting \code{options(ffm_query_language = "XML")}
+or \code{options(ffm_query_language = "CQL")}.
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Retrieve all train tracks in Leipzig
 library(sf)
 lzg <- st_sfc(st_point(c(12.37475, 51.340333)), crs = 4326)

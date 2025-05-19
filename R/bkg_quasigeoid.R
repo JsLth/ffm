@@ -23,7 +23,7 @@
 #'
 #' @export
 #'
-#' @examplesIf ffm_run_examples() && rlang::is_installed("terra")
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")
 #' library(terra)
 #' qgeoid <- bkg_quasigeoid(region = "no")
 #' terra::plot(qgeoid)

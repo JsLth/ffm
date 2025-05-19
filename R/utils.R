@@ -49,3 +49,4 @@ unbox <- function(x) {
 
 "%zchar%" <- function(x, y) if (!nzchar(x)) y else x
 "%__%" <- function(x, y) if (!length(x)) y else x
+"%|||%" <- function(x, y) if (!is.null(x) && !all(is.na(x))) y else x

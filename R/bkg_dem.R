@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-#' @examplesIf ffm_run_examples() && rlang::is_installed("terra")
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")
 #' library(sf)
 #'
 #' # Elevation around Hanover

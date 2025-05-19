@@ -12,9 +12,15 @@
 #' \code{bkg_ars} additionally returns the name of the administrative
 #' association.
 #'
+#' @section Query language:
+#' While other WFS interfaces like \code{\link{bkg_admin}} allow querying
+#' using CQL or XML, \code{bkg_ags} and \code{bkg_ars} (using the GNDE service)
+#' ONLY support XML. This has implications for the allowed query filters
+#' (see \code{\link{wfs_filter}}).
+#'
 #' @export
 #'
-#' @examples
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Either get geographical names for identifiers
 #' bkg_ars(ars == "01")
 #'

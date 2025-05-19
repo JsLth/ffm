@@ -142,17 +142,21 @@ xml_operators <- function(quo, link = NULL) {
     ))
   }
 
+  attrs <- if (identical(operator, "%LIKE%")) {
+    list(
+      wildCard = "%",
+      singleChar = "_",
+      escapeChar = "\\"
+    )
+  }
+
   operator <- do.call(switch, c(list(operator), xml_all_operators))
 
   query <- lapply(rhs, function(x) {
     make_node(
       sprintf("fes:%s", operator),
       xml_filter_single(lhs, x),
-      attrs = list(
-        wildCard = "%",
-        singleChar = "_",
-        escapeChar = "\\"
-      )
+      attrs = attrs
     )
   })
 

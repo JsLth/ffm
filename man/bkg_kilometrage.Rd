@@ -15,6 +15,66 @@ bkg_kilometrage(
   max = NULL
 )
 }
+\arguments{
+\item{...}{Used to construct CQL filters. Dot arguments accept an R-like
+syntax that is converted to CQL queries internally. These queries basically
+consist of a property name on the left, an aribtrary vector on the right,
+and an operator that links both sides. If multiple queries are provided,
+they will be chained with \code{AND}. The following operators and their
+respective equivalents in CQL and XML are supported:
+
+\tabular{lll}{
+\strong{R} \tab \strong{CQL} \tab \strong{XML}\cr
+\code{==} \tab \code{=} \tab \code{PropertyIsEqualTo}\cr
+\code{!=} \tab \code{<>} \tab \code{PropertyIsNotEqualTo}\cr
+\code{<} \tab \code{<} \tab \code{PropertyIsLessThan}\cr
+\code{>} \tab \code{>} \tab \code{PropertyIsGreaterThan}\cr
+\code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
+\code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
+\code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
+\code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
+\code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
+}
+
+To construct more complex queries, you can use the \code{filter} argument
+to pass CQL queries directly. Also note that you can switch between
+CQL and XML queries using \code{options(ffm_query_language = "xml")}.
+See also \code{\link{wfs_filter}}.}
+
+\item{bbox}{An sf geometry or a boundary box vector of the format
+\code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to include
+only those geometries that relate to \code{bbox} according to the predicate
+specified in \code{predicate}. If an sf geometry is provided, coordinates
+are automatically transformed to ESPG:25832 (the default CRS), otherwise
+they are expected to be in EPSG:25832.}
+
+\item{poly}{An sf geometry. Used as a geometric filter to include
+only those geometries that relate to \code{poly} according to the predicate
+specified in \code{predicate}. Coordinates are automatically transformed to
+ESPG:25832 (the default CRS).}
+
+\item{predicate}{A spatial predicate that is used to relate the output
+geometries with the object specified in \code{bbox} or \code{poly}. For
+example, if \code{predicate = "within"}, and \code{bbox} is specified,
+returns only those geometries that lie within \code{bbox}. Can be one of
+\code{"equals"}, \code{"disjoint"}, \code{"intersects"}, \code{"touches"},
+\code{"crosses"}, \code{"within"}, \code{"contains"}, \code{"overlaps"},
+\code{"relate"}, \code{"dwithin"}, or \code{"beyond"}. Defaults to
+\code{"intersects"}.}
+
+\item{filter}{A character string containing a valid CQL or XML filter. This
+string is appended to the query constructed through \code{...}. Use this
+argument to construct more complex filters. Defaults to \code{NULL}.}
+
+\item{epsg}{An EPSG code specifying a coordinate reference system of the
+output. If you're unsure what this means, try running
+\code{sf::st_crs(...)$epsg} on a spatial object that you are working with.
+Defaults to 3035.}
+
+\item{properties}{Vector of columns to include in the output.}
+
+\item{max}{Maximum number of results to return.}
+}
 \value{
 A dataframe containing the following columns: \itemize{
 \item{\code{name}}: Geographical name of the POI
@@ -33,8 +93,20 @@ Get kilometrages of German federal motorways. Kilometrages are markers
 for each kilometer of a highway. They can be used to create
 linear referencing systems (LRS).
 }
+\section{Query language}{
+
+By default, WFS requests use CQL (Contextual Query Language) queries for
+simplicity. CQL queries only work together with GET requests. This means
+that when the URL is longer than 2048 characters, they fail.
+While POST requests are much more flexible and able to accommodate long
+queries, XML is really a pain to work with and I'm not confident in my
+approach to construct XML queries. You can control whether to send GET or
+POST requests by setting \code{options(ffm_query_language = "XML")}
+or \code{options(ffm_query_language = "CQL")}.
+}
+
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get the kilometrage of the A2 motorway
 a2 <- bkg_kilometrage(bez == "A2")
 plot(a2["kilometer"], pch = 16)

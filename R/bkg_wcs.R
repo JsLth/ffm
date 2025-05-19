@@ -21,7 +21,7 @@
 #'
 #' @export
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Boundaries can be provided using two subset arguments
 #' bkg_wcs(
 #'   "dgm200_inspire__EL.GridCoverage",

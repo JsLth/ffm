@@ -7,6 +7,7 @@
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'   \item{\code{name}}: Geographical name of the POI
@@ -33,7 +34,7 @@
 #'
 #' @family points of interest
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get all airports in NRW
 #' airports <- bkg_airports(ars %LIKE% "05%")
 #' nrw <- bkg_admin(level = "lan", sn_l == "05")
@@ -74,6 +75,7 @@ bkg_airports <- function(...,
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns A dataframe with the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
@@ -96,7 +98,7 @@ bkg_airports <- function(...,
 #'
 #' @family points of interest
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get all border crossings in Bavaria
 #' crossings <- bkg_crossings(bundesland == "Bayern")
 #' plot(crossings$geometry, pch = 16)
@@ -137,6 +139,7 @@ bkg_crossings <- function(...,
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns A dataframe with the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
@@ -166,7 +169,7 @@ bkg_crossings <- function(...,
 #'
 #' @family points of interest
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get all long-distance train stations
 #' bkg_stations(verkehrsm %LIKE% "%Fernzug%", art == "Station")
 #'
@@ -212,6 +215,7 @@ bkg_stations <- function(...,
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns A dataframe with the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
@@ -282,7 +286,7 @@ bkg_stations <- function(...,
 #'
 #' @family points of interest
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get only military heliports
 #' bkg_heliports(typ == "MH")
 #'
@@ -321,6 +325,9 @@ bkg_heliports <- function(...,
 #' for each kilometer of a highway. They can be used to create
 #' linear referencing systems (LRS).
 #'
+#' @inheritParams bkg_admin
+#' @inheritSection bkg_admin Query language
+#'
 #' @returns A dataframe containing the following columns: \itemize{
 #'  \item{\code{name}}: Geographical name of the POI
 #'  \item{\code{gemeinde}}: Municipality name
@@ -344,7 +351,7 @@ bkg_heliports <- function(...,
 #'
 #' @family points of interest
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get the kilometrage of the A2 motorway
 #' a2 <- bkg_kilometrage(bez == "A2")
 #' plot(a2["kilometer"], pch = 16)
@@ -381,6 +388,7 @@ bkg_kilometrage <- function(...,
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'   \item{\code{name}}: Geographical name of the POI
@@ -415,7 +423,7 @@ bkg_kilometrage <- function(...,
 #'
 #' @family points of interest
 #'
-#' @examples
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get only seaports that co-function as inland ports
 #' ports <- bkg_seaports(typ == "See- und Binnenhafen")
 #' germany <- bkg_admin(level = "sta", scale = "5000", gf == 9)
@@ -458,6 +466,7 @@ bkg_seaports <- function(...,
 #'
 #' @inheritParams bkg_admin
 #' @inheritParams wfs_filter
+#' @inheritSection bkg_admin Query language
 #'
 #' @returns A dataframe containing the following columns: \itemize{
 #'   \item{\code{name}}: Geographical name of the POI
@@ -481,6 +490,8 @@ bkg_seaports <- function(...,
 #'   }}
 #' }
 #'
+#' @export
+#'
 #' @seealso
 #' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf}{\code{wfs_poi_open} documentation}
 #'
@@ -488,7 +499,7 @@ bkg_seaports <- function(...,
 #'
 #' @family points of interest
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get only trauma centers specializing on orthopedics
 #' bkg_trauma_centers(abteilung %LIKE% "%orthopäd%")
 #'

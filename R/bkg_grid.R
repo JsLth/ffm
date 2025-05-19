@@ -57,7 +57,8 @@
 #' @family non-administrative regions
 #' @name bkg_grid
 #'
-#' @examples \donttest{# Return a bare-bones version of the INSPIRE grid
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
+#' # Return a bare-bones version of the INSPIRE grid
 #' grid <- bkg_grid_fast(year = "2019", resolution = "100km")
 #'
 #' # Return a fully detailed version instead
@@ -70,7 +71,7 @@
 #'   library(terra)
 #'   raster <- rast(vect(grid_full["p_wasser"]), type = "xyz")
 #'   plot(raster, main = "Share of water area")
-#' }}
+#' }
 bkg_grid_fast <- function(year = c("2019", "2018", "2017", "2015"),
                           resolution = c("100km", "10km", "5km", "1km", "250m", "100m"),
                           timeout = 600,

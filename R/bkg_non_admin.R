@@ -18,6 +18,7 @@
 #' These functions interface the \code{ge*} product of the BKG.
 #'
 #' @inheritParams bkg_nuts
+#' @inheritParams bkg_admin
 #'
 #' @returns An sf tibble with multipolygon geometries and two features,
 #' a regional identifier and the region endonyms.
@@ -35,7 +36,7 @@ bkg_ror <- function(scale = c("250", "1000", "2500", "5000"),
                     timeout = 120,
                     update_cache = FALSE) {
   out_path <- download_ge(scale, year, timeout, update_cache)
-  out_path <- unzip_ext(out_path, shp_exts, regex = "/ror/")
+  out_path <- unzip_ext(out_path, shp_exts, regex = "/ror")
   out_path <- out_path[has_file_ext(out_path, "shp")]
   sf::read_sf(out_path, drivers = "ESRI Shapefile", quiet = TRUE)
 }

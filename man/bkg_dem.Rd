@@ -30,7 +30,7 @@ A \code{\link[terra:rast]{SpatRaster}} containing elevation data.
 Retrieve the digital elevation model (DEM) for the territory of Germany.
 }
 \examples{
-\dontshow{if (ffm_run_examples() && rlang::is_installed("terra")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 library(sf)
 
 # Elevation around Hanover

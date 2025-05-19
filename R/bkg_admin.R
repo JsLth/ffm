@@ -20,7 +20,7 @@
 #' (administrative associations), \code{"gem"} (municipalities),
 #' \code{"li"} (boundary lines), or \code{"pk"} (municipality centroids).
 #' Defaults to districts.
-#' @param resolution Resolution of the geometries. Can be \code{"250"}
+#' @param scale Scale of the geometries. Can be \code{"250"}
 #' (1:250,000), \code{"1000"} (1:1,000,000), \code{"2500"} (1:2,500,000)
 #' or \code{"5000"} (1:5,000,000). If \code{"250"}, population data is included
 #' in the output. Defaults to \code{"250"}.
@@ -61,8 +61,11 @@
 #' Defaults to 3035.
 #' @param properties Vector of columns to include in the output.
 #' @param max Maximum number of results to return.
-#' @param layer description
+#' @param layer The \code{vg25} product used in \code{bkg_admin_highres}
+#' contains a couple of metadata files. You can set a layer name to read these
+#' files, otherwise the main file is read.
 #' @inheritParams wfs_filter
+#' @inheritParams bkg_nuts
 #'
 #' @returns An sf dataframe with multipolygon geometries and different columns
 #' depending on the geometry type.
@@ -99,27 +102,31 @@
 #' POST requests by setting \code{options(ffm_query_language = "XML")}
 #' or \code{options(ffm_query_language = "CQL")}.
 #'
-#' @examples
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # You can use R-like operators to query the WFS
 #' bkg_admin(ags %LIKE% "05%") # districts in NRW
 #' bkg_admin(sn_l == "05") # does the same thing
 #' bkg_admin(gen %LIKE% "Ber%") # districts starting with Ber*
-#' bkg_admin(ewz > 100000) # districts over 100k people
-#' bkg_admin(kfl <= 100) # districts with low land register area
+#'
+#' # To query population and area, the key date must be December 31
+#' bkg_admin(ewz > 500000, key_date = "1231") # districts over 500k people
+#' bkg_admin(kfl <= 100, key_date = "1231") # districts with low land register area
 #'
 #' # Using `gf == 9`, you can exclude waterbodies like oceans
 #' states <- bkg_admin(scale = "5000", level = "lan", gf == 9)
 #' plot(states$geometry)
 #'
 #' # Download historical data
-#' bkg_admin_archive(scale = "5000", level = "sta", year = "2019")
+#' bkg_admin_archive(scale = "5000", level = "sta", year = "2021")
 #'
-#' # Download high-resolution data
+#' \dontrun{
+#' # Download high-resolution data (takes a long time!)
 #' bkg_admin_highres(level = "lan")
+#' }
 bkg_admin <- function(...,
                       level = "krs",
                       scale = c("250", "1000", "2500", "5000"),
-                      key_date = "0101",
+                      key_date = c("0101", "1231"),
                       bbox = NULL,
                       poly = NULL,
                       predicate = "intersects",
@@ -130,6 +137,7 @@ bkg_admin <- function(...,
   all_levels <- c("sta", "lan", "rbz", "krs", "vwg", "gem", "li", "pk")
   level <- rlang::arg_match(level, all_levels)
   scale <- rlang::arg_match(scale)
+  key_date <- rlang::arg_match(key_date)
 
   filter <- wfs_filter(
     ...,
@@ -142,7 +150,7 @@ bkg_admin <- function(...,
   endpoint <- sprintf("vg%s", scale)
   service <- sprintf("%s_%s", endpoint, level)
 
-  if (scale == "250" && identical(key_date, "3112")) {
+  if (scale == "250" && identical(key_date, "1231")) {
     endpoint <- paste0(endpoint, "-ew")
   }
 
@@ -220,7 +228,7 @@ bkg_admin_archive <- function(level = "krs",
 bkg_admin_highres <- function(level = "krs",
                               year = "latest",
                               layer = NULL,
-                              timeout = 120,
+                              timeout = 600,
                               update_cache = FALSE) {
   all_levels <- c("sta", "lan", "rbz", "krs", "vwg", "gem", "li")
   level <- rlang::arg_match(level, all_levels)
@@ -261,7 +269,7 @@ bkg_admin_highres <- function(level = "krs",
 #'
 #' @export
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' bkg_admin_hierarchy()
 bkg_admin_hierarchy <- function(key_date = c("0101", "3112"),
                                 year = "latest",

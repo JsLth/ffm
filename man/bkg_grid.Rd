@@ -53,7 +53,7 @@ with the following additional features:
 \item{\code{p_staat}}: Share of state area in the grid cell
 \item{\code{p_land}}: Share of land area in the grid cell
 \item{\code{p_wasser}}: Share of water area in the grid cell
-\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlüssel).
+\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlu00fcssel).
 Related to the ARS but shortened to omit position 6 to 9. Structured as
 follows: \itemize{
 \item{Position 1-2: Federal state}
@@ -99,7 +99,8 @@ The following table gives a rough idea of how much less data
 }
 }
 \examples{
-\donttest{# Return a bare-bones version of the INSPIRE grid
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# Return a bare-bones version of the INSPIRE grid
 grid <- bkg_grid_fast(year = "2019", resolution = "100km")
 
 # Return a fully detailed version instead
@@ -112,7 +113,8 @@ if (requireNamespace("terra")) {
   library(terra)
   raster <- rast(vect(grid_full["p_wasser"]), type = "xyz")
   plot(raster, main = "Share of water area")
-}}
+}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/geogitter.pdf}{GeoGitter documentation}
