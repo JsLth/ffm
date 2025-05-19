@@ -37,8 +37,8 @@ code in the `examples/` directory.
 
 <div style="display: flex; gap: 10px;">
 
-<img src="man/figures/munic_access.png" height="600"/>
-<img src="man/figures/hesse_relief.png" height="600"/>
+<img src="man/figures/munic_access.png" height="500vw"/>
+<img src="man/figures/hesse_relief.png" height="500vw"/>
 
 </div>
 
