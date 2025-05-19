@@ -3,7 +3,7 @@ pkgdown: 2.1.2
 pkgdown_sha: ~
 articles:
   get-started: get-started.html
-last_built: 2025-05-19T16:20Z
+last_built: 2025-05-19T23:57Z
 urls:
   reference: https://jslth.github.io/ffm/reference
   article: https://jslth.github.io/ffm/articles

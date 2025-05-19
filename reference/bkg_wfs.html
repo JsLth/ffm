@@ -13,7 +13,7 @@ endpoint."><meta property="og:description" content="Low-level interface to BKG-s
 is used in all high-level functions of ffm that depend on a WFS,
 e.g., bkg_admin.
 bkg_feature_types lists all available feature types for a given
-endpoint."></head><body>
+endpoint."><meta property="og:image" content="https://jslth.github.io/ffm/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -40,8 +40,7 @@ endpoint."></head><body>
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>BKG WFS</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>BKG WFS</h1>
 
       <div class="d-none name"><code>bkg_wfs.Rd</code></div>
     </div>
@@ -138,8 +137,10 @@ EPSG codes are available. Defaults to EPSG:3035.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Further parameters passed to the WFS query. Ignored for
-<code>POST</code> requests.</p></dd>
+<dd><p>Further parameters passed to the WFS query. In case of
+<code>POST</code> requests, additional namespaces that may be necessary to query
+the WFS. Argument names are interpreted as the prefix (e.g.
+<code>xmlns:wfs</code>) and argument values as namespace links.</p></dd>
 
 </dl></div>
     <div class="section level2">

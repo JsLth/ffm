@@ -22,6 +22,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Download Official Spatial Data from Germany">
 <meta name="description" content="More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.">
 <meta property="og:description" content="More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.">
+<meta property="og:image" content="https://jslth.github.io/ffm/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -55,8 +56,10 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="ffm">ffm<a class="anchor" aria-label="anchor" href="#ffm"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="ffm-">ffm <a class="anchor" aria-label="anchor" href="#ffm-"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
 <p><code>{ffm}</code> is an R package that provides quick and easy access to data from the geodata center of Germany’s Federal Agency for Cartography and Geodesy (BKG). The BKG is the official provider of spatial data in Germany and provides quite a few datasets as open data. These data range from administrative areas to earth observation data and are often crucial when working with regional statistics from Germany. Part of the motivation for this package stems from frustration when working areal identifiers returned by packages like <a href="https://github.com/sumtxt/wiesbaden/" class="external-link">wiesbaden</a> or <a href="https://correlaid.github.io/restatis/" class="external-link">restatis</a> and not being able to quickly link them to their spatial representations.</p>
@@ -66,7 +69,7 @@
 </h2>
 <p>The following examples were created using <code>{ffm}</code>. You can see their code in the <code>examples/</code> directory.</p>
 <div style="display: flex; gap: 10px;">
-<p><img src="reference/figures/munic_access.png" height="500vw"><img src="reference/figures/hesse_relief.png" height="500vw"></p>
+<p><img src="reference/figures/munic_access.png" height="500vw"><img src="reference/figures/hesse_relief.png" height="500vw"><img src="reference/figures/foehr_clc.png" height="500vw"><img src="reference/figures/dus_network.png" height="500vw"></p>
 </div>
 </div>
 <div class="section level2">
@@ -124,7 +127,7 @@ Code for the plot
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">munics</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bkg_admin.html">bkg_admin</a></span><span class="op">(</span></span>
 <span>  level <span class="op">=</span> <span class="st">"gem"</span>,</span>
-<span>  key_date <span class="op">=</span> <span class="st">"3112"</span>,</span>
+<span>  key_date <span class="op">=</span> <span class="st">"1231"</span>,</span>
 <span>  <span class="va">sn_l</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"08"</span>, <span class="st">"09"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <details><summary>
