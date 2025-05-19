@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ffm
+# ffm <img align="right" height="150" src="man/figures/logo.png">
 
 <!-- badges: start -->
 
@@ -39,6 +39,8 @@ code in the `examples/` directory.
 
 <img src="man/figures/munic_access.png" height="500vw"/>
 <img src="man/figures/hesse_relief.png" height="500vw"/>
+<img src="man/figures/foehr_clc.png" height="500vw"/>
+<img src="man/figures/dus_network.png" height="500vw"/>
 
 </div>
 
@@ -126,7 +128,7 @@ Attribute filters are supported using a R-like syntax.
 ``` r
 munics <- bkg_admin(
   level = "gem",
-  key_date = "3112",
+  key_date = "1231",
   sn_l %in% c("08", "09")
 )
 ```

@@ -44,7 +44,7 @@ map <- ggplot(munic) +
   labs(
     title = "Accessibility of public transport in Germany",
     subtitle = "Share of people within 1 km of the next public transport stop",
-    caption = "© GeoBasis-DE / BKG (2025) (data changed)\n© BBSR Bonn 2025"
+    caption = "© GeoBasis-DE / BKG (2025)\n© BBSR Bonn 2025"
   ) +
   theme_void() +
   theme(

@@ -25,9 +25,9 @@ in the output. Defaults to \code{"250"}.}
 
 \item{key_date}{For \code{resolution \%in\% c("250", "5000")}, specifies the key
 date from which to download administrative data. Can be either \code{"0101"}
-(January 1) or \code{"3112"} (December 31). The latter is able to
+(January 1) or \code{"1231"} (December 31). The latter is able to
 georeference statistical data while the first integrates changes made
-in the new year. If \code{"3112"}, population data is attached, otherwise
+in the new year. If \code{"1231"}, population data is attached, otherwise
 not. Note that population data is not available at all scales (usually
 250 and 1000). Defaults to "0101".}
 

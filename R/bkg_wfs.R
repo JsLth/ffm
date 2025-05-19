@@ -42,8 +42,10 @@
 #' \code{NULL} (all columns).
 #' @param filter A WFS filter query (CQL or XML) created by
 #' \code{\link{wfs_filter}}.
-#' @param ... Further parameters passed to the WFS query. Ignored for
-#' \code{POST} requests.
+#' @param ... Further parameters passed to the WFS query. In case of
+#' \code{POST} requests, additional namespaces that may be necessary to query
+#' the WFS. Argument names are interpreted as the prefix (e.g.
+#' \code{xmlns:wfs}) and argument values as namespace links.
 #'
 #' @returns An sf tibble
 #'
@@ -106,7 +108,8 @@ bkg_wfs <- function(type_name,
       format = format,
       epsg = epsg,
       properties = properties,
-      filter = filter
+      filter = filter,
+      ...
     ),
     GET = bkg_wfs_get_query(
       req,
@@ -190,7 +193,8 @@ bkg_wfs_post_query <- function(req,
                                epsg = 3035,
                                properties = NULL,
                                filter = NULL,
-                               count = NULL) {
+                               count = NULL,
+                               ...) {
   httr2::req_body_raw(req, as.character(make_wfs_xml(
     type_name,
     version = version,
@@ -198,7 +202,8 @@ bkg_wfs_post_query <- function(req,
     epsg = epsg,
     properties = properties,
     filter = filter,
-    count = count
+    count = count,
+    ...
   )))
 }
 

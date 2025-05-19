@@ -49,8 +49,10 @@ EPSG codes are available. Defaults to EPSG:3035.}
 \item{interpolation}{Method used to interpolate the coverage raster.
 Allowed methods depend on the capabilities of the WCS.}
 
-\item{...}{Further parameters passed to the WFS query. Ignored for
-\code{POST} requests.}
+\item{...}{Further parameters passed to the WFS query. In case of
+\code{POST} requests, additional namespaces that may be necessary to query
+the WFS. Argument names are interpreted as the prefix (e.g.
+\code{xmlns:wfs}) and argument values as namespace links.}
 }
 \value{
 A \code{\link[terra:rast]{SpatRaster}}.

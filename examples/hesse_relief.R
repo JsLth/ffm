@@ -36,8 +36,8 @@ all_states <- bkg_admin(scale = "2500", level = "lan", gf == 9)
 states_15 <- all_states[!all_states$sn_l %in% "06",]
 hesse <- all_states[all_states$sn_l %in% "06",]
 dem <- bkg_dem(bbox = st_buffer(hesse, dist = 50000))
-hill <- hillshade(dem, power = 2)
 dem <- crop(dem, vect(hesse), mask = TRUE)
+hill <- hillshade(dem, power = 2)
 
 prox_states <- suppressWarnings(st_intersection(states_15, st_as_sfc(st_bbox(hesse))))
 
@@ -68,7 +68,7 @@ map <- ggplot() +
   labs(
     title = "Relief model of Hesse, Germany",
     subtitle = "Based on the digital elevation model DGM200",
-    caption = "© GeoBasis-DE / BKG (2025) (data changed)"
+    caption = "© GeoBasis-DE / BKG (2025)"
   ) +
   theme_void() +
   theme(

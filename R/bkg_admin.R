@@ -26,9 +26,9 @@
 #' in the output. Defaults to \code{"250"}.
 #' @param key_date For \code{resolution \%in\% c("250", "5000")}, specifies the key
 #' date from which to download administrative data. Can be either \code{"0101"}
-#' (January 1) or \code{"3112"} (December 31). The latter is able to
+#' (January 1) or \code{"1231"} (December 31). The latter is able to
 #' georeference statistical data while the first integrates changes made
-#' in the new year. If \code{"3112"}, population data is attached, otherwise
+#' in the new year. If \code{"1231"}, population data is attached, otherwise
 #' not. Note that population data is not available at all scales (usually
 #' 250 and 1000). Defaults to "0101".
 #' @param ... Used to construct CQL filters. Dot arguments accept an R-like
@@ -184,7 +184,7 @@ bkg_admin_archive <- function(level = "krs",
 
   product <- sprintf("vg%s", scale)
   can_ew <- scale %in% c("250", "1000")
-  has_ew <- can_ew && identical(key_date, "3112")
+  has_ew <- can_ew && identical(key_date, "1231")
 
   if (has_ew) {
     product <- paste0(product, "-ew")
@@ -271,12 +271,12 @@ bkg_admin_highres <- function(level = "krs",
 #'
 #' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' bkg_admin_hierarchy()
-bkg_admin_hierarchy <- function(key_date = c("0101", "3112"),
+bkg_admin_hierarchy <- function(key_date = c("0101", "1231"),
                                 year = "latest",
                                 timeout = 120,
                                 update_cache = FALSE) {
   key_date <- rlang::arg_match(key_date)
-  key_date_fmt <- switch(key_date, "0101" = "01-01", "3112" = "31-12")
+  key_date_fmt <- switch(key_date, "0101" = "01-01", "3112" = "12-31")
   file <- sprintf("vz250_%s.utm32s.shape.zip", key_date_fmt)
   product <- sprintf("vz250_%s", key_date)
   out_path <- bkg_download(

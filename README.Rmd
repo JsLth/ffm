@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ffm
+# ffm <img align="right" height="150" src="man/figures/logo.png">
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jslth/ffm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jslth/ffm/actions/workflows/R-CMD-check.yaml)
@@ -51,7 +51,9 @@ library(htmltools)
 cat(as.character(div(
   style = "display: flex; gap: 10px;",
   img(src = "man/figures/munic_access.png", height = "500vw"),
-  img(src = "man/figures/hesse_relief.png", height = "500vw")
+  img(src = "man/figures/hesse_relief.png", height = "500vw"),
+  img(src = "man/figures/foehr_clc.png", height = "500vw"),
+  img(src = "man/figures/dus_network.png", height = "500vw")
 )))
 ```
 
@@ -148,7 +150,7 @@ Attribute filters are supported using a R-like syntax.
 ```{r att_filters}
 munics <- bkg_admin(
   level = "gem",
-  key_date = "3112",
+  key_date = "1231",
   sn_l %in% c("08", "09")
 )
 ```
