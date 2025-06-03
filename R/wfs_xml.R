@@ -207,6 +207,10 @@ make_wfs_xml <- function(type_name,
     )
   }
 
+  if (is.null(unlist(filter))) {
+    filter <- NULL
+  }
+
   query <- make_node(
     "wfs:Query",
     list(
