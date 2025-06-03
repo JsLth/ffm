@@ -42,6 +42,8 @@
 #' \code{NULL} (all columns).
 #' @param filter A WFS filter query (CQL or XML) created by
 #' \code{\link{wfs_filter}}.
+#' @param server WFS server domain to use. Defaults to the SGX spatial data
+#' center of the BKG.
 #' @param ... Further parameters passed to the WFS query. In case of
 #' \code{POST} requests, additional namespaces that may be necessary to query
 #' the WFS. Argument names are interpreted as the prefix (e.g.
@@ -83,6 +85,7 @@ bkg_wfs <- function(type_name,
                     epsg = 3035,
                     properties = NULL,
                     filter = NULL,
+                    server = sgx_base(),
                     ...) {
   method <- method %||%
     switch(class(filter)[1], xml_filter = "POST", cql_filter = "GET") %||%
@@ -96,8 +99,8 @@ bkg_wfs <- function(type_name,
     properties <- c(properties, "geom")
   }
 
-  req <- httr2::request(sgx_base())
-  req <- httr2::req_url_path(req, sprintf("wfs_%s", endpoint))
+  req <- httr2::request(server)
+  req <- httr2::req_url_path_append(req, sprintf("wfs_%s", endpoint))
 
   req <- switch(
     method,
@@ -166,9 +169,9 @@ bkg_wfs <- function(type_name,
 
 #' @rdname bkg_wfs
 #' @export
-bkg_feature_types <- function(endpoint) {
-  req <- httr2::request(sgx_base())
-  req <- httr2::req_url_path(req, sprintf("wfs_%s", endpoint))
+bkg_feature_types <- function(endpoint, server = sgx_base()) {
+  req <- httr2::request(server)
+  req <- httr2::req_url_path_append(req, sprintf("wfs_%s", endpoint))
   req <- httr2::req_url_query(req, request = "GetCapabilities", service = "wfs")
   req <- httr2::req_error(
     req,
@@ -182,7 +185,9 @@ bkg_feature_types <- function(endpoint) {
   names <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Name"))
   titles <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Title"))
   abstracts <- xml2::xml_text(xml2::xml_find_all(types, ".//wfs:Abstract"))
-  as_df(data.frame(name = names, title = titles, abstract = abstracts))
+  components <- list(name = names, title = titles, abstract = abstracts)
+  components <- components[lengths(components) > 0]
+  as_df(do.call(data.frame, components))
 }
 
 
