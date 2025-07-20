@@ -161,8 +161,17 @@ the WFS. Argument names are interpreted as the prefix (e.g.
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="fu">bkg_feature_types</span><span class="op">(</span><span class="st">"vg5000_0101"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">bkg_feature_types</span><span class="op">(</span><span class="st">"vg5000_0101"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name                   title                   abstract               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> vg5000_0101:vg5000_lan Bundesland              Bundesland             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> vg5000_0101:vg5000_gem Gemeinde                Gemeinde               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> vg5000_0101:vg5000_li  Grenzlinien             Grenzlinien            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> vg5000_0101:vg5000_krs Kreis                   Kreis                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> vg5000_0101:vg5000_rbz Regierungsbezirk        Regierungsbezirk       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> vg5000_0101:vg5000_sta Staat                   Staat                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> vg5000_0101:vg5000_vwg Verwaltungsgemeinschaft Verwaltungsgemeinschaft</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">bkg_wfs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"vg5000_lan"</span>,</span></span>
@@ -171,6 +180,19 @@ the WFS. Argument names are interpreted as the prefix (e.g.
 <span class="r-in"><span>  properties <span class="op">=</span> <span class="st">"gen"</span>,</span></span>
 <span class="r-in"><span>  epsg <span class="op">=</span> <span class="fl">4326</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 1 field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 5.866 ymin: 50.3227 xmax: 11.5977 ymax: 55.0571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   gen                                                                   geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                       <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [°]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Schleswig-Holstein  (((8.7131 54.6776, 8.7068 54.6716, 8.6869 54.6709, 8.6813…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Hamburg             (((8.4593 53.9573, 8.4326 53.9449, 8.4203 53.9473, 8.438 …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Niedersachsen       (((6.8655 53.5847, 6.8527 53.59, 6.8637 53.5967, 6.8753 5…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Bremen              (((8.5625 53.5491, 8.5233 53.592, 8.5099 53.6031, 8.5185 …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Nordrhein-Westfalen (((8.9697 51.5058, 8.8907 51.482, 8.921 51.4457, 8.9195 5…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Filters are created using `wfs_filter()`</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_wfs</span><span class="op">(</span></span></span>
@@ -179,7 +201,20 @@ the WFS. Argument names are interpreted as the prefix (e.g.
 <span class="r-in"><span>  properties <span class="op">=</span> <span class="st">"gen"</span>,</span></span>
 <span class="r-in"><span>  filter <span class="op">=</span> <span class="fu"><a href="wfs_filter.html">wfs_filter</a></span><span class="op">(</span><span class="va">sn_l</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 6 features and 1 field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4057338 ymin: 2892729 xmax: 4132336 ymax: 2951744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   gen                                                                   geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                       <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Regionalverband Saarbrücken (((4090660 2904942, 4092223 2901447, 4091999 2900…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Merzig-Wadern               (((4078929 2926191, 4077635 2927692, 4074266 2926…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Neunkirchen                 (((4111255 2917867, 4109992 2917974, 4109230 2919…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Saarlouis                   (((4098717 2933513, 4101455 2934901, 4101490 2932…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Saarpfalz-Kreis             (((4122248 2915965, 4120329 2917230, 4120301 2920…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> St. Wendel                  (((4105098 2950381, 4106357 2951744, 4108456 2950…</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

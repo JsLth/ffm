@@ -178,19 +178,101 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># Get all long-distance train stations</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get all long-distance train stations</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_stations</span><span class="op">(</span><span class="va">verkehrsm</span> <span class="op">%LIKE%</span> <span class="st">"%Fernzug%"</span>, <span class="va">art</span> <span class="op">==</span> <span class="st">"Station"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 137 features and 13 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4118289 ymin: 2699754 xmax: 4630711 ymax: 3532670</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 137 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    stop_id     name  parent_st verkehrsm art   tag_f_awo tag_f_wo ars   gemeinde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> de:08136:1… Aale… <span style="color: #BB0000;">NA</span>        Fernzug,… Stat…       154      151 0813… Aalen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> de:08211:1… Bade… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       613      551 0821… Baden-B…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> de:08115:7… Böbl… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       985      879 0811… Böbling…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> de:08115:4… Bond… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       195      172 0811… Bondorf </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> de:08127:2… Crai… <span style="color: #BB0000;">NA</span>        Fernzug,… Stat…        81       78 0812… Crailsh…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> de:08136:2… Ellw… <span style="color: #BB0000;">NA</span>        Fernzug,… Stat…        51       52 0813… Ellwang…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> de:08335:6… Enge… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       232      204 0833… Engen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> de:08237:7… Euti… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       123      104 0823… Eutinge…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> de:08115:5… Gäuf… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       147      128 0811… Gäufeld…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> de:08117:1… Göpp… <span style="color: #BB0000;">NA</span>        Bus, Fer… Stat…       791      684 0811… Göpping…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 127 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: verwaltung &lt;chr&gt;, kreis &lt;chr&gt;, regierungs &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all platforms of long-distance train stations</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_stations</span><span class="op">(</span><span class="va">verkehrsm</span> <span class="op">%LIKE%</span> <span class="st">"%Fernzug%"</span>, <span class="va">art</span> <span class="op">==</span> <span class="st">"Haltestelle"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 543 features and 13 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4045363 ymin: 2699754 xmax: 4630650 ymax: 3534754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 543 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    stop_id     name  parent_st verkehrsm art   tag_f_awo tag_f_wo ars   gemeinde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> de:08136:1… Aale… de:08136… Fernzug,… Halt…        43       42 0813… Aalen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> de:08136:1… Aale… de:08136… Fernzug,… Halt…        33       35 0813… Aalen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ::stop0162… Aale… de:08136… Bus, Fer… Halt…        <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> 0813… Aalen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> de:08211:1… Bade… de:08211… Fernzug,… Halt…        25       23 0821… Baden-B…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> de:08211:1… Bade… de:08211… Fernzug,… Halt…        27       25 0821… Baden-B…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> de:08211:1… Bahn… de:08211… Fernzug,… Halt…        50       47 0821… Baden-B…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> de:08115:7… Böbl… de:08115… Fernzug,… Halt…        61       56 0811… Böbling…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> de:08115:7… Böbl… de:08115… Fernzug,… Halt…       103       98 0811… Böbling…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> de:08115:4… Bond… de:08115… Fernzug,… Halt…        45       41 0811… Bondorf </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> de:08115:4… Bond… de:08115… Fernzug,… Halt…        53       48 0811… Bondorf </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 533 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: verwaltung &lt;chr&gt;, kreis &lt;chr&gt;, regierungs &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all stops with high traffic</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_stations</span><span class="op">(</span><span class="va">tag_f_awo</span> <span class="op">&gt;</span> <span class="fl">1000</span>, <span class="va">art</span> <span class="op">==</span> <span class="st">"Station"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 463 features and 13 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4042093 ymin: 2751521 xmax: 4584718 ymax: 3520149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 463 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    stop_id     name  parent_st verkehrsm art   tag_f_awo tag_f_wo ars   gemeinde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> de:08426:6… Bibe… <span style="color: #BB0000;">NA</span>        Bus, Zug… Stat…      <span style="text-decoration: underline;">1</span>017      849 0842… Biberac…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> de:08116:2… Essl… <span style="color: #BB0000;">NA</span>        Bus       Stat…      <span style="text-decoration: underline;">1</span>025      909 0811… Essling…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> de:08311:6… Frei… <span style="color: #BB0000;">NA</span>        Bus, Hoc… Stat…      <span style="text-decoration: underline;">1</span>538     <span style="text-decoration: underline;">1</span>379 0831… Freibur…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> de:08221:1… Heid… <span style="color: #BB0000;">NA</span>        Bus       Stat…      <span style="text-decoration: underline;">1</span>239     <span style="text-decoration: underline;">1</span>126 0822… Heidelb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> de:08221:1… Heid… <span style="color: #BB0000;">NA</span>        Bus, Str… Stat…      <span style="text-decoration: underline;">1</span>614     <span style="text-decoration: underline;">1</span>484 0822… Heidelb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> de:08221:1… Heid… <span style="color: #BB0000;">NA</span>        Bus, Hoc… Stat…      <span style="text-decoration: underline;">1</span>999     <span style="text-decoration: underline;">1</span>807 0822… Heidelb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> de:08221:1… Heid… <span style="color: #BB0000;">NA</span>        Bus       Stat…      <span style="text-decoration: underline;">1</span>274     <span style="text-decoration: underline;">1</span>148 0822… Heidelb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> de:08221:1… Heid… <span style="color: #BB0000;">NA</span>        Bus       Stat…      <span style="text-decoration: underline;">1</span>234     <span style="text-decoration: underline;">1</span>119 0822… Heidelb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> de:08221:1… Heid… <span style="color: #BB0000;">NA</span>        Bus, Str… Stat…      <span style="text-decoration: underline;">1</span>262     <span style="text-decoration: underline;">1</span>145 0822… Heidelb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> de:08121:1… Heil… <span style="color: #BB0000;">NA</span>        Bus, S-B… Stat…      <span style="text-decoration: underline;">1</span>030      908 0812… Heilbro…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 453 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: verwaltung &lt;chr&gt;, kreis &lt;chr&gt;, regierungs &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get all bus stops with low traffic</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_stations</span><span class="op">(</span><span class="va">tag_f_awo</span> <span class="op">&lt;</span> <span class="fl">1</span>, <span class="va">verkehrsm</span> <span class="op">%LIKE%</span> <span class="st">"%Bus%"</span>, <span class="va">art</span> <span class="op">==</span> <span class="st">"Station"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 428 features and 13 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4051619 ymin: 2713127 xmax: 4640909 ymax: 3504994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 428 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    stop_id     name  parent_st verkehrsm art   tag_f_awo tag_f_wo ars   gemeinde</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> de:08136:1… Ebna… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        2 0813… Aalen   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> de:08417:3… Onst… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        1 0841… Albstadt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> de:08417:3… Onst… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        2 0841… Albstadt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> de:08119:6… Klei… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        2 0811… Aspach  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> de:08119:5… Lipp… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        2 0811… Auenwald</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> de:08425:2… Blau… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        1 0842… Blaubeu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> de:08425:2… Blau… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        1 0842… Blaubeu…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> de:08115:4… Böbl… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        1 0811… Böbling…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> de:08337:6… Bonn… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        1 0833… Bonndor…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> de:08337:5… Günd… <span style="color: #BB0000;">NA</span>        Bus       Stat…         0        1 0833… Bonndor…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 418 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: verwaltung &lt;chr&gt;, kreis &lt;chr&gt;, regierungs &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

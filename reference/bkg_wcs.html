@@ -125,15 +125,20 @@ the WFS. Argument names are interpreted as the prefix (e.g.
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># Boundaries can be provided using two subset arguments</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Boundaries can be provided using two subset arguments</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_wcs</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"dgm200_inspire__EL.GridCoverage"</span>,</span></span>
 <span class="r-in"><span>  endpoint <span class="op">=</span> <span class="st">"dgm200_inspire"</span>,</span></span>
 <span class="r-in"><span>  subset <span class="op">=</span> <span class="st">"E(548282,552280)"</span>,</span></span>
 <span class="r-in"><span>  subset <span class="op">=</span> <span class="st">"N(5800943,5804942)"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class       : SpatRaster </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> size        : 20, 20, 1  (nrow, ncol, nlyr)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> resolution  : 200, 200  (x, y)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> extent      : 548300, 552300, 5800900, 5804900  (xmin, xmax, ymin, ymax)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> coord. ref. : ETRS89 / UTM zone 32N (EPSG:25832) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> source      : file208326bb322c </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> name        : file208326bb322c </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

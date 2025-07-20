@@ -153,13 +153,54 @@ entire datasets without the ability to filter beforehand.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># Download NUTS state data from 2020</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download NUTS state data from 2020</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_nuts</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"5000"</span>, year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 16 features and 3 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 280353.1 ymin: 5235878 xmax: 921261.6 ymax: 6101302</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89 / UTM zone 32N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 16 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    NUTS_LEVEL NUTS_CODE NUTS_NAME                                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>          1 DE1       Baden-Württemberg      (((579018.4 5345197, 578730 5342…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>          1 DE2       Bayern                 (((792217.3 5346780, 787582.4 53…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>          1 DE3       Berlin                 (((791413.7 5842844, 790893.8 58…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>          1 DE4       Brandenburg            (((819216.5 5702544, 817838.5 57…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>          1 DE5       Bremen                 (((471012 5933445, 468446.4 5938…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>          1 DE6       Hamburg                (((464521.5 5978903, 462755.7 59…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>          1 DE7       Hessen                 (((492636.7 5483361, 491362.4 54…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>          1 DE8       Mecklenburg-Vorpommern (((813435.5 6003613, 813323.1 60…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>          1 DE9       Niedersachsen          (((529970.5 5722449, 526897.9 57…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>          1 DEA       Nordrhein-Westfalen    (((469921.3 5816808, 476396.4 58…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>          1 DEB       Rheinland-Pfalz        (((398199.1 5437440, 394903.6 54…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>          1 DEC       Saarland               (((356384.3 5448971, 356828.6 54…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span>          1 DED       Sachsen                (((869314.7 5719837, 870358.6 57…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span>          1 DEE       Sachsen-Anhalt         (((682263.4 5665628, 679699.4 56…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span>          1 DEF       Schleswig-Holstein     (((579561.1 5937947, 578707.1 59…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span>          1 DEG       Thüringen              (((727655.1 5626574, 728299.4 56…</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Download the latest NUTS district data</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_nuts</span><span class="op">(</span>level <span class="op">=</span> <span class="st">"3"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 428 features and 4 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 280371.1 ymin: 5235856 xmax: 921292.4 ymax: 6101444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89 / UTM zone 32N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 428 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       GF NUTS_LEVEL NUTS_CODE NUTS_NAME                                 geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     4          3 DE111     Stuttgart, Stadtkreis (((516514.1 5412585, 516501…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     4          3 DE112     Böblingen             (((507605.3 5393882, 507674…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     4          3 DE113     Esslingen             (((530167.9 5376192, 529989…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4          3 DE114     Göppingen             (((546693.5 5376179, 546296…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     4          3 DE115     Ludwigsburg           (((525746.8 5426306, 525785…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     4          3 DE116     Rems-Murr-Kreis       (((536207.7 5401707, 536137…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     4          3 DE117     Heilbronn, Stadtkreis (((508553.4 5450760, 508678…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     4          3 DE118     Heilbronn, Landkreis  (((525039.4 5446468, 525384…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     4          3 DE119     Hohenlohekreis        (((560682.9 5459435, 560710…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     4          3 DE11A     Schwäbisch Hall       (((585283 5434640, 585236.5…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 418 more rows</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

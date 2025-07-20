@@ -175,14 +175,25 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># Get only local courts that are subordinates of the regional court Cottbus</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get only local courts that are subordinates of the regional court Cottbus</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_authorities</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  authority <span class="op">=</span> <span class="st">"local_courts"</span>,</span></span>
 <span class="r-in"><span>  <span class="va">uebergeord</span> <span class="op">%LIKE%</span> <span class="st">"%Cottbus"</span>,</span></span>
 <span class="r-in"><span>  <span class="va">uebergeord</span> <span class="op">%LIKE%</span> <span class="st">"Landgericht%"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 5 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4532108 ymin: 3145434 xmax: 4650859 ymax: 3262405</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id            dest_ge_nr mjbw_ge_nr uebergeord name                   geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> gerichte_amt… 121101     22010101   Landgeric… Amts… (((4578044 3151626, 4577…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> gerichte_amt… 121102     22010102   Landgeric… Amts… (((4617632 3166521, 4617…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> gerichte_amt… 121104     22010104   Landgeric… Amts… (((4618734 3226758, 4618…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> gerichte_amt… 121105     22010105   Landgeric… Amts… (((4606644 3177952, 4606…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> gerichte_amt… 121302     22010106   Landgeric… Amts… (((4553875 3257338, 4554…</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

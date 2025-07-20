@@ -204,13 +204,48 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># Get only military heliports</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get only military heliports</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_heliports</span><span class="op">(</span><span class="va">typ</span> <span class="op">==</span> <span class="st">"MH"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 4 features and 19 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4143804 ymin: 2919793 xmax: 4544198 ymax: 3277696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   code  name_bkg      name_dfs airport_pk befestigun kennzeich lage  typ   typ2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> LR018 Bundeswehr (… Nieders… <span style="color: #BB0000;">NA</span>         befestigt  gekennze… LP    MH    HLRS </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> LR030 Hubschrauber… Berlin-… <span style="color: #BB0000;">NA</span>         befestigt  gekennze… LP    MH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ETED  Kaiserslaute… Kaisers… 7789       befestigt  nicht ge… LP    MH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ETIY  Landstuhl Ho… LANDSTU… 7790       befestigt  gekennze… LP    MH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: betreiber &lt;chr&gt;, helikopter &lt;chr&gt;, status &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   quelle &lt;chr&gt;, ars &lt;chr&gt;, gemeinde &lt;chr&gt;, verwaltung &lt;chr&gt;, kreis &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   regierungs &lt;chr&gt;, bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get only rooftop heliports</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_heliports</span><span class="op">(</span><span class="va">lage</span> <span class="op">==</span> <span class="st">"D"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 197 features and 19 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4049323 ymin: 2708512 xmax: 4668344 ymax: 3520701</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 197 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    code   name_bkg    name_dfs airport_pk befestigun kennzeich lage  typ   typ2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> LR001  BG Kliniku… Berlin … <span style="color: #BB0000;">NA</span>         befestigt  gekennze… D     HH    HLRS </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ED1574 Universitä… Würzburg 7266       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ED1577 Helios Kli… Krefeld… 7269       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ED1582 Herz- und … BAD OEY… 7274       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ED1588 Klinikum B… Bremerh… 7281       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ED1590 Universitä… Düsseld… 7284       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ED1596 BG Unfallk… Frankfu… 7290       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ED1597 Klinikum F… Fulda K… 7291       befestigt  gekennze… D     HH    HLRS </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ED1598 Klinikum G… GARMISC… 7292       befestigt  gekennze… D     HH    <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ED1604 Medizinisc… HANNOVE… 7298       befestigt  gekennze… D     HH    HLRS </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 187 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: betreiber &lt;chr&gt;, helikopter &lt;chr&gt;, status &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   quelle &lt;chr&gt;, ars &lt;chr&gt;, gemeinde &lt;chr&gt;, verwaltung &lt;chr&gt;, kreis &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   regierungs &lt;chr&gt;, bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

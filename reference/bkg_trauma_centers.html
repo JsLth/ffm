@@ -181,12 +181,53 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># Get only trauma centers specializing on orthopedics</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get only trauma centers specializing on orthopedics</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_trauma_centers</span><span class="op">(</span><span class="va">abteilung</span> <span class="op">%LIKE%</span> <span class="st">"%orthopäd%"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 21 features and 16 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4062805 ymin: 2708345 xmax: 4488060 ymax: 3396631</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 21 × 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    poi_id     tz_nummer name  strasse hn    plz   ort   netzwerk abteilung typ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGPOI0… TZ-00268  Städ… Moltke… 90    76133 Karl… TraumaN… Klinik f… ÜTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGPOI0… TZ-00181  Klin… Auenst… 6     82467 Garm… TraumaN… Abteilun… RTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGPOI0… TZ-00701  Kran… Simons… 55    91207 Lauf… TraumaN… Unfallch… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGPOI0… TZ-00368  HELI… Steine… 5     81241 Münc… TraumaN… Klinik f… RTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGPOI0… TZ-00402  St. … Mommse… 24    90491 Nürn… TraumaN… Hauptfac… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGPOI0… TZ-00417  Sana… Langer… 12    91257 Pegn… TraumaN… Unfallch… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGPOI0… TZ-00456  Klin… Ansbac… 131   91541 Roth… TraumaN… Unfall- … LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGPOI0… TZ-00675  Askl… Tangst… 400   22417 Hamb… TraumaN… Unfall- … ÜTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGPOI0… TZ-00253  Krei… Lieben… 1     34369 Hofg… TraumaN… Chirurgi… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGPOI0… TZ-00271  Elis… Weinbe… 7     34117 Kass… TraumaN… Abteilun… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: ars &lt;chr&gt;, gemeinde &lt;chr&gt;, verwaltung &lt;chr&gt;, kreis &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   regierungs &lt;chr&gt;, bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get only local trauma centers</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_trauma_centers</span><span class="op">(</span><span class="va">typ</span> <span class="op">==</span> <span class="st">"LTZ"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 269 features and 16 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POINT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4044367 ymin: 2724853 xmax: 4659794 ymax: 3486644</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 269 × 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    poi_id     tz_nummer name  strasse hn    plz   ort   netzwerk abteilung typ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGPOI0… TZ-00039  Zoll… Tübing… 30    72336 Bali… TraumaN… Klinik f… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGPOI0… TZ-00619  Krei… Eduard… 6     75365 Calw  TraumaN… Klinik f… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGPOI0… TZ-00621  Land… Garten… 21    74564 Crai… TraumaN… Orthopäd… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGPOI0… TZ-00708  Kran… Rutesh… 50    71229 Leon… TraumaN… Klinik f… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGPOI0… TZ-00717  Ther… Basser… 1     68165 Mann… TraumaN… Unfallch… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGPOI0… TZ-00357  Neck… Knopfw… 1     74821 Mosb… TraumaN… Klinik f… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGPOI0… TZ-00358  RKH … Herman… 34    75417 Mühl… TraumaN… Sektion … LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGPOI0… TZ-00382  Klin… Röntge… 20    72202 Nago… TraumaN… Klinik f… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGPOI0… TZ-00733  medi… Hedelf… 166   73760 Ostf… TraumaN… Klinik f… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGPOI0… TZ-00747  HELI… Kranke… 30    78628 Rott… TraumaN… Unfallch… LTZ  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 259 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 7 more variables: ars &lt;chr&gt;, gemeinde &lt;chr&gt;, verwaltung &lt;chr&gt;, kreis &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   regierungs &lt;chr&gt;, bundesland &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
@@ -209,7 +250,7 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 <span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="bkg_trauma_centers-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

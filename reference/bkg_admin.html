@@ -345,28 +345,152 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># getFromNamespace("ffm_run_examples", ns = "ffm")()</span></span></span>
-<span class="r-in"><span><span class="co"># You can use R-like operators to query the WFS</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># You can use R-like operators to query the WFS</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">ags</span> <span class="op">%LIKE%</span> <span class="st">"05%"</span><span class="op">)</span> <span class="co"># districts in NRW</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 53 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4031313 ymin: 3029642 xmax: 4283898 ymax: 3269981</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53 × 26</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2024-04-03     4     4     1 05111 05111 051110… Düss… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2024-04-03     4     4     1 05112 05112 051120… Duis… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2024-04-03     4     4     1 05113 05113 051130… Essen Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2024-04-03     4     4     1 05114 05114 051140… Kref… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2020-03-09     4     4     1 05116 05116 051160… Mönc… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2024-04-03     4     4     1 05117 05117 051170… Mülh… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2022-12-19     4     4     1 05119 05119 051190… Ober… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2024-04-03     4     4     1 05120 05120 051200… Rems… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2020-11-17     4     4     1 05122 05122 051220… Soli… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2024-04-03     4     4     1 05124 05124 051240… Wupp… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 43 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">sn_l</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">)</span> <span class="co"># does the same thing</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 53 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4031313 ymin: 3029642 xmax: 4283898 ymax: 3269981</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53 × 26</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2024-04-03     4     4     1 05111 05111 051110… Düss… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2024-04-03     4     4     1 05112 05112 051120… Duis… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2024-04-03     4     4     1 05113 05113 051130… Essen Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2024-04-03     4     4     1 05114 05114 051140… Kref… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2020-03-09     4     4     1 05116 05116 051160… Mönc… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2024-04-03     4     4     1 05117 05117 051170… Mülh… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2022-12-19     4     4     1 05119 05119 051190… Ober… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2024-04-03     4     4     1 05120 05120 051200… Rems… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2020-11-17     4     4     1 05122 05122 051220… Soli… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2024-04-03     4     4     1 05124 05124 051240… Wupp… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 43 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">gen</span> <span class="op">%LIKE%</span> <span class="st">"Ber%"</span><span class="op">)</span> <span class="co"># districts starting with Ber*</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 4 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4082950 ymin: 2710124 xmax: 4576603 ymax: 3290780</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 26</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   objid beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz bem  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> DEBK… 2024-04-03     4     4     1 06431 06431 064310… Berg… Land…    43 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> DEBK… 2023-10-03     4     4     1 07231 07231 072310… Bern… Land…    43 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> DEBK… 2021-12-13     4     4     1 09172 09172 091720… Berc… Land…    43 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> DEBK… 2023-10-03     4     4     1 11000 11000 110000… Berl… Krei…    40 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;, sn_k &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;, ars_0 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;, geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># To query population and area, the key date must be December 31</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">ewz</span> <span class="op">&gt;</span> <span class="fl">500000</span>, key_date <span class="op">=</span> <span class="st">"1231"</span><span class="op">)</span> <span class="co"># districts over 500k people</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 21 features and 27 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4037375 ymin: 2773147 xmax: 4598913 ymax: 3429696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 21 × 28</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2023-10-03     4     4     1 02000 02000 020000… Hamb… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2023-10-03     4     4     1 03241 03241 032410… Regi… Land…    45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2023-10-03     4     4     1 04011 04011 040110… Brem… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2023-10-03     4     4     1 05111 05111 051110… Düss… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2022-12-19     4     4     1 05112 05112 051120… Duis… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2022-12-19     4     4     1 05113 05113 051130… Essen Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2022-12-19     4     4     1 05315 05315 053150… Köln  Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2021-09-12     4     4     1 05334 05334 053340… Städ… Kreis    46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2023-10-03     4     4     1 05382 05382 053820… Rhei… Kreis    42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2023-10-03     4     4     1 05562 05562 055620… Reck… Kreis    42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 17 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, ewz &lt;int&gt;, kfl &lt;dbl&gt;, dlm_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">kfl</span> <span class="op">&lt;=</span> <span class="fl">100</span>, key_date <span class="op">=</span> <span class="st">"1231"</span><span class="op">)</span> <span class="co"># districts with low land register area</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 74 features and 27 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4097402 ymin: 2719179 xmax: 4603283 ymax: 3531335</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 74 × 28</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2022-12-19     4     4     1 01001 01001 010010… Flen… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2022-12-19     4     4     1 01004 01004 010040… Neum… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2022-12-19     4     4     1 03401 03401 034010… Delm… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2022-12-19     4     4     1 05117 05117 051170… Mülh… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2022-12-19     4     4     1 05119 05119 051190… Ober… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2019-06-12     4     4     1 05120 05120 051200… Rems… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2020-11-17     4     4     1 05122 05122 051220… Soli… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2021-11-16     4     4     1 05316 05316 053160… Leve… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2022-12-19     4     4     1 05916 05916 059160… Herne Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2022-12-19     4     4     1 06413 06413 064130… Offe… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 17 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, ewz &lt;int&gt;, kfl &lt;dbl&gt;, dlm_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using `gf == 9`, you can exclude waterbodies like oceans</span></span></span>
 <span class="r-in"><span><span class="va">states</span> <span class="op">&lt;-</span> <span class="fu">bkg_admin</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"5000"</span>, level <span class="op">=</span> <span class="st">"lan"</span>, <span class="va">gf</span> <span class="op">==</span> <span class="fl">9</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">states</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="bkg_admin-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Download historical data</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin_archive</span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"5000"</span>, level <span class="op">=</span> <span class="st">"sta"</span>, year <span class="op">=</span> <span class="st">"2021"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 7 features and 24 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 280353.1 ymin: 5235878 xmax: 921261.6 ymax: 6106245</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89 / UTM zone 32N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 25</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   OBJID BEGINN       ADE    GF   BSG ARS   AGS   SDV_ARS GEN   BEZ     IBZ BEM  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> DEBK… 2021-06-20     1     9     1 0000… 0000… 110000… Deut… Bund…    10 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> DEBK… 2019-10-04     1     8     1 0000… 0000… 110000… Deut… Bund…    10 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> DEBK… 2019-10-04     1     8     1 0000… 0000… 110000… Deut… Bund…    10 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> DEBK… 2019-10-04     1     8     1 0000… 0000… 110000… Deut… Bund…    10 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> DEBK… 2019-10-04     1     8     9 --    --    --      Schw… --        0 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> DEBK… 2019-10-04     1     8     9 --    --    --      Öste… --        0 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> DEBK… 2019-10-04     1     8     9 0000… 0000… 110000… Deut… Bund…    10 --   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more variables: NBD &lt;chr&gt;, SN_L &lt;chr&gt;, SN_R &lt;chr&gt;, SN_K &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   SN_V1 &lt;chr&gt;, SN_V2 &lt;chr&gt;, SN_G &lt;chr&gt;, FK_S3 &lt;chr&gt;, NUTS &lt;chr&gt;, ARS_0 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   AGS_0 &lt;chr&gt;, WSK &lt;date&gt;, geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Download high-resolution data (takes a long time!)</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin_highres</span><span class="op">(</span>level <span class="op">=</span> <span class="st">"lan"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
