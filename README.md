@@ -123,7 +123,7 @@ ggplot(districts) +
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
-Attribute filters are supported using a R-like syntax.
+Attribute filters are supported using an R-like syntax.
 
 ``` r
 munics <- bkg_admin(
@@ -153,3 +153,62 @@ ggplot(munics) +
 </details>
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
+
+# Supported products
+
+    #> # A tibble: 32 × 3
+    #>    Function              Description                              `BKG products`
+    #>    <chr>                 <chr>                                    <chr>         
+    #>  1 `bkg_admin`           Administrative boundaries at different … [`vg250`](htt…
+    #>  2 `bkg_admin_hierarchy` Administrative boundaries containing de… [`vz250`](htt…
+    #>  3 `bkg_admin_highres`   Administrative boundaries at a signific… [`vg25`](http…
+    #>  4 `bkg_ags`             Geographical names associated with offi… [`wfs_gnde`](…
+    #>  5 `bkg_airports`        International, regional, and special ai… [`wfs_poi_ope…
+    #>  6 `bkg_amr`             Labor market regions (Arbeitsmarktregio… [`ge250`](htt…
+    #>  7 `bkg_area_codes`      Area code regions (Vorwahlgebiete)       [`wfs_gnde`](…
+    #>  8 `bkg_ars`             Geographical names associated with offi… [`wfs_gnde`](…
+    #>  9 `bkg_authorities`     Regions of administrative responsibilit… [`wfs_bzb_ope…
+    #> 10 `bkg_bkr`             Lignite extraction regions (Braunkohler… [`ge250`](htt…
+    #> # ℹ 22 more rows
+
+# Related packages
+
+- [`{giscoR}`](https://ropengov.github.io/giscoR/) for retrieving EU
+  geodata (also including Germany)
+- [`{bonn}`](https://doi.org/10.32614/CRAN.package.bonn) for retrieving
+  German areal indicators with official identifiers
+- [`{restatis}`](https://doi.org/10.32614/CRAN.package.restatis) and
+  [`{wiesbaden}`](https://doi.org/10.32614/CRAN.package.wiesbaden) for
+  retrieving regional statistics from Germany
+- [`{z22}`](https://doi.org/10.32614/CRAN.package.z22) for retrieving
+  gridded German census data
+- [`{rdwd}`](https://doi.org/10.32614/CRAN.package.rdwd) for retrieving
+  German weather and climate data
+
+# Copyright notice
+
+> BKG geodata is provided free of charge but remains copyrighted and
+> subject to BKG licensing. They are licensed under the German Open Data
+> license [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) and can be
+> used both commercially and non-commercially with attribution.
+>
+> When incorporating BKG geodata or service, please include the
+> following attribution. Update the year to match your data acquisition
+> data and keep the links intact.
+>
+> - If data modified: © [BKG](https://www.bkg.bund.de/) (date of last
+>   access) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (data
+>   edited)
+> - If not modified: © [BKG](https://www.bkg.bund.de/) (date of last
+>   access) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
+>
+> This is a summary based on the BKG [copyright
+> notice](https://gdz.bkg.bund.de/index.php/default/hinweise-zu-nutzungsbedingungen-und-quellenvermerken/)
+
+# Disclaimer
+
+This package is an independent project and is not affiliated with,
+endorsed by, or officially connected to the Federal Agency for
+Cartography and Geodesy (Bundesamt für Kartographie und Geodäsie, BKG)
+in any way. All references to data, services, or resources provided by
+the BKG are for informational purposes only.
