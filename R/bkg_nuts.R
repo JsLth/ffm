@@ -14,6 +14,11 @@
 #' retrieve the latest dataset version available on the BKG's geodata center.
 #' Older versions can be browsed using the
 #' \href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.
+#' @param allow_local If \code{TRUE}, allows special datasets to be loaded
+#' locally. If \code{FALSE}, always downloads from the internet. For
+#' \code{bkg_nuts}, the datasets from \code{\link{nuts_data}} can be loaded.
+#' This only applies if \code{scale = "5000"}, \code{key_date = "1231"},
+#' and \code{year = "2023"}.
 #' @param update_cache By default, downloaded files are cached in the
 #' \code{tempdir()} directory of R. When downloading the same data again,
 #' the data is not downloaded but instead taken from the cache. Sometimes
@@ -31,6 +36,15 @@
 #' This function does not query a WFS so you are only able to download
 #' entire datasets without the ability to filter beforehand.
 #'
+#' @seealso
+#' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/nuts250.pdf}{\code{nuts250} documentation}
+#'
+#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=D38F5B40-9209-4DC0-82BC-57FB575D29D7}{\code{nuts250} MIS record}
+#'
+#' \code{\link{bkg_admin}} for retrieving German administrative areas
+#'
+#' Datasets: \code{\link{admin_data}}, \code{\link{nuts_data}}
+#'
 #' @export
 #'
 #' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
@@ -43,11 +57,19 @@ bkg_nuts <- function(level = c("1", "2", "3"),
                      scale = c("250", "1000", "2500", "5000"),
                      key_date = c("0101", "1231"),
                      year = "latest",
+                     allow_local = TRUE,
                      timeout = 120,
                      update_cache = FALSE) {
   level <- rlang::arg_match(level)
   scale <- rlang::arg_match(scale)
   key_date <- rlang::arg_match(key_date)
+
+  if (isTRUE(allow_local) &&
+      scale %in% "5000" &&
+      year %in% "2023" &&
+      key_date %in% "1231") {
+    return(switch(level, "1" = bkg_nuts1, "2" = bkg_nuts2, "3" = bkg_nuts3))
+  }
 
   if (scale %in% c("250", "1000")) {
     product <- sprintf("nuts%s_%s", scale, key_date)

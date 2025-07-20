@@ -301,4 +301,6 @@ bkg_admin_highres(level = "lan")
 
 \code{\link{bkg_ror}}, \code{\link{bkg_grid}}, \code{\link{bkg_kfz}},
 \code{\link{bkg_authorities}} for non-administrative regions
+
+Datasets: \code{\link{admin_data}}, \code{\link{nuts_data}}
 }

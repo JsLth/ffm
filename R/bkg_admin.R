@@ -61,6 +61,11 @@
 #' Defaults to 3035.
 #' @param properties Vector of columns to include in the output.
 #' @param max Maximum number of results to return.
+#' @param allow_local If \code{TRUE}, allows special datasets to be loaded
+#' locally. If \code{FALSE}, always downloads from the internet. For
+#' \code{bkg_admin}, the datasets from \code{\link{admin_data}} can be loaded.
+#' This only applies if \code{scale = "5000"}, \code{key_date = "1231"},
+#' and \code{level %in% c("krs", "sta", "lan")}.
 #' @param layer The \code{vg25} product used in \code{bkg_admin_highres}
 #' contains a couple of metadata files. You can set a layer name to read these
 #' files, otherwise the main file is read.
@@ -89,6 +94,8 @@
 #'
 #' \code{\link{bkg_ror}}, \code{\link{bkg_grid}}, \code{\link{bkg_kfz}},
 #' \code{\link{bkg_authorities}} for non-administrative regions
+#'
+#' Datasets: \code{\link{admin_data}}, \code{\link{nuts_data}}
 #'
 #' @export
 #'
@@ -133,11 +140,29 @@ bkg_admin <- function(...,
                       filter = NULL,
                       epsg = 3035,
                       properties = NULL,
+                      allow_local = TRUE,
                       max = NULL) {
   all_levels <- c("sta", "lan", "rbz", "krs", "vwg", "gem", "li", "pk")
   level <- rlang::arg_match(level, all_levels)
   scale <- rlang::arg_match(scale)
   key_date <- rlang::arg_match(key_date)
+
+  if (isTRUE(allow_local) &&
+      scale %in% "5000" &&
+      level %in% c("krs", "lan", "sta") &&
+      key_date %in% "1231") {
+    dataset <- switch(level, krs = bkg_krs, lan = bkg_states, sta = bkg_germany)
+    dataset <- local_filter(
+      dataset,
+      ...,
+      poly = poly,
+      bbox = bbox,
+      predicate = predicate,
+      epsg = epsg,
+      properties = properties
+    )
+    return(dataset)
+  }
 
   filter <- wfs_filter(
     ...,

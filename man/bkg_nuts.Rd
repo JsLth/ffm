@@ -94,3 +94,12 @@ bkg_nuts(scale = "5000", year = 2020)
 bkg_nuts(level = "3")
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/nuts250.pdf}{\code{nuts250} documentation}
+
+\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=D38F5B40-9209-4DC0-82BC-57FB575D29D7}{\code{nuts250} MIS record}
+
+\code{\link{bkg_admin}} for retrieving German administrative areas
+
+Datasets: \code{\link{admin_data}}, \code{\link{nuts_data}}
+}
