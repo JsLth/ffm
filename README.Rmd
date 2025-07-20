@@ -186,7 +186,7 @@ ggplot(munics) +
 # Supported products
 
 ```{r products, echo=FALSE}
-tibble::tribble(
+knitr::kable(tibble::tribble(
   ~Function, ~Description, ~`BKG products`,
   "`bkg_admin`", "Administrative boundaries at different spatial scales; includes country, state, government region, district, administrative associations, and municipalities", "[`vg250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf) and related products",
   "`bkg_admin_hierarchy`", "Administrative boundaries containing details on their relationship to administrative areas of higher levels in the territorial hierarchy", "[`vz250`](https://sg.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vz250.pdf)",
@@ -220,7 +220,7 @@ tibble::tribble(
   "`bkg_seaports`", "Seaports to the North and Baltic Sea", "[`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf)",
   "`bkg_stations`", "Public transport stations and stops", "[`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf)",
   "`bkg_trauma_centers`", "Trauma centers", "[`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf)"
-)
+))
 ```
 
 
@@ -238,12 +238,12 @@ tibble::tribble(
 
 > BKG geodata is provided free of charge but remains copyrighted and subject to BKG licensing. They are licensed under the German Open Data license [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) and can be used both commercially and non-commercially with attribution.
 >
-> When incorporating BKG geodata or service, please include the following attribution. Update the year to match your data acquisition data and keep the links intact.
+> When incorporating BKG geodata, please include the following attribution. Update the year to match your data acquisition data and keep the links intact.
 >
 > - If data modified: © [BKG](https://www.bkg.bund.de/) (date of last access) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (data edited)
 > - If not modified: © [BKG](https://www.bkg.bund.de/) (date of last access) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
->
-> This is a summary based on the BKG [copyright notice](https://gdz.bkg.bund.de/index.php/default/hinweise-zu-nutzungsbedingungen-und-quellenvermerken/)
+
+This is a summary based on the BKG [copyright notice](https://gdz.bkg.bund.de/index.php/default/hinweise-zu-nutzungsbedingungen-und-quellenvermerken/)
 
 
 

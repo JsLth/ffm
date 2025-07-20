@@ -156,20 +156,40 @@ ggplot(munics) +
 
 # Supported products
 
-    #> # A tibble: 32 × 3
-    #>    Function              Description                              `BKG products`
-    #>    <chr>                 <chr>                                    <chr>         
-    #>  1 `bkg_admin`           Administrative boundaries at different … [`vg250`](htt…
-    #>  2 `bkg_admin_hierarchy` Administrative boundaries containing de… [`vz250`](htt…
-    #>  3 `bkg_admin_highres`   Administrative boundaries at a signific… [`vg25`](http…
-    #>  4 `bkg_ags`             Geographical names associated with offi… [`wfs_gnde`](…
-    #>  5 `bkg_airports`        International, regional, and special ai… [`wfs_poi_ope…
-    #>  6 `bkg_amr`             Labor market regions (Arbeitsmarktregio… [`ge250`](htt…
-    #>  7 `bkg_area_codes`      Area code regions (Vorwahlgebiete)       [`wfs_gnde`](…
-    #>  8 `bkg_ars`             Geographical names associated with offi… [`wfs_gnde`](…
-    #>  9 `bkg_authorities`     Regions of administrative responsibilit… [`wfs_bzb_ope…
-    #> 10 `bkg_bkr`             Lignite extraction regions (Braunkohler… [`ge250`](htt…
-    #> # ℹ 22 more rows
+| Function | Description | BKG products |
+|:---|:---|:---|
+| `bkg_admin` | Administrative boundaries at different spatial scales; includes country, state, government region, district, administrative associations, and municipalities | [`vg250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf) and related products |
+| `bkg_admin_hierarchy` | Administrative boundaries containing details on their relationship to administrative areas of higher levels in the territorial hierarchy | [`vz250`](https://sg.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vz250.pdf) |
+| `bkg_admin_highres` | Administrative boundaries at a significantly lower resolution that provided by `bkg_admin()` | [`vg25`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg25.pdf) |
+| `bkg_ags` | Geographical names associated with official keys (AGS and ARS) | [`wfs_gnde`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf) |
+| `bkg_airports` | International, regional, and special airports in Germany | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
+| `bkg_amr` | Labor market regions (Arbeitsmarktregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_area_codes` | Area code regions (Vorwahlgebiete) | [`wfs_gnde`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf) |
+| `bkg_ars` | Geographical names associated with official keys (AGS and ARS) | [`wfs_gnde`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf) |
+| `bkg_authorities` | Regions of administrative responsibility for several agencies (Behördenzuständigkeitsbereiche) | [`wfs_bzb_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/bzb-open.pdf) |
+| `bkg_bkr` | Lignite extraction regions (Braunkohlereviere) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_clc` | Land cover areas based on the Corine Land Cover (CLC) nomenclature | [`wfs_clc5`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/clc5_2018.pdf) |
+| `bkg_crossings` | International border crossings | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
+| `bkg_dem` | Elevation raster from the digital elevation model (DEM) | [`dgm200`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/dgm200.pdf) |
+| `bkg_dlm` | Topographical objects of a landscape from the Digital Landscape Model (DLM) | [`dlm250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/dlm250.pdf) and related products |
+| `bkg_endonyms` | Geographic names as endonyms | [`wfs_gnde`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf) |
+| `bkg_geonames` | Geographic name metadata based on National Name Identifiers (NNID) | [`wfs_gnde`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf) |
+| `bkg_ggr` | City regions (Großstadtregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_grid_full` | INSPIRE-compliant grid geometries (GeoGitter) | [`GeoGitter`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/geogitter.pdf) |
+| `bkg_heliports` | Heliports | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
+| `bkg_kfz` | Vehicle registration plate regions (KFZ-Kennzeichen) | [`kfz250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/kfz250.pdf) |
+| `bkg_kilometrage` | Kilometrages of German federal motorways | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
+| `bkg_kmr` | Metropolitan regions (Metropolregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_krg` | District regions (Kreisregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_mbe` | BBSR Mittelbereiche | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_mkro` | Conurbations (Verdichtungsräume) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_nuts` | NUTS regions of scale 1 to 3 from the EU territorial division | [`bkg_nuts250`](sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/nuts250.pdf) and related products |
+| `bkg_quasigeoid` | German Combined Quasigeoid, the official height reference surface of the German land survey | [`quasigeoid`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/quasigeoid.pdf) |
+| `bkg_rg` | Travel areas (Reisegebiete) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_ror` | Spatial planning regions (Raumordnungsregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
+| `bkg_seaports` | Seaports to the North and Baltic Sea | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
+| `bkg_stations` | Public transport stations and stops | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
+| `bkg_trauma_centers` | Trauma centers | [`wfs_poi_open`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf) |
 
 # Related packages
 
@@ -192,18 +212,18 @@ ggplot(munics) +
 > license [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) and can be
 > used both commercially and non-commercially with attribution.
 >
-> When incorporating BKG geodata or service, please include the
-> following attribution. Update the year to match your data acquisition
-> data and keep the links intact.
+> When incorporating BKG geodata, please include the following
+> attribution. Update the year to match your data acquisition data and
+> keep the links intact.
 >
 > - If data modified: © [BKG](https://www.bkg.bund.de/) (date of last
 >   access) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0) (data
 >   edited)
 > - If not modified: © [BKG](https://www.bkg.bund.de/) (date of last
 >   access) [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
->
-> This is a summary based on the BKG [copyright
-> notice](https://gdz.bkg.bund.de/index.php/default/hinweise-zu-nutzungsbedingungen-und-quellenvermerken/)
+
+This is a summary based on the BKG [copyright
+notice](https://gdz.bkg.bund.de/index.php/default/hinweise-zu-nutzungsbedingungen-und-quellenvermerken/)
 
 # Disclaimer
 
