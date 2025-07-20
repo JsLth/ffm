@@ -65,10 +65,11 @@ endpoint.</p>
 <span>  epsg <span class="op">=</span> <span class="fl">3035</span>,</span>
 <span>  properties <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  filter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  server <span class="op">=</span> <span class="fu">sgx_base</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">bkg_feature_types</span><span class="op">(</span><span class="va">endpoint</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">bkg_feature_types</span><span class="op">(</span><span class="va">endpoint</span>, server <span class="op">=</span> <span class="fu">sgx_base</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -134,6 +135,11 @@ EPSG codes are available. Defaults to EPSG:3035.</p></dd>
 <dt id="arg-filter">filter<a class="anchor" aria-label="anchor" href="#arg-filter"></a></dt>
 <dd><p>A WFS filter query (CQL or XML) created by
 <code><a href="wfs_filter.html">wfs_filter</a></code>.</p></dd>
+
+
+<dt id="arg-server">server<a class="anchor" aria-label="anchor" href="#arg-server"></a></dt>
+<dd><p>WFS server domain to use. Defaults to the SGX spatial data
+center of the BKG.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

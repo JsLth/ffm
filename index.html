@@ -123,7 +123,7 @@ Code for the plot
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </details><p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="100%"></p>
-<p>Attribute filters are supported using a R-like syntax.</p>
+<p>Attribute filters are supported using an R-like syntax.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">munics</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/bkg_admin.html">bkg_admin</a></span><span class="op">(</span></span>
 <span>  level <span class="op">=</span> <span class="st">"gem"</span>,</span>
@@ -143,6 +143,233 @@ Code for the plot
 </details><p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="100%"></p>
 </div>
 </div>
+<div class="section level1">
+<h1 id="supported-products">Supported products<a class="anchor" aria-label="anchor" href="#supported-products"></a>
+</h1>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+<th align="left">BKG products</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>bkg_admin</code></td>
+<td align="left">Administrative boundaries at different spatial scales; includes country, state, government region, district, administrative associations, and municipalities</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg250.pdf" class="external-link"><code>vg250</code></a> and related products</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_admin_hierarchy</code></td>
+<td align="left">Administrative boundaries containing details on their relationship to administrative areas of higher levels in the territorial hierarchy</td>
+<td align="left"><a href="https://sg.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vz250.pdf" class="external-link"><code>vz250</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_admin_highres</code></td>
+<td align="left">Administrative boundaries at a significantly lower resolution that provided by <code><a href="reference/bkg_admin.html">bkg_admin()</a></code>
+</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vg25.pdf" class="external-link"><code>vg25</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_ags</code></td>
+<td align="left">Geographical names associated with official keys (AGS and ARS)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf" class="external-link"><code>wfs_gnde</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_airports</code></td>
+<td align="left">International, regional, and special airports in Germany</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_amr</code></td>
+<td align="left">Labor market regions (Arbeitsmarktregionen)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_area_codes</code></td>
+<td align="left">Area code regions (Vorwahlgebiete)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf" class="external-link"><code>wfs_gnde</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_ars</code></td>
+<td align="left">Geographical names associated with official keys (AGS and ARS)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf" class="external-link"><code>wfs_gnde</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_authorities</code></td>
+<td align="left">Regions of administrative responsibility for several agencies (Behördenzuständigkeitsbereiche)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/bzb-open.pdf" class="external-link"><code>wfs_bzb_open</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_bkr</code></td>
+<td align="left">Lignite extraction regions (Braunkohlereviere)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_clc</code></td>
+<td align="left">Land cover areas based on the Corine Land Cover (CLC) nomenclature</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/clc5_2018.pdf" class="external-link"><code>wfs_clc5</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_crossings</code></td>
+<td align="left">International border crossings</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_dem</code></td>
+<td align="left">Elevation raster from the digital elevation model (DEM)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/dgm200.pdf" class="external-link"><code>dgm200</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_dlm</code></td>
+<td align="left">Topographical objects of a landscape from the Digital Landscape Model (DLM)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/dlm250.pdf" class="external-link"><code>dlm250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_endonyms</code></td>
+<td align="left">Geographic names as endonyms</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf" class="external-link"><code>wfs_gnde</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_geonames</code></td>
+<td align="left">Geographic name metadata based on National Name Identifiers (NNID)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf" class="external-link"><code>wfs_gnde</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_ggr</code></td>
+<td align="left">City regions (Großstadtregionen)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_grid_full</code></td>
+<td align="left">INSPIRE-compliant grid geometries (GeoGitter)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/geogitter.pdf" class="external-link"><code>GeoGitter</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_heliports</code></td>
+<td align="left">Heliports</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_kfz</code></td>
+<td align="left">Vehicle registration plate regions (KFZ-Kennzeichen)</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/kfz250.pdf" class="external-link"><code>kfz250</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_kilometrage</code></td>
+<td align="left">Kilometrages of German federal motorways</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_kmr</code></td>
+<td align="left">Metropolitan regions (Metropolregionen)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_krg</code></td>
+<td align="left">District regions (Kreisregionen)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_mbe</code></td>
+<td align="left">BBSR Mittelbereiche</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_mkro</code></td>
+<td align="left">Conurbations (Verdichtungsräume)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_nuts</code></td>
+<td align="left">NUTS regions of scale 1 to 3 from the EU territorial division</td>
+<td align="left">
+<a href="sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/nuts250.pdf"><code>bkg_nuts250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_quasigeoid</code></td>
+<td align="left">German Combined Quasigeoid, the official height reference surface of the German land survey</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/quasigeoid.pdf" class="external-link"><code>quasigeoid</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_rg</code></td>
+<td align="left">Travel areas (Reisegebiete)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_ror</code></td>
+<td align="left">Spatial planning regions (Raumordnungsregionen)</td>
+<td align="left">
+<a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf" class="external-link"><code>ge250</code></a> and related products</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_seaports</code></td>
+<td align="left">Seaports to the North and Baltic Sea</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bkg_stations</code></td>
+<td align="left">Public transport stations and stops</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bkg_trauma_centers</code></td>
+<td align="left">Trauma centers</td>
+<td align="left"><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/poi-open.pdf" class="external-link"><code>wfs_poi_open</code></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level1">
+<h1 id="related-packages">Related packages<a class="anchor" aria-label="anchor" href="#related-packages"></a>
+</h1>
+<ul>
+<li>
+<a href="https://ropengov.github.io/giscoR/" class="external-link"><code>{giscoR}</code></a> for retrieving EU geodata (also including Germany)</li>
+<li>
+<a href="https://doi.org/10.32614/CRAN.package.bonn" class="external-link"><code>{bonn}</code></a> for retrieving German areal indicators with official identifiers</li>
+<li>
+<a href="https://doi.org/10.32614/CRAN.package.restatis" class="external-link"><code>{restatis}</code></a> and <a href="https://doi.org/10.32614/CRAN.package.wiesbaden" class="external-link"><code>{wiesbaden}</code></a> for retrieving regional statistics from Germany</li>
+<li>
+<a href="https://doi.org/10.32614/CRAN.package.z22" class="external-link"><code>{z22}</code></a> for retrieving gridded German census data</li>
+<li>
+<a href="https://doi.org/10.32614/CRAN.package.rdwd" class="external-link"><code>{rdwd}</code></a> for retrieving German weather and climate data</li>
+</ul>
+</div>
+<div class="section level1">
+<h1 id="copyright-notice">Copyright notice<a class="anchor" aria-label="anchor" href="#copyright-notice"></a>
+</h1>
+<blockquote>
+<p>BKG geodata is provided free of charge but remains copyrighted and subject to BKG licensing. They are licensed under the German Open Data license <a href="https://www.govdata.de/dl-de/by-2-0" class="external-link">dl-de/by-2-0</a> and can be used both commercially and non-commercially with attribution.</p>
+<p>When incorporating BKG geodata, please include the following attribution. Update the year to match your data acquisition data and keep the links intact.</p>
+<ul>
+<li>If data modified: © <a href="https://www.bkg.bund.de/" class="external-link">BKG</a> (date of last access) <a href="https://www.govdata.de/dl-de/by-2-0" class="external-link">dl-de/by-2-0</a> (data edited)</li>
+<li>If not modified: © <a href="https://www.bkg.bund.de/" class="external-link">BKG</a> (date of last access) <a href="https://www.govdata.de/dl-de/by-2-0" class="external-link">dl-de/by-2-0</a>
+</li>
+</ul>
+</blockquote>
+<p>This is a summary based on the BKG <a href="https://gdz.bkg.bund.de/index.php/default/hinweise-zu-nutzungsbedingungen-und-quellenvermerken/" class="external-link">copyright notice</a></p>
+</div>
+<div class="section level1">
+<h1 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
+</h1>
+<p>This package is an independent project and is not affiliated with, endorsed by, or officially connected to the Federal Agency for Cartography and Geodesy (Bundesamt für Kartographie und Geodäsie, BKG) in any way. All references to data, services, or resources provided by the BKG are for informational purposes only.</p>
+</div>
+
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">

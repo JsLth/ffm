@@ -84,6 +84,7 @@ high-resolution data going as low as 1:25,000 but allows no prefiltering.</p></l
 <span>  filter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  epsg <span class="op">=</span> <span class="fl">3035</span>,</span>
 <span>  properties <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  allow_local <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  max <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -190,6 +191,14 @@ Defaults to 3035.</p></dd>
 
 <dt id="arg-properties">properties<a class="anchor" aria-label="anchor" href="#arg-properties"></a></dt>
 <dd><p>Vector of columns to include in the output.</p></dd>
+
+
+<dt id="arg-allow-local">allow_local<a class="anchor" aria-label="anchor" href="#arg-allow-local"></a></dt>
+<dd><p>If <code>TRUE</code>, allows special datasets to be loaded
+locally. If <code>FALSE</code>, always downloads from the internet. For
+<code>bkg_admin</code>, the datasets from <code><a href="admin_data.html">admin_data</a></code> can be loaded.
+This only applies if <code>scale = "5000"</code>, <code>key_date = "1231"</code>,
+and <code>level %in% c("krs", "sta", "lan")</code>.</p></dd>
 
 
 <dt id="arg-max">max<a class="anchor" aria-label="anchor" href="#arg-max"></a></dt>
@@ -330,7 +339,8 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 <p><code><a href="bkg_nuts.html">bkg_nuts</a></code> for retrieving EU administrative areas</p>
 <p><code><a href="bkg_admin_hierarchy.html">bkg_admin_hierarchy</a></code> for the administrative hierarchy</p>
 <p><code><a href="bkg_ror.html">bkg_ror</a></code>, <code><a href="bkg_grid.html">bkg_grid</a></code>, <code><a href="bkg_kfz.html">bkg_kfz</a></code>,
-<code><a href="bkg_authorities.html">bkg_authorities</a></code> for non-administrative regions</p></div>
+<code><a href="bkg_authorities.html">bkg_authorities</a></code> for non-administrative regions</p>
+<p>Datasets: <code><a href="admin_data.html">admin_data</a></code>, <code><a href="nuts_data.html">nuts_data</a></code></p></div>
     </div>
 
     <div class="section level2">
