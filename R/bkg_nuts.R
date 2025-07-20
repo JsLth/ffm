@@ -68,7 +68,12 @@ bkg_nuts <- function(level = c("1", "2", "3"),
       scale %in% "5000" &&
       year %in% "2023" &&
       key_date %in% "1231") {
-    return(switch(level, "1" = bkg_nuts1, "2" = bkg_nuts2, "3" = bkg_nuts3))
+    return(switch(
+      level,
+      "1" = ffm::bkg_nuts1,
+      "2" = ffm::bkg_nuts2,
+      "3" = ffm::bkg_nuts3
+    ))
   }
 
   if (scale %in% c("250", "1000")) {

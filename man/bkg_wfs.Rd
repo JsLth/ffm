@@ -15,10 +15,11 @@ bkg_wfs(
   epsg = 3035,
   properties = NULL,
   filter = NULL,
+  server = sgx_base(),
   ...
 )
 
-bkg_feature_types(endpoint)
+bkg_feature_types(endpoint, server = sgx_base())
 }
 \arguments{
 \item{type_name}{Feature type of the WFS to retrieve. You can use
@@ -64,6 +65,9 @@ EPSG codes are available. Defaults to EPSG:3035.}
 
 \item{filter}{A WFS filter query (CQL or XML) created by
 \code{\link{wfs_filter}}.}
+
+\item{server}{WFS server domain to use. Defaults to the SGX spatial data
+center of the BKG.}
 
 \item{...}{Further parameters passed to the WFS query. In case of
 \code{POST} requests, additional namespaces that may be necessary to query

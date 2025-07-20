@@ -65,7 +65,7 @@
 #' locally. If \code{FALSE}, always downloads from the internet. For
 #' \code{bkg_admin}, the datasets from \code{\link{admin_data}} can be loaded.
 #' This only applies if \code{scale = "5000"}, \code{key_date = "1231"},
-#' and \code{level %in% c("krs", "sta", "lan")}.
+#' and \code{level \%in\% c("krs", "sta", "lan")}.
 #' @param layer The \code{vg25} product used in \code{bkg_admin_highres}
 #' contains a couple of metadata files. You can set a layer name to read these
 #' files, otherwise the main file is read.
@@ -151,7 +151,13 @@ bkg_admin <- function(...,
       scale %in% "5000" &&
       level %in% c("krs", "lan", "sta") &&
       key_date %in% "1231") {
-    dataset <- switch(level, krs = bkg_krs, lan = bkg_states, sta = bkg_germany)
+    dataset <- switch(
+      level,
+      krs = ffm::bkg_krs,
+      lan = ffm::bkg_states,
+      sta = ffm::bkg_germany
+    )
+
     dataset <- local_filter(
       dataset,
       ...,
@@ -161,6 +167,7 @@ bkg_admin <- function(...,
       epsg = epsg,
       properties = properties
     )
+
     return(dataset)
   }
 

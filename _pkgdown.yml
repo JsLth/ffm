@@ -60,3 +60,8 @@ reference:
       - bkg_wfs
       - bkg_wcs
       - wfs_filter
+
+  - title: Datasets
+    contents:
+      - admin_data
+      - nuts_data

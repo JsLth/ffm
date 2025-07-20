@@ -17,6 +17,7 @@ bkg_admin(
   filter = NULL,
   epsg = 3035,
   properties = NULL,
+  allow_local = TRUE,
   max = NULL
 )
 
@@ -114,6 +115,12 @@ output. If you're unsure what this means, try running
 Defaults to 3035.}
 
 \item{properties}{Vector of columns to include in the output.}
+
+\item{allow_local}{If \code{TRUE}, allows special datasets to be loaded
+locally. If \code{FALSE}, always downloads from the internet. For
+\code{bkg_admin}, the datasets from \code{\link{admin_data}} can be loaded.
+This only applies if \code{scale = "5000"}, \code{key_date = "1231"},
+and \code{level \%in\% c("krs", "sta", "lan")}.}
 
 \item{max}{Maximum number of results to return.}
 
