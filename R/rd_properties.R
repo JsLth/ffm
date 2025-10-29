@@ -88,7 +88,7 @@ rd_properties <- list(
   ars_0 = "ARS identifier with trailing zeroes",
   ags_0 = "AGS identifier with trailing zeroes",
   wsk = "Legally relevant date for the effectiveness of administrative changes",
-  sn_l = "Country component of the ARS",
+  sn_l = "Federal state component of the ARS",
   sn_r = "Governmental district component of the ARS",
   sn_k = "District component of the ARS",
   sn_v1 = "First part of the administrative association component of the ARS",

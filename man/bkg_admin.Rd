@@ -198,7 +198,7 @@ classification
 \item{\code{ars_0}}: ARS identifier with trailing zeroes
 \item{\code{ags_0}}: AGS identifier with trailing zeroes
 \item{\code{wsk}}: Legally relevant date for the effectiveness of administrative changes
-\item{\code{sn_l}}: Country component of the ARS
+\item{\code{sn_l}}: Federal state component of the ARS
 \item{\code{sn_r}}: Governmental district component of the ARS
 \item{\code{sn_k}}: District component of the ARS
 \item{\code{sn_v1}}: First part of the administrative association component of the ARS
@@ -211,7 +211,7 @@ government region, if \code{"K"}, indicates the district
 \item{\code{kfl}}: Land register area in square kilometers
 }
 
-Boundary geometries (\code{"li"} can have additional columns:
+Boundary geometries (\code{"li"}) can have additional columns:
 \itemize{
 \item{\code{agz}}: Type of border. Can be one of \itemize{
 \item{1: National border}

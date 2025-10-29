@@ -77,7 +77,7 @@
 #' Areal geometries generally have the following columns:
 #' `r rd_properties_list(objid, beginn, ade, gf, bsg, ars, ags, sdv_ars, gen, bez, ibz, bem, nbd, nuts, ars_0, ags_0, wsk, sn_l, sn_r, sn_k, sn_v1, sn_v2, sn_g, fk_3, dkm_id, ewz, kfl)`
 #'
-#' Boundary geometries (\code{"li"} can have additional columns:
+#' Boundary geometries (\code{"li"}) can have additional columns:
 #' `r rd_properties_list(agz, rdg, gm5, gmk, dlm_id)`
 #'
 #' Point geometries (\code{"pk"}) have the following additional columns:
