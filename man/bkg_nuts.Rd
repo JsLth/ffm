@@ -9,7 +9,6 @@ bkg_nuts(
   scale = c("250", "1000", "2500", "5000"),
   key_date = c("0101", "1231"),
   year = "latest",
-  allow_local = TRUE,
   timeout = 120,
   update_cache = FALSE
 )
@@ -36,12 +35,6 @@ not. Note that population data is not available at all scales (usually
 retrieve the latest dataset version available on the BKG's geodata center.
 Older versions can be browsed using the
 \href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.}
-
-\item{allow_local}{If \code{TRUE}, allows special datasets to be loaded
-locally. If \code{FALSE}, always downloads from the internet. For
-\code{bkg_nuts}, the datasets from \code{\link{nuts_data}} can be loaded.
-This only applies if \code{scale = "5000"}, \code{key_date = "1231"},
-and \code{year = "2023"}.}
 
 \item{timeout}{Timeout value for the data download passed to
 \code{\link[httr2]{req_timeout}}. Adjust this if your internet connection is

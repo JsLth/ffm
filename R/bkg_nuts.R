@@ -14,11 +14,6 @@
 #' retrieve the latest dataset version available on the BKG's geodata center.
 #' Older versions can be browsed using the
 #' \href{https://daten.gdz.bkg.bund.de/produkte/}{archive}.
-#' @param allow_local If \code{TRUE}, allows special datasets to be loaded
-#' locally. If \code{FALSE}, always downloads from the internet. For
-#' \code{bkg_nuts}, the datasets from \code{\link{nuts_data}} can be loaded.
-#' This only applies if \code{scale = "5000"}, \code{key_date = "1231"},
-#' and \code{year = "2023"}.
 #' @param update_cache By default, downloaded files are cached in the
 #' \code{tempdir()} directory of R. When downloading the same data again,
 #' the data is not downloaded but instead taken from the cache. Sometimes
@@ -57,24 +52,11 @@ bkg_nuts <- function(level = c("1", "2", "3"),
                      scale = c("250", "1000", "2500", "5000"),
                      key_date = c("0101", "1231"),
                      year = "latest",
-                     allow_local = TRUE,
                      timeout = 120,
                      update_cache = FALSE) {
   level <- rlang::arg_match(level)
   scale <- rlang::arg_match(scale)
   key_date <- rlang::arg_match(key_date)
-
-  if (isTRUE(allow_local) &&
-      scale %in% "5000" &&
-      year %in% "2023" &&
-      key_date %in% "1231") {
-    return(switch(
-      level,
-      "1" = ffm::bkg_nuts1,
-      "2" = ffm::bkg_nuts2,
-      "3" = ffm::bkg_nuts3
-    ))
-  }
 
   if (scale %in% c("250", "1000")) {
     product <- sprintf("nuts%s_%s", scale, key_date)

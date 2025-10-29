@@ -29,6 +29,9 @@ bkg_nuts3
 Three \code{\link[sf:st_sf]{sf}} dataframes containing all geometries of
 German NUTS1, NUTS2, and NUTS3 regions, respectively. The reference year
 is 2023.
+
+These datasets can be very useful for quickly retrieving pre-loaded
+boundaries without download.
 }
 \examples{
 bkg_nuts1
