@@ -153,7 +153,7 @@ like the one used by <code><a href="bkg_geonames.html">bkg_geonames</a></code> o
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;fes:ValueReference&gt;ags&lt;/fes:ValueReference&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;fes:Literal&gt;05%&lt;/fes:Literal&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/fes:PropertyIsLike&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/fes:Filter&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/fes:Filter&gt; </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">bbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="fl">5</span>, ymin <span class="op">=</span> <span class="fl">50</span>, xmax <span class="op">=</span> <span class="fl">7</span>, ymax <span class="op">=</span> <span class="fl">52</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">wfs_filter</span><span class="op">(</span>bbox <span class="op">=</span> <span class="va">bbox</span>, lang <span class="op">=</span> <span class="st">"cql"</span><span class="op">)</span></span></span>
@@ -162,7 +162,7 @@ like the one used by <code><a href="bkg_geonames.html">bkg_geonames</a></code> o
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;fes:Filter&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;fes:Intersects&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;fes:ValueReference&gt;geom&lt;/fes:ValueReference&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;gml:Polygon srsName="urn:ogc:def:crs:EPSG::25832" gml:id="file208379004531.geom.0"&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;gml:Polygon srsName="urn:ogc:def:crs:EPSG::25832" gml:id="file222c27d86ec1.geom.0"&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;gml:exterior&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;gml:LinearRing&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;gml:posList&gt;5 50 7 50 7 52 5 52 5 50&lt;/gml:posList&gt;</span>
@@ -170,7 +170,7 @@ like the one used by <code><a href="bkg_geonames.html">bkg_geonames</a></code> o
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;/gml:exterior&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/gml:Polygon&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/fes:Intersects&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/fes:Filter&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/fes:Filter&gt; </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using `filter`, more complex queries can be built</span></span></span>
 <span class="r-in"><span><span class="fu">wfs_filter</span><span class="op">(</span><span class="va">ars</span> <span class="op">%LIKE%</span> <span class="st">"%0"</span>, filter <span class="op">=</span> <span class="st">"regierungs NOT IS NULL"</span><span class="op">)</span></span></span>
@@ -190,7 +190,7 @@ like the one used by <code><a href="bkg_geonames.html">bkg_geonames</a></code> o
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;fes:ValueReference&gt;aussprache&lt;/fes:ValueReference&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     &lt;/fes:PropertyIsNull&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   &lt;/fes:Not&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/fes:Filter&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/fes:Filter&gt; </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

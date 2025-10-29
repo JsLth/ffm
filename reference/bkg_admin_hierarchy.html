@@ -107,10 +107,29 @@ names of the administrative areas the municipalities belong to.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">bkg_admin_hierarchy</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in httr2::req_perform(req, path = path):</span> Failed to perform HTTP request.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_disk()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [daten.gdz.bkg.bund.de]:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> Operation timed out after 120000 milliseconds with 21304468 out of 24049413 bytes received</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 11126 features and 28 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 280371.1 ymin: 5235856 xmax: 921292.4 ymax: 6101487</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89 / UTM zone 32N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 11,126 × 29</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       GF ARS_G AGS_G GEN_G BEZ_G IBZ_G ARS_V GEN_V BEZ_V IBZ_V ARS_K GEN_K BEZ_K</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     4 0100… 0100… Flen… Stadt    60 0100… Flen… Amts…    80 01001 Flen… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     4 0100… 0100… Kiel  Stadt    60 0100… Kiel  Amts…    80 01002 Kiel  Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     4 0100… 0100… Lübe… Stadt    60 0100… Lübe… Amts…    80 01003 Lübe… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 0100… 0100… Neum… Stadt    60 0100… Neum… Amts…    80 01004 Neum… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     4 0105… 0105… Brun… Stadt    61 0105… Brun… Amts…    85 01051 Dith… Kreis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     4 0105… 0105… Heide Stadt    61 0105… Heide Amts…    85 01051 Dith… Kreis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     4 0105… 0105… Aver… Geme…    64 0105… Burg… Amt      50 01051 Dith… Kreis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     4 0105… 0105… Bric… Geme…    64 0105… Burg… Amt      50 01051 Dith… Kreis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     4 0105… 0105… Buch… Geme…    64 0105… Burg… Amt      50 01051 Dith… Kreis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     4 0105… 0105… Burg… Geme…    64 0105… Burg… Amt      50 01051 Dith… Kreis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11,116 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: IBZ_K &lt;int&gt;, ARS_R &lt;chr&gt;, GEN_R &lt;chr&gt;, BEZ_R &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   IBZ_R &lt;int&gt;, ARS_L &lt;chr&gt;, GEN_L &lt;chr&gt;, BEZ_L &lt;chr&gt;, IBZ_L &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   NUTS3_CODE &lt;chr&gt;, NUTS3_NAME &lt;chr&gt;, NUTS2_CODE &lt;chr&gt;, NUTS2_NAME &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   NUTS1_CODE &lt;chr&gt;, NUTS1_NAME &lt;chr&gt;, geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
