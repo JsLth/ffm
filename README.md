@@ -35,12 +35,12 @@ Main where the BKG’s headquarters are located.
 The following examples were created using `{ffm}`. You can see their
 code in the `examples/` directory.
 
-<div style="display: flex; gap: 10px;">
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
 
-<img src="man/figures/munic_access.png" height="500vw"/>
-<img src="man/figures/hesse_relief.png" height="500vw"/>
-<img src="man/figures/foehr_clc.png" height="500vw"/>
-<img src="man/figures/dus_network.png" height="500vw"/>
+<img src="man/figures/munic_access.png" style="width: 100%; height: auto;"/>
+<img src="man/figures/hesse_relief.png" style="width: 100%; height: auto;"/>
+<img src="man/figures/foehr_clc.png" style="width: 100%; height: auto;"/>
+<img src="man/figures/dus_network.png" style="width: 100%; height: auto;"/>
 
 </div>
 

@@ -85,5 +85,5 @@ map <- ggplot() +
     plot.background = element_rect(fill = "transparent", color = NA)
   )
 
-ggsave("man/figures/hesse_relief.png", bg = "white")
+ggsave("man/figures/hesse_relief.png", bg = "white", dpi = 100)
 plot_crop("man/figures/hesse_relief.png")

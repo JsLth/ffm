@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   dev = "ragg_png",
-  dpi = 300
+  dpi = 100
 )
 ```
 
@@ -49,11 +49,11 @@ the `examples/` directory.
 ```{r gallery, echo = FALSE, results = "asis"}
 library(htmltools)
 cat(as.character(div(
-  style = "display: flex; gap: 10px;",
-  img(src = "man/figures/munic_access.png", height = "500vw"),
-  img(src = "man/figures/hesse_relief.png", height = "500vw"),
-  img(src = "man/figures/foehr_clc.png", height = "500vw"),
-  img(src = "man/figures/dus_network.png", height = "500vw")
+  style = "display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;",
+  img(src = "man/figures/munic_access.png", style = "width: 100%; height: auto;"),
+  img(src = "man/figures/hesse_relief.png", style = "width: 100%; height: auto;"),
+  img(src = "man/figures/foehr_clc.png", style = "width: 100%; height: auto;"),
+  img(src = "man/figures/dus_network.png", style = "width: 100%; height: auto;")
 )))
 ```
 

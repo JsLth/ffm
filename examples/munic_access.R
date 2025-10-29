@@ -15,11 +15,11 @@ themes <- bonn::get_themes("gem")
 theme <- themes |>
   filter(Unterbereich %in% "Erreichbarkeit") |>
   pull(ID)
-vars <- bonn::get_variables(131, "gem")
+vars <- bonn::get_variables(theme, "gem")
 var <- vars |>
-  filter(KurznamePlus %in% "Nahversorgung Haltestellen des ÖV Anteil der Bev. 1km Radius") |>
+  filter(KurznamePlus %in% "Nahversorgung ÖV Haltestelle") |>
   pull(Gruppe)
-munic_internet <- bonn::get_data(var, "GEM", time = 2020) |>
+munic_internet <- bonn::get_data(var, "GEM", time = 2022) |>
   setNames(c("ags", "geography", "indicator", "value", "time"))
 
 munic <- left_join(
@@ -42,7 +42,7 @@ map <- ggplot(munic) +
     n.breaks = 5
   ) +
   labs(
-    title = "Accessibility of public transport in Germany",
+    title = "Accessibility of public transport in Germany, 2022",
     subtitle = "Share of people within 1 km of the next public transport stop",
     caption = "© GeoBasis-DE / BKG (2025)\n© BBSR Bonn 2025"
   ) +
@@ -56,5 +56,5 @@ map <- ggplot(munic) +
     plot.caption = element_text(hjust = 1, margin = margin(t = -10))
   )
 
-ggsave("man/figures/munic_access.png", bg = "white")
+ggsave("man/figures/munic_access.png", bg = "white", dpi = 100)
 plot_crop("man/figures/munic_access.png")
