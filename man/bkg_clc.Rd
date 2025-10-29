@@ -2,11 +2,7 @@
 % Please edit documentation in R/bkg_clc.R
 \name{bkg_clc}
 \alias{bkg_clc}
-\title{Corine Land Cover
-Retrieve land cover polygons in Germany based on the Corine Land Cover (CLC)
-nomenclature. \href{https://land.copernicus.eu/en/products/corine-land-cover}{Corine Land Cover}
-is a way to project by the European Commission to consistenly classify
-both land cover and land use.}
+\title{Corine Land Cover}
 \usage{
 bkg_clc(
   ...,
@@ -96,6 +92,12 @@ of all CLC classes can be found in the
 }
 }
 \description{
+Retrieve land cover polygons in Germany based on the Corine
+Land Cover (CLC) nomenclature.
+\href{https://land.copernicus.eu/en/products/corine-land-cover}{Corine Land Cover}
+is a way to project by the European Commission to consistenly classify
+both land cover and land use.
+
 This function interfaces the \code{wfs_clc5_*} products of the BKG.
 }
 \section{Query language}{
@@ -125,4 +127,9 @@ wetlands <- bkg_clc(clc18 \%LIKE\% "4\%", poly = lowsax)
 plot(lowsax$geometry)
 plot(wetlands$geometry, add = TRUE)
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/clc5_2018.pdf}{\code{wfs_poi_open} documentation}
+
+\href{https://sgx.geodatenzentrum.de/wfs_clc5_2018}{\code{wfs_poi_open} web page}
 }

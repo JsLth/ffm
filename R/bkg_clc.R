@@ -1,6 +1,8 @@
 #' Corine Land Cover
-#' Retrieve land cover polygons in Germany based on the Corine Land Cover (CLC)
-#' nomenclature. \href{https://land.copernicus.eu/en/products/corine-land-cover}{Corine Land Cover}
+#'
+#' @description Retrieve land cover polygons in Germany based on the Corine
+#' Land Cover (CLC) nomenclature.
+#' \href{https://land.copernicus.eu/en/products/corine-land-cover}{Corine Land Cover}
 #' is a way to project by the European Commission to consistenly classify
 #' both land cover and land use.
 #'
@@ -18,6 +20,11 @@
 #'  \item{\code{shape_length}: Circumference of the polygon in meters}
 #'  \item{\code{shape_area}: Area of the polygon in square meters}
 #' }
+#'
+#' @seealso
+#' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/clc5_2018.pdf}{\code{wfs_poi_open} documentation}
+#'
+#' \href{https://sgx.geodatenzentrum.de/wfs_clc5_2018}{\code{wfs_poi_open} web page}
 #'
 #' @export
 #'
