@@ -115,7 +115,7 @@ A dataframe containing the following columns:
 size of the labels
 \item{\code{ewz}}: Number of inhabitants
 \item{\code{ewzger}}: Computed number of inhabitants
-\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlu00fcssel).
+\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlüssel).
 Related to the ARS but shortened to omit position 6 to 9. Structured as
 follows: \itemize{
 \item{Position 1-2: Federal state}
@@ -125,7 +125,7 @@ follows: \itemize{
 }
 \item{\code{gemteil}}: Whether the place is part of a municipality
 \item{\code{virtuell}}: Whether the place is a real or virtual locality
-\item{\code{ars}}: Territorial code (Amtlicher Regionalschlu00fcssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}

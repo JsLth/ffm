@@ -114,7 +114,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get only local courts that are subordinates of the regional court Cottbus
 bkg_authorities(
   authority = "local_courts",

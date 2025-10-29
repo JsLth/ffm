@@ -81,7 +81,7 @@ columns: \itemize{
 \item{\code{debkgid}}: Identifier in the digital landscape model DLM250
 \item{\code{nnid}}: National name identifier
 \item{\code{name}}: Name of the geographical object
-\item{\code{ars}}: Territorial code (Amtlicher Regionalschlu00fcssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -93,8 +93,8 @@ The ARS is stuctured hierarchically as follows: \itemize{
 \item{\code{kfz}}: Vehicle registration area code, comma-separated in case of multiple codes
 \item{\code{geola}}: Geographical longitude
 \item{\code{geobr}}: Geographical latitude
-\item{\code{gkre}}: Gauu00df-Kru00fcger easting
-\item{\code{gkho}}: Gauu00df-Kru00fcger northing
+\item{\code{gkre}}: Gauß-Krüger easting
+\item{\code{gkho}}: Gauß-Krüger northing
 \item{\code{utmre}}: UTM easting
 \item{\code{utmho}}: UTM northing
 }

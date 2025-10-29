@@ -53,7 +53,7 @@ with the following additional features:
 \item{\code{p_staat}}: Share of state area in the grid cell
 \item{\code{p_land}}: Share of land area in the grid cell
 \item{\code{p_wasser}}: Share of water area in the grid cell
-\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlu00fcssel).
+\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlüssel).
 Related to the ARS but shortened to omit position 6 to 9. Structured as
 follows: \itemize{
 \item{Position 1-2: Federal state}

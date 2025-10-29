@@ -60,7 +60,7 @@ rd_properties <- list(
       \\item{4: Structured, land}
     }",
   bsg = "Special areas, can be 1 (Germany) or 9 (Lake Constance)",
-  ars = "Territorial code (Amtlicher Regionalschlu00fcssel).
+  ars = "Territorial code (Amtlicher Regionalschl\u00fcssel).
     The ARS is stuctured hierarchically as follows: \\itemize{
       \\item{Position 1-2: Federal state}
       \\item{Position 3: Government region}
@@ -68,7 +68,7 @@ rd_properties <- list(
       \\item{Position 6-9: Administrative association}
       \\item{Position 10-12: Municipality}
     }",
-  ags = "Official municipality key (Amtlicher Gemeindeschlu00fcssel).
+  ags = "Official municipality key (Amtlicher Gemeindeschl\u00fcssel).
     Related to the ARS but shortened to omit position 6 to 9. Structured as
     follows: \\itemize{
       \\item{Position 1-2: Federal state}
@@ -149,8 +149,8 @@ rd_properties <- list(
   geobr = "Geographical latitude",
   geoLaenge = "Geographical longitude",
   geoBreite = "Geographical latitude",
-  gkre = "Gauu00df-Kru00fcger easting",
-  gkho = "Gauu00df-Kru00fcger northing",
+  gkre = "Gau\u00df-Kr\u00fcger easting",
+  gkho = "Gau\u00df-Kr\u00fcger northing",
   utmre = "UTM easting",
   utmho = "UTM northing",
   hoehe = "Elevation above sea level",

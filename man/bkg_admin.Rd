@@ -170,7 +170,7 @@ Can be one of \itemize{
 \item{4: Structured, land}
 }
 \item{\code{bsg}}: Special areas, can be 1 (Germany) or 9 (Lake Constance)
-\item{\code{ars}}: Territorial code (Amtlicher Regionalschlu00fcssel).
+\item{\code{ars}}: Territorial code (Amtlicher Regionalschlüssel).
 The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 1-2: Federal state}
 \item{Position 3: Government region}
@@ -178,7 +178,7 @@ The ARS is stuctured hierarchically as follows: \itemize{
 \item{Position 6-9: Administrative association}
 \item{Position 10-12: Municipality}
 }
-\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlu00fcssel).
+\item{\code{ags}}: Official municipality key (Amtlicher Gemeindeschlüssel).
 Related to the ARS but shortened to omit position 6 to 9. Structured as
 follows: \itemize{
 \item{Position 1-2: Federal state}

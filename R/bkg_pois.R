@@ -446,7 +446,7 @@ bkg_seaports <- function(...,
   )
 
   bkg_wfs(
-    "seehaefen",
+    "haefen",
     endpoint = "poi_open",
     count = max,
     properties = properties,

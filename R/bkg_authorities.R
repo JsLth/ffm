@@ -34,7 +34,7 @@
 #'
 #' @family non-administrative regions
 #'
-#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
+#' @examplesIf ffm_run_examples()
 #' # Get only local courts that are subordinates of the regional court Cottbus
 #' bkg_authorities(
 #'   authority = "local_courts",
@@ -73,7 +73,7 @@ bkg_authorities <- function(authority,
     sprintf("bzb-open:%s", authority),
     endpoint = "bzb_open",
     version = "2.0.0",
-    maxfeatures = max,
+    count = max,
     filter = filter,
     epsg = epsg,
     properties = properties
