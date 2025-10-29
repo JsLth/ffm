@@ -74,7 +74,7 @@ wfs_filter <- function(...,
                        geom_property = "geom",
                        default_crs = 25832,
                        lang = NULL) {
-  lang <- lang %||% getOption("ffm_query_language", "cql")
+  lang <- lang %||% query_lang()
   rlang::arg_match(lang, c("xml", "cql"))
   filter_fun <- switch(lang, cql = cql_filter, xml = xml_filter)
 

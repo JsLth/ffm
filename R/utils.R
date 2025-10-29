@@ -34,11 +34,6 @@ to_title <- function(x) {
 }
 
 
-is_formula <- function(x) {
-  vapply(x, inherits, logical(1), "formula")
-}
-
-
 unbox <- function(x) {
   if (inherits(x, "list") && length(x) == 1) {
     x <- x[[1]]
@@ -50,3 +45,12 @@ unbox <- function(x) {
 "%zchar%" <- function(x, y) if (!nzchar(x)) y else x
 "%__%" <- function(x, y) if (!length(x)) y else x
 "%|||%" <- function(x, y) if (!is.null(x) && !all(is.na(x))) y else x
+
+"%except%" <- function(x, y) {
+  x <- try(x, silent = TRUE)
+  if (inherits(x, "try-error")) {
+    y
+  } else {
+    x
+  }
+}

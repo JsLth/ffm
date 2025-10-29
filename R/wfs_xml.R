@@ -65,9 +65,16 @@ list_as_xml <- function(x, find = NULL) {
 
 
 #' @export
-print.xml_filter <- function(x, ...) {
+format.xml_filter <- function(x, ...) {
   x <- list_as_xml(x, find = ".//fes:Filter")
-  cat(as.character(x))
+  as.character(x)
+}
+
+
+#' @export
+print.xml_filter <- function(x, ...) {
+  cat(format(x, ...), "\n")
+  invisible(x)
 }
 
 
@@ -87,7 +94,8 @@ xml_spatial <- function(bbox = NULL,
   }
 
   if (!is.null(bbox)) {
-    bbox <- sf::st_as_sfc(sf::st_bbox(bbox))
+    bbox <- sf::st_as_sfc(sf::st_bbox(bbox)) %except%
+      cli::cli_abort("Argument `bbox` is not a valid bbox.")
     bbox <- xml_predicate(
       bbox,
       predicate = predicate,

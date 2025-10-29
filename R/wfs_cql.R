@@ -56,7 +56,8 @@ cql_spatial <- function(bbox = NULL,
   }
 
   if (!is.null(bbox)) {
-    bbox <- sf::st_as_sfc(sf::st_bbox(bbox))
+    bbox <- sf::st_as_sfc(sf::st_bbox(bbox)) %except%
+      cli::cli_abort("Argument `bbox` is not a valid bbox.")
     bbox <- cql_predicate(
       bbox,
       predicate = predicate,
