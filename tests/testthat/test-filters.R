@@ -118,11 +118,14 @@ test_that("xml filters can do spatial predicates", {
     fixed = TRUE
   )
 
-  expect_match(
-    format(wfs_filter(poly = sf::st_set_crs(sf::st_as_sfc(bbox), 3035), default_crs = 4326)),
-    "12.9936038242606 -29.0868349643602",
-    fixed = TRUE
-  )
+  fl4 <- format(wfs_filter(
+    poly = sf::st_set_crs(sf::st_as_sfc(bbox), 3035),
+    default_crs = 4326
+  ))
+
+  # should be compatible with different floating point systems
+  expect_match(fl4, "12.99360", fixed = TRUE)
+  expect_match(fl4, "-29.08683", fixed = TRUE)
 
   expect_error(wfs_filter(bbox = c(1,2,3,4)), "not a valid bbox")
 })

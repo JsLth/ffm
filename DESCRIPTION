@@ -3,8 +3,8 @@ Type: Package
 Title: Download Official Spatial Data from Germany
 Version: 0.1.0
 Authors@R: 
-    person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("aut", "cre"),
-           comment = c(orcid = "0000-0002-3451-3176"))
+    person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0002-3451-3176"))
 Description: Provides quick and easy access to official spatial data from
     Germany’s Federal Agency for Cartography and Geodesy (BKG) <https://gdz.bkg.bund.de/>.
     Interfaces various web feature services (WFS) and download servers.
