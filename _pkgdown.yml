@@ -17,6 +17,13 @@ navbar:
     - text: Overview
       icon: fa-home
       href: index.html
+    - text: Vignettes
+      icon: fa-book
+      menu:
+        - text: "Filtering",
+          href: articles/filters.Rmd
+        - text: "Caching"
+          href: articles/caching.Rmd
     - text: "Reference"
       icon: fa-search
       href: reference/index.html
@@ -65,3 +72,4 @@ reference:
     contents:
       - admin_data
       - nuts_data
+
