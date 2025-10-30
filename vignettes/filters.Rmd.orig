@@ -1,0 +1,115 @@
+---
+title: "Filtering"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Filtering}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(ffm)
+```
+
+# Attribute filters
+
+`ffm` supports certain R expressions for filtering WFS servers. These expressions are not evaluated as-is but are converted to valid CQL or XML in the background. Each filter expects a left-hand side consisting of the name of a column in the output, an operator (e.g. `==`), and a right-hand side consisting of values to filter. It can look like this:
+
+```{r}
+bkg_admin(gen == "Berlin")
+```
+
+This code downloads all districts where the column `gen` (the geographical name) equals the string "Berlin". While this might seem intuitive at first, it can be quite frustrating to figure out which columns there are to filter by and what values you can use as filters. You have two options to find out. First, (probably) all attributes are documented in the R documentation of the respective function as well as the official documentation linked at the bottom of each function reference page. Second, and more pragmatically, you can use the `max` argument to control how many rows should be queried. In the following example you can get a glance at how the output is structured.
+
+```{r}
+bkg_admin(max = 10)
+```
+
+While some columns are pretty obvious, others (e.g., `ade` or `gf`) may warrant a look in the documentation.
+
+A second consideration is which operator to use. Generally, there are 9 operators that can be used: `==`, `!=`, `<`, `>`, `<=`, `>=`, `%LIKE%`, `%ILIKE%`, and `%in%`. Other operators are not supported by CQL or XML and will emit an error:
+
+```{r, error=TRUE}
+bkg_admin(bem && 1)
+```
+
+While most operators are equivalent to their use in R, `%LIKE%` and `%ILIKE%` stems from SQL and allows for wildcard matching in strings. Instead of `*`, it uses `%` as a wildcard operator.
+
+```{r}
+bkg_admin(gen %LIKE% "Ber%")
+```
+
+Unlike the previous example, this query does not return Berlin but all districts that start with "Ber".
+
+
+# Spatial filters
+
+Besides attribute filters, `ffm` is also able to construct spatial filters. This means you can include or exclude certain areas of your output before downloading by providing a boundary box or a polygon geometry. You can do this by either providing a rectangular box, e.g. like this:
+
+```{r}
+bbox <- c(xmin = 700000, ymin = 5900000, xmax = 850000, ymax = 6000000)
+
+bkg_admin(bbox = bbox, predicate = "intersects")
+```
+
+or by providing a polygon. Polygons are generally expressed using `sf` or `sfc` objects from the [`sf`](https://r-spatial.github.io/sf/) package. Using polygons you can provide much more complex geometries to filter by.
+
+```{r}
+bbox <- sf::st_bbox(c(xmin = 700000, ymin = 5900000, xmax = 850000, ymax = 6000000))
+poly <- sf::st_as_sfc(bbox)
+
+bkg_admin(poly = poly, predicate = "intersects")
+```
+
+Note how I simply converted the boundary box to an `sfc` object and passed it as a polygon. One reason for this is because I am to lazy to make an actual polygon geometry. The other reason is that complex polygons can quickly push the limits of CQL queries.
+
+
+# CQL versus XML queries
+
+CQL (Common Query Language) is a query language that is often used for WFS GET requests. It is rather simple and often almost matches the syntax of R. XML (Extensible Markup Language) is a much more complicated query language that is traditionally used for POST requests on WFS servers. You can compare how filters look like by using the `wfs_filter()` function:
+
+```{r}
+wfs_filter(gen == "Berlin", lang = "cql")
+```
+
+```{r}
+wfs_filter(gen == "Berlin", lang = "xml")
+```
+
+By default `ffm` uses CQL queries because they're much more reliable and don't break as easily. However, URLs cannot exceed a certain number of characters or they are declined by the WFS server. This is particularly critical for spatial filters with complex polygons. In the following, I load the federal state of Baden Wurttemberg and try to retrieve all districts that intersect its geometry.
+
+```{r}
+bw <- bkg_admin(sn_l == "08", gf == 4, level = "lan")
+
+bkg_wfs(
+  "vg5000_krs",
+  endpoint = "vg5000_0101",
+  filter = wfs_filter(poly = bw)
+)
+```
+
+As the error tells us, you can switch between CQL and XML using `options(ffm_query_language = "xml")`. This option switches to XML queries for all requests made. Alternatively, you can use the `lang` argument of `wfs_filter()`. Using XML queries, the complex spatial filter of Baden Wurttemberg becomes feasible:
+
+```{r, eval=FALSE}
+options(ffm_query_language = "xml")
+
+bkg_wfs(
+  "vg5000_krs",
+  endpoint = "vg5000_0101",
+  filter = wfs_filter(poly = bw)
+)
+```
+
+```{r, echo=FALSE}
+bkg_wfs(
+  "vg5000_krs",
+  endpoint = "vg5000_0101",
+  filter = wfs_filter(poly = bw, lang = "xml")
+)
+```
+

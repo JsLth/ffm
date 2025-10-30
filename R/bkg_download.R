@@ -12,7 +12,7 @@ bkg_download <- function(file,
   url_path <- paste("produkte", group, product, year, file, sep = "/")
   url <- httr2::url_modify(daten_base(), path = url_path)
 
-  path <- path %||% tempdir()
+  path <- path %||% cache_dir() %||% tempdir()
   path <- file.path(path, "ffm_cache", group, product, year)
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
   download(url, path = path, timeout = timeout, update_cache = update_cache)
@@ -80,6 +80,11 @@ unzip_ext <- function(path, ext, regex = NULL, exdir = dirname(path)) {
 has_file_ext <- function(file, ext) {
   ext <- paste(ext, collapse = "|")
   suppressWarnings(grepl(sprintf("\\.(%s)$", ext), file))
+}
+
+
+cache_dir <- function() {
+  getOption("ffm_cache_dir")
 }
 
 

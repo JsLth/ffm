@@ -1,0 +1,67 @@
+---
+title: "Caching"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Caching}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(ffm)
+```
+
+Downloading large amounts of complex geometries from the BKG servers can take some amount of time. Whether or not this time can be reduced depends on three factors:
+
+1. Whether the data is retrieved from a WFS or the download server
+2. Whether the data has already been downloaded
+3. Whether the data is already pre-loaded in the package
+
+# WFS versus bulk downloads
+
+Some functions like `bkg_admin()` or `bkg_dlm()` interface WFS servers while others like `bkg_nuts()` or `bkg_admin_archive()` download entire ZIP files from a download server. While WFS servers allow for more flexibility, they do not allow for easy caching. `ffm` supports caching of static files. By default, files are cached in a temporary directory that is removed after the R session ends. You can set a permanent cache directory using `options(ffm_cache_dir = ...)`.
+
+
+# Repeated data downloads
+
+In case of a static data download, the first call will always download fresh data.
+
+```{r, include=FALSE}
+unlink(dir(file.path(tempdir(), "ffm_cache"), full.names = TRUE), recursive = TRUE)
+```
+
+```{r}
+system.time(bkg_nuts(level = "3"))
+```
+
+Subsequent calls will have significantly reduced time because the downloaded file is directly read from the cache.
+
+```{r}
+system.time(bkg_nuts(level = "3"))
+```
+
+In case you need to re-download the data, you can use the `update_cache` argument.
+
+```{r}
+system.time(bkg_nuts(level = "3", update_cache = TRUE))
+```
+
+
+# Pre-loaded datasets
+
+The most common datasets are already included in `ffm`. These include 2023 data from `bkg_admin()` and `bkg_nuts()` at a scale of 1:5,000,000.
+
+```{r}
+bkg_krs
+```
+
+```{r}
+bkg_nuts2
+```
+
+
