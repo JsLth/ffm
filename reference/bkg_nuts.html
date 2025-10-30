@@ -51,7 +51,6 @@ This function interfaces the nuts* products of the BKG."><meta property="og:imag
 <span>  scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"250"</span>, <span class="st">"1000"</span>, <span class="st">"2500"</span>, <span class="st">"5000"</span><span class="op">)</span>,</span>
 <span>  key_date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0101"</span>, <span class="st">"1231"</span><span class="op">)</span>,</span>
 <span>  year <span class="op">=</span> <span class="st">"latest"</span>,</span>
-<span>  allow_local <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  timeout <span class="op">=</span> <span class="fl">120</span>,</span>
 <span>  update_cache <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -89,14 +88,6 @@ not. Note that population data is not available at all scales (usually
 retrieve the latest dataset version available on the BKG's geodata center.
 Older versions can be browsed using the
 <a href="https://daten.gdz.bkg.bund.de/produkte/" class="external-link">archive</a>.</p></dd>
-
-
-<dt id="arg-allow-local">allow_local<a class="anchor" aria-label="anchor" href="#arg-allow-local"></a></dt>
-<dd><p>If <code>TRUE</code>, allows special datasets to be loaded
-locally. If <code>FALSE</code>, always downloads from the internet. For
-<code>bkg_nuts</code>, the datasets from <code><a href="nuts_data.html">nuts_data</a></code> can be loaded.
-This only applies if <code>scale = "5000"</code>, <code>key_date = "1231"</code>,
-and <code>year = "2023"</code>.</p></dd>
 
 
 <dt id="arg-timeout">timeout<a class="anchor" aria-label="anchor" href="#arg-timeout"></a></dt>
