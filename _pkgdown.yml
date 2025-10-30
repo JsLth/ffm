@@ -20,10 +20,10 @@ navbar:
     - text: Vignettes
       icon: fa-book
       menu:
-        - text: "Filtering",
-          href: articles/filters.Rmd
+        - text: "Filtering"
+          href: articles/filters.html
         - text: "Caching"
-          href: articles/caching.Rmd
+          href: articles/caching.html
     - text: "Reference"
       icon: fa-search
       href: reference/index.html
