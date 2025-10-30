@@ -5,13 +5,22 @@ Version: 0.1.0
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("aut", "cre"),
            comment = c(orcid = "0000-0002-3451-3176"))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Provides quick and easy access to official spatial data from
+    Germany’s Federal Agency for Cartography and Geodesy (BKG) <https://gdz.bkg.bund.de/>.
+    Interfaces various web feature services (WFS) and download servers.
+    Allows retrieval, caching and filtering with a wide range of open
+    geodata products, including administrative or non-administrative boundaries,
+    land cover, elevation models, geographic names, and points of interest
+    covering Germany. Can be particularly useful for linking regional statistics
+    to their spatial representations and streamlining workflows that involve
+    spatial data of Germany.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 3.5)
 Imports:
     cli,
     rlang,
@@ -29,5 +38,3 @@ Suggests:
     testthat (>= 3.2.2)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-Depends: 
-    R (>= 3.5)
