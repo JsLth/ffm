@@ -34,7 +34,7 @@
 #'
 #' @family non-administrative regions
 #'
-#' @examplesIf ffm_run_examples()
+#' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()
 #' # Get only local courts that are subordinates of the regional court Cottbus
 #' bkg_authorities(
 #'   authority = "local_courts",

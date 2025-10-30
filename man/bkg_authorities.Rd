@@ -39,7 +39,7 @@ respective equivalents in CQL and XML are supported:
 \code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
 \code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
 \code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
-\code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
+\code{\%ILIKE\%} \tab \code{ILIKE} \tab\cr
 \code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
 }
 
@@ -114,7 +114,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (ffm_run_examples()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Get only local courts that are subordinates of the regional court Cottbus
 bkg_authorities(
   authority = "local_courts",

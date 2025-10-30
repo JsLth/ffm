@@ -47,7 +47,7 @@
 #' \code{>=} \tab \code{>=} \tab \code{PropertyIsGreaterThanOrEqualTo}\cr
 #' \code{<=} \tab \code{<=} \tab \code{PropertyIsLessThanOrEqualTo}\cr
 #' \code{\%LIKE\%} \tab \code{LIKE} \tab \code{PropertyIsLike}\cr
-#' \code{\%ILIKE\%} \tab \code{ILIKE}\cr \tab\cr
+#' \code{\%ILIKE\%} \tab \code{ILIKE} \tab\cr
 #' \code{\%in\%} \tab \code{IN} \tab \code{PropertyIsEqualTo} and \code{Or}
 #'}
 #'
