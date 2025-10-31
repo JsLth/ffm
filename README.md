@@ -206,7 +206,7 @@ ggplot(munics) +
 | `bkg_krg` | District regions (Kreisregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
 | `bkg_mbe` | BBSR Mittelbereiche | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
 | `bkg_mkro` | Conurbations (Verdichtungsräume) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
-| `bkg_nuts` | NUTS regions of scale 1 to 3 from the EU territorial division | [`bkg_nuts250`](sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/nuts250.pdf) and related products |
+| `bkg_nuts` | NUTS regions of scale 1 to 3 from the EU territorial division | [`bkg_nuts250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/nuts250.pdf) and related products |
 | `bkg_quasigeoid` | German Combined Quasigeoid, the official height reference surface of the German land survey | [`quasigeoid`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/quasigeoid.pdf) |
 | `bkg_rg` | Travel areas (Reisegebiete) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |
 | `bkg_ror` | Spatial planning regions (Raumordnungsregionen) | [`ge250`](https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/ge250.pdf) and related products |

@@ -129,7 +129,7 @@ plot(wetlands$geometry, add = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/clc5_2018.pdf}{\code{wfs_poi_open} documentation}
+\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/clc5_2018.pdf}{\code{wfs_clc5_2018} documentation}
 
-\href{https://sgx.geodatenzentrum.de/wfs_clc5_2018}{\code{wfs_poi_open} web page}
+\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=EC1C7EAE-BA08-4006-AC69-20E1C8200E64}{\code{wfs_clc5_2018} MIS record}
 }

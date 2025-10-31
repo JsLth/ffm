@@ -1,7 +1,7 @@
 Package: ffm
 Type: Package
 Title: Download Official Spatial Data from Germany
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-3451-3176"))
