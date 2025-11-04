@@ -284,7 +284,7 @@ plot(states$geometry)
 # Download historical data
 bkg_admin_archive(scale = "5000", level = "sta", year = "2021")
 
-\dontrun{
+\donttest{
 # Download high-resolution data (takes a long time!)
 bkg_admin_highres(level = "lan")
 }
