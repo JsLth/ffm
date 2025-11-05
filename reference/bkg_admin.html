@@ -35,7 +35,7 @@ These functions interface the vg* products of the BKG."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">ffm</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -486,10 +486,28 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Download high-resolution data (takes a long time!)</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin_highres</span><span class="op">(</span>level <span class="op">=</span> <span class="st">"lan"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in httr2::req_perform(req, path = path):</span> Failed to perform HTTP request.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_disk()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [daten.gdz.bkg.bund.de]:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> Operation timed out after 600000 milliseconds with 296945538 out of 320907802 bytes received</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 26 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 280375 ymin: 5235855 xmax: 921298 ymax: 6106245</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89 / UTM zone 32N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 26 × 26</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    OBJID   BEGINN                ADE    GF   BSG LKZ   ARS   AGS   SDV_ARS GEN  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 SH    01    01    010020… Schl…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 HH    02    02    020000… Hamb…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 NI    03    03    032410… Nied…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 HB    04    04    040110… Brem…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 NW    05    05    051110… Nord…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 HE    06    06    064140… Hess…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 RP    07    07    073150… Rhei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 BW    08    08    081110… Bade…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 BY    09    09    091620… Baye…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGV… 2025-02-02 <span style="color: #949494;">00:00:00</span>     2     9     1 SL    10    10    100410… Saar…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: BEZ &lt;chr&gt;, IBZ &lt;int&gt;, BEM &lt;chr&gt;, NBD &lt;chr&gt;, SN_L &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   SN_R &lt;chr&gt;, SN_K &lt;chr&gt;, SN_V1 &lt;chr&gt;, SN_V2 &lt;chr&gt;, SN_G &lt;chr&gt;, FK_S3 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   NUTS &lt;chr&gt;, ARS_0 &lt;chr&gt;, AGS_0 &lt;chr&gt;, WSK &lt;dttm&gt;, geom &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
