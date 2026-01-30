@@ -8,7 +8,8 @@ xml_filter <- function(...,
   rlang::check_dots_unnamed()
   dots <- rlang::enquos(...)
 
-  if (!is.null(filter)) {
+  # if filter is provided as character, try to to convert to xml list first
+  if (!is.null(filter) && is.character(filter)) {
     filter <- chr_as_xml(filter)
     filter <- xml2::as_list(filter, ns = xml2::xml_ns(filter))
   }

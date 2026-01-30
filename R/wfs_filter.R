@@ -74,7 +74,9 @@ wfs_filter <- function(...,
                        geom_property = "geom",
                        default_crs = 25832,
                        lang = NULL) {
-  lang <- lang %||% query_lang()
+  lang <- lang %||%
+    get_lang_from_filter(filter) %||%
+    default_query_lang()
   rlang::arg_match(lang, c("xml", "cql"))
   filter_fun <- switch(lang, cql = cql_filter, xml = xml_filter)
 
@@ -122,6 +124,14 @@ parse_pseudo_query <- function(quo) {
 }
 
 
-query_lang <- function() {
+default_query_lang <- function() {
   getOption("ffm_query_language", "cql")
+}
+
+
+get_lang_from_filter <- function(filter) {
+  cls <- class(filter)
+  if (grepl("(cql|xml)_filter", cls)) {
+    strsplit(cls, "_")[[1]][1]
+  }
 }
