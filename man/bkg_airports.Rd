@@ -111,7 +111,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Get all airports in NRW
 airports <- bkg_airports(ars \%LIKE\% "05\%")
 nrw <- bkg_admin(level = "lan", sn_l == "05")

@@ -174,7 +174,7 @@ query filters (see \code{\link{wfs_filter}}).
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")) withAutoprint(\{ # examplesIf}
 # Plot geographical objects in Cologne
 library(sf)
 library(ggplot2)

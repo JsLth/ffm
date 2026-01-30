@@ -47,9 +47,14 @@ Retrieve polygon geometries of municipalities in Germany with details on
 their relationships to administrative areas of higher levels in the
 territorial hierarchy. The output of this functions contains the identifiers
 and names of the NUTS1 to NUTS3 areas that each municipality belongs to.
+
+This function interfaces the \code{vz250} product of the BKG.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 bkg_admin_hierarchy()
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\href{https://sg.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vz250.pdf}{\code{vz250} documentation}
 }

@@ -267,7 +267,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # You can use R-like operators to query the WFS
 bkg_admin(ags \%LIKE\% "05\%") # districts in NRW
 bkg_admin(sn_l == "05") # does the same thing

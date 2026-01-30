@@ -79,6 +79,8 @@ An sf dataframe containing polygon geometries and the area code
 \description{
 Retrieves area code regions (\emph{Vorwahlgebiete}) in Germany. Area code
 regions are based on the number of registered telephone numbers.
+
+This function interfaces the \code{wfs_gnde} product of the BKG.
 }
 \section{Query language}{
 
@@ -88,8 +90,22 @@ implications for the allowed query filters (see \code{\link{wfs_filter}}).
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 vorwahlen <- bkg_area_codes(vorwahl \%LIKE\% "0215\%")
 plot(vorwahlen$geometry)
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=f1fe5b66-25d6-44c7-b26a-88625aca9573}{\code{wfs_gnde} MIS record}
+
+\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf}{\code{wfs_gnde} documentation}
+
+\code{\link{bkg_geonames}} and \code{\link{bkg_endonyms}} for geographical names
+
+Other non-administrative regions: 
+\code{\link{bkg_authorities}()},
+\code{\link{bkg_grid}},
+\code{\link{bkg_kfz}()},
+\code{\link{bkg_ror}()}
+}
+\concept{non-administrative regions}

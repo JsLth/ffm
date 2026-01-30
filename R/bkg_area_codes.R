@@ -3,6 +3,8 @@
 #' Retrieves area code regions (\emph{Vorwahlgebiete}) in Germany. Area code
 #' regions are based on the number of registered telephone numbers.
 #'
+#' This function interfaces the \code{wfs_gnde} product of the BKG.
+#'
 #' @inheritParams bkg_admin
 #'
 #' @section Query language:
@@ -12,6 +14,16 @@
 #'
 #' @returns An sf dataframe containing polygon geometries and the area code
 #' (\code{vorwahl}) associated with the region.
+#'
+#' @seealso
+#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=f1fe5b66-25d6-44c7-b26a-88625aca9573}{\code{wfs_gnde} MIS record}
+#'
+#' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf}{\code{wfs_gnde} documentation}
+#'
+#' \code{\link{bkg_geonames}} and \code{\link{bkg_endonyms}} for geographical names
+#'
+#' @family non-administrative regions
+#'
 #' @export
 #'
 #' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()

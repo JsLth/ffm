@@ -116,7 +116,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Get only seaports that co-function as inland ports
 ports <- bkg_seaports(typ == "See- und Binnenhafen")
 germany <- bkg_admin(level = "sta", scale = "5000", gf == 9)

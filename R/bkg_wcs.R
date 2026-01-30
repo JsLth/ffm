@@ -38,7 +38,7 @@ bkg_wcs <- function(coverage_id,
                     interpolation = NULL,
                     ...) {
   method <- method %||%
-    switch(query_lang(), cql = "GET", xml = "POST")
+    switch(default_query_lang(), cql = "GET", xml = "POST")
 
   req <- httr2::request(sgx_base())
   req <- httr2::req_url_path(req, sprintf("wcs_%s", endpoint))

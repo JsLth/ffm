@@ -21,6 +21,12 @@
 #' for the specified \code{region}. The data comes in EPSG:4258 and a
 #' resolution of 30" x 45" (approximately 0.9 x 0.9 km).
 #'
+#' @seealso
+#' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/quasigeoid.pdf}{\code{quasigeoid} documentation}
+#'
+#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=983fac52-b7de-4f43-a6f5-91e007a6f963}{\code{quasigeoid} MIS record}
+#'
+#'
 #' @export
 #'
 #' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")

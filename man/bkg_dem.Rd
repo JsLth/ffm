@@ -28,9 +28,11 @@ A \code{\link[terra:rast]{SpatRaster}} containing elevation data.
 }
 \description{
 Retrieve the digital elevation model (DEM) for the territory of Germany.
+
+This function interfaces the \code{wcs_dgm200_inspire} product of the BKG.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")) withAutoprint(\{ # examplesIf}
 library(sf)
 
 # Elevation around Hanover
@@ -39,4 +41,9 @@ han <- st_buffer(st_transform(han, 3035), dist = 2000)
 dem <- bkg_dem(bbox = han)
 terra::plot(dem)
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/dgm200.pdf}{\code{wcs_dgm200_inspire} documentation}
+
+\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=B567ABDA-10CD-4335-83EA-8D8D2EA9E6B6}{\code{wcs_dgm200_inspire} MIS record}
 }

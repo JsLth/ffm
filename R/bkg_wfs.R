@@ -89,7 +89,7 @@ bkg_wfs <- function(type_name,
                     ...) {
   method <- method %||%
     switch(class(filter)[1], xml_filter = "POST", cql_filter = "GET") %||%
-    switch(query_lang(), cql = "GET", xml = "POST")
+    switch(default_query_lang(), cql = "GET", xml = "POST")
 
   if (!is.null(epsg)) {
     epsg <- sprintf("EPSG:%s", epsg)

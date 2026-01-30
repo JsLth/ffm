@@ -18,6 +18,13 @@
 #' ONLY support XML. This has implications for the allowed query filters
 #' (see \code{\link{wfs_filter}}).
 #'
+#' @seealso
+#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=f1fe5b66-25d6-44c7-b26a-88625aca9573}{\code{wfs_gnde} MIS record}
+#'
+#' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/wfs-gnde.pdf}{\code{wfs_gnde} documentation}
+#'
+#' \code{\link{bkg_geonames}} and \code{\link{bkg_endonyms}} for geographical names
+#'
 #' @export
 #'
 #' @examplesIf getFromNamespace("ffm_run_examples", ns = "ffm")()

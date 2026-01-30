@@ -106,7 +106,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Get the kilometrage of the A2 motorway
 a2 <- bkg_kilometrage(bez == "A2")
 plot(a2["kilometer"], pch = 16)

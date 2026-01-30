@@ -63,7 +63,7 @@ is used in all high-level functions of \code{ffm} that depend on a WCS,
 e.g., \code{\link{bkg_dem}}.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Boundaries can be provided using two subset arguments
 bkg_wcs(
   "dgm200_inspire__EL.GridCoverage",

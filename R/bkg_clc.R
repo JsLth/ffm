@@ -36,9 +36,8 @@
 #' bkg_clc(clc18 %LIKE% "42%")
 #'
 #' # Get only wetlands in Lower Saxony
-#' rlang::local_options(ffm_query_language = "xml")
 #' lowsax <- bkg_admin(level = "lan", scale = "5000", sn_l == "03", gf == 9)
-#' wetlands <- bkg_clc(clc18 %LIKE% "4%", poly = lowsax)
+#' wetlands <- bkg_clc(clc18 %LIKE% "4%", poly = lowsax, lang = "xml")
 #' plot(lowsax$geometry)
 #' plot(wetlands$geometry, add = TRUE)
 bkg_clc <- function(...,

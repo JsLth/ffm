@@ -113,7 +113,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Get glaciers in Germany
 bkg_clc(clc18 == "335")
 
@@ -121,9 +121,8 @@ bkg_clc(clc18 == "335")
 bkg_clc(clc18 \%LIKE\% "42\%")
 
 # Get only wetlands in Lower Saxony
-rlang::local_options(ffm_query_language = "xml")
 lowsax <- bkg_admin(level = "lan", scale = "5000", sn_l == "03", gf == 9)
-wetlands <- bkg_clc(clc18 \%LIKE\% "4\%", poly = lowsax)
+wetlands <- bkg_clc(clc18 \%LIKE\% "4\%", poly = lowsax, lang = "xml")
 plot(lowsax$geometry)
 plot(wetlands$geometry, add = TRUE)
 \dontshow{\}) # examplesIf}

@@ -142,7 +142,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Retrieve all train tracks in Leipzig
 library(sf)
 lzg <- st_sfc(st_point(c(12.37475, 51.340333)), crs = 4326)

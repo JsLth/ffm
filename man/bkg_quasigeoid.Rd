@@ -51,9 +51,14 @@ modeling, engineering, or spatial analysis.
 This function interfaces the \code{quasigeoid} product of the BKG.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && rlang::is_installed("terra")) withAutoprint(\{ # examplesIf}
 library(terra)
 qgeoid <- bkg_quasigeoid(region = "no")
 terra::plot(qgeoid)
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/quasigeoid.pdf}{\code{quasigeoid} documentation}
+
+\href{https://mis.bkg.bund.de/trefferanzeige?docuuid=983fac52-b7de-4f43-a6f5-91e007a6f963}{\code{quasigeoid} MIS record}
 }

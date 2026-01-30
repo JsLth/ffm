@@ -86,7 +86,7 @@ e.g., \code{\link{bkg_admin}}.
 endpoint.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 bkg_feature_types("vg5000_0101")
 
 bkg_wfs(

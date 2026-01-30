@@ -2,6 +2,8 @@
 #' @description
 #' Retrieve the digital elevation model (DEM) for the territory of Germany.
 #'
+#' This function interfaces the \code{wcs_dgm200_inspire} product of the BKG.
+#'
 #' @param bbox An sf geometry or a boundary box vector of the format
 #' \code{c(xmin, ymin, xmax, ymax)}. Used as a geometric filter to mask the
 #' coverage raster. If an sf geometry is provided, coordinates
@@ -17,6 +19,11 @@
 #' Defaults to 3035.
 #'
 #' @returns A \code{\link[terra:rast]{SpatRaster}} containing elevation data.
+#'
+#' @seealso
+#' \href{https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/dgm200.pdf}{\code{wcs_dgm200_inspire} documentation}
+#'
+#' \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=B567ABDA-10CD-4335-83EA-8D8D2EA9E6B6}{\code{wcs_dgm200_inspire} MIS record}
 #'
 #' @export
 #'

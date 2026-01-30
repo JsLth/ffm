@@ -109,7 +109,7 @@ entirely identical.
 This function interfaces the \code{wfs_kfz250} product of the BKG.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")() && requireNamespace("ggplot2")) withAutoprint(\{ # examplesIf}
 library(ggplot2)
 
 kfz <- bkg_kfz(ars \%LIKE\% "053\%")
@@ -127,6 +127,7 @@ ggplot(kfz) +
 \code{\link{bkg_admin}}
 
 Other non-administrative regions: 
+\code{\link{bkg_area_codes}()},
 \code{\link{bkg_authorities}()},
 \code{\link{bkg_grid}},
 \code{\link{bkg_ror}()}

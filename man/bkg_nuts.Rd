@@ -86,7 +86,7 @@ This function does not query a WFS so you are only able to download
 entire datasets without the ability to filter beforehand.
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Download NUTS state data from 2020
 bkg_nuts(scale = "5000", year = 2020)
 

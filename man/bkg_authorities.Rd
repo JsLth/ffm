@@ -114,7 +114,7 @@ or \code{options(ffm_query_language = "CQL")}.
 }
 
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Get only local courts that are subordinates of the regional court Cottbus
 bkg_authorities(
   authority = "local_courts",
@@ -129,6 +129,7 @@ bkg_authorities(
 \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=8A7C5BC0-F323-43C8-A80B-1B87B0A128C7}{\code{bzb-open} MIS record}
 
 Other non-administrative regions: 
+\code{\link{bkg_area_codes}()},
 \code{\link{bkg_grid}},
 \code{\link{bkg_kfz}()},
 \code{\link{bkg_ror}()}

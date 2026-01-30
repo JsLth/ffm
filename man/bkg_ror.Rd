@@ -125,6 +125,7 @@ These functions interface the \code{ge*} product of the BKG.
 \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=A79091B8-5E32-4300-8B19-517195FF8084}{\code{ge5000} MIS record}
 
 Other non-administrative regions: 
+\code{\link{bkg_area_codes}()},
 \code{\link{bkg_authorities}()},
 \code{\link{bkg_grid}},
 \code{\link{bkg_kfz}()}

@@ -99,7 +99,7 @@ The following table gives a rough idea of how much less data
 }
 }
 \examples{
-\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (getFromNamespace("ffm_run_examples", ns = "ffm")()) withAutoprint(\{ # examplesIf}
 # Return a bare-bones version of the INSPIRE grid
 grid <- bkg_grid_fast(year = "2019", resolution = "100km")
 
@@ -122,6 +122,7 @@ if (requireNamespace("terra")) {
 \href{https://mis.bkg.bund.de/trefferanzeige?docuuid=02A7E63D-CAAA-4DED-B6FF-1F1E73FAF883}{GeoGitter MIS record}
 
 Other non-administrative regions: 
+\code{\link{bkg_area_codes}()},
 \code{\link{bkg_authorities}()},
 \code{\link{bkg_kfz}()},
 \code{\link{bkg_ror}()}

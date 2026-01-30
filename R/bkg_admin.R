@@ -262,12 +262,16 @@ bkg_admin_highres <- function(level = "krs",
 #' territorial hierarchy. The output of this functions contains the identifiers
 #' and names of the NUTS1 to NUTS3 areas that each municipality belongs to.
 #'
+#' This function interfaces the \code{vz250} product of the BKG.
+#'
 #' @inheritParams bkg_nuts
 #'
 #' @returns An sf tibble with multipolygon geometries similar to the output
 #' of \code{\link{bkg_admin}(level = "gem")}. The tibble additionally contains
 #' columns \code{NUTS*_CODE} and \code{NUTS*_NAME} giving the identifiers and
 #' names of the administrative areas the municipalities belong to.
+#'
+#' @seealso \href{https://sg.geodatenzentrum.de/web_public/gdz/dokumentation/deu/vz250.pdf}{\code{vz250} documentation}
 #'
 #' @export
 #'
