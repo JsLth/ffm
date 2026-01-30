@@ -92,11 +92,10 @@ for geographical names
 ``` r
 # Either get geographical names for identifiers
 bkg_ars(ars == "01")
-#> # A tibble: 1 × 6
-#>   ars   bundesland        regierungsbezirk kreis verwaltungsgemeinsch…¹ gemeinde
-#>   <chr> <chr>             <chr>            <chr> <chr>                  <chr>   
-#> 1 01    Schleswig-Holste… NA               NA    NA                     NA      
-#> # ℹ abbreviated name: ¹​verwaltungsgemeinschaft
+#> Error in httr2::req_perform(req, path = tempf): Failed to perform HTTP request.
+#> Caused by error in `curl::curl_fetch_disk()`:
+#> ! Timeout was reached [sgx.geodatenzentrum.de]:
+#> Failed to connect to sgx.geodatenzentrum.de port 443 after 10003 ms: Timeout was reached
 
 # ... or identifiers for geographical names
 bkg_ars(gemeinde == "Köln")

@@ -95,6 +95,6 @@ bkg_wcs(
 #> resolution  : 200, 200  (x, y)
 #> extent      : 548300, 552300, 5800900, 5804900  (xmin, xmax, ymin, ymax)
 #> coord. ref. : ETRS89 / UTM zone 32N (EPSG:25832) 
-#> source      : file22da37659c79 
-#> name        : file22da37659c79 
+#> source      : file1f91362b1173 
+#> name        : file1f91362b1173 
 ```

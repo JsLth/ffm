@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   caching: caching.html
   filters: filters.html
-last_built: 2026-01-30T17:39Z
+last_built: 2026-01-30T19:23Z
 urls:
   reference: https://jslth.github.io/ffm/reference
   article: https://jslth.github.io/ffm/articles
