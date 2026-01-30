@@ -4,20 +4,39 @@
   "identifier": "ffm",
   "description": "Provides quick and easy access to official spatial data from Germany’s Federal Agency for Cartography and Geodesy (BKG) <https://gdz.bkg.bund.de/>. Interfaces various web feature services (WFS) and download servers. Allows retrieval, caching and filtering with a wide range of open geodata products, including administrative or non-administrative boundaries, land cover, elevation models, geographic names, and points of interest covering Germany. Can be particularly useful for linking regional statistics to their spatial representations and streamlining workflows that involve spatial data of Germany.",
   "name": "ffm: Download Official Spatial Data from Germany",
+  "relatedLink": "https://jslth.github.io/ffm/",
+  "codeRepository": "https://github.com/jslth/ffm/",
+  "issueTracker": "https://github.com/jslth/ffm/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.0 (2024-04-24 ucrt)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
       "givenName": "Jonas",
       "familyName": "Lieth",
-      "email": "jonas.lieth@gesis.org"
+      "email": "jslth@outlook.com",
+      "@id": "https://orcid.org/0000-0002-3451-3176"
+    }
+  ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Jonas",
+      "familyName": "Lieth",
+      "email": "jslth@outlook.com",
+      "@id": "https://orcid.org/0000-0002-3451-3176"
     }
   ],
   "maintainer": [
@@ -25,7 +44,8 @@
       "@type": "Person",
       "givenName": "Jonas",
       "familyName": "Lieth",
-      "email": "jonas.lieth@gesis.org"
+      "email": "jslth@outlook.com",
+      "@id": "https://orcid.org/0000-0002-3451-3176"
     }
   ],
   "softwareSuggestions": [
@@ -196,5 +216,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "3116.6KB"
+  "fileSize": "3111.705KB"
 }
