@@ -1,9 +1,9 @@
 Package: ffm
 Type: Package
 Title: Download Official Spatial Data from Germany
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
-    person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("aut", "cre", "cph"),
+    person("Jonas", "Lieth", , "jslth@outlook.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-3451-3176"))
 Description: Provides quick and easy access to official spatial data from
     Germany’s Federal Agency for Cartography and Geodesy (BKG) <https://gdz.bkg.bund.de/>.
@@ -15,9 +15,11 @@ Description: Provides quick and easy access to official spatial data from
     to their spatial representations and streamlining workflows that involve
     spatial data of Germany.
 License: MIT + file LICENSE
+URL: https://github.com/jslth/ffm/, https://jslth.github.io/ffm/
+BugReports: https://github.com/jslth/ffm/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 3.5)
