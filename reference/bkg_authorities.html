@@ -21,7 +21,7 @@ This function interfaces the wfs_bzb-open product of the BKG."><meta property="o
 
     <a class="navbar-brand me-2" href="../index.html">ffm</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,7 @@ This function interfaces the wfs_bzb-open product of the BKG."><meta property="o
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html"><span class="fa fa-search"></span> Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jslth/ffm/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -46,7 +47,7 @@ This function interfaces the wfs_bzb-open product of the BKG."><meta property="o
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Regions of authority</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/jslth/ffm/blob/main/R/bkg_authorities.R" class="external-link"><code>R/bkg_authorities.R</code></a></small>
       <div class="d-none name"><code>bkg_authorities.Rd</code></div>
     </div>
 
@@ -173,9 +174,10 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
     <div class="dont-index"><p><a href="https://sgx.geodatenzentrum.de/web_public/gdz/dokumentation/deu/bzb-open.pdf" class="external-link"><code>bzb-open</code> documentation</a></p>
 <p><a href="https://mis.bkg.bund.de/trefferanzeige?docuuid=8A7C5BC0-F323-43C8-A80B-1B87B0A128C7" class="external-link"><code>bzb-open</code> MIS record</a></p>
 <p>Other non-administrative regions:
+<code><a href="bkg_area_codes.html">bkg_area_codes()</a></code>,
 <code><a href="bkg_grid.html">bkg_grid</a></code>,
-<code><a href="bkg_kfz.html">bkg_kfz</a>()</code>,
-<code><a href="bkg_ror.html">bkg_ror</a>()</code></p></div>
+<code><a href="bkg_kfz.html">bkg_kfz()</a></code>,
+<code><a href="bkg_ror.html">bkg_ror()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -186,19 +188,20 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 <span class="r-in"><span>  <span class="va">uebergeord</span> <span class="op">%LIKE%</span> <span class="st">"%Cottbus"</span>,</span></span>
 <span class="r-in"><span>  <span class="va">uebergeord</span> <span class="op">%LIKE%</span> <span class="st">"Landgericht%"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 5 features and 5 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 6 features and 5 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4532108 ymin: 3145434 xmax: 4650859 ymax: 3262405</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id            dest_ge_nr mjbw_ge_nr uebergeord name                   geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [m]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> gerichte_amt… 121101     22010101   Landgeric… Amts… (((4578044 3151626, 4577…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> gerichte_amt… 121102     22010102   Landgeric… Amts… (((4617632 3166521, 4617…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> gerichte_amt… 121104     22010104   Landgeric… Amts… (((4618734 3226758, 4618…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> gerichte_amt… 121105     22010105   Landgeric… Amts… (((4606644 3177952, 4606…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> gerichte_amt… 121302     22010106   Landgeric… Amts… (((4553875 3257338, 4554…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> gerichte_amt… 121104     22010104   Landgeric… Amts… (((4555550 3212841, 4555…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> gerichte_amt… 121302     22010106   Landgeric… Amts… (((4553875 3257338, 4554…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> gerichte_amt… 121101     22010101   Landgeric… Amts… (((4537996 3199068, 4538…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> gerichte_amt… 121102     22010160   Landgeric… Amts… (((4625944 3222238, 4625…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> gerichte_amt… 121102     22010102   Landgeric… Amts… (((4622937 3211905, 4623…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> gerichte_amt… 121105     22010105   Landgeric… Amts… (((4583233 3187580, 4583…</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -210,7 +213,7 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

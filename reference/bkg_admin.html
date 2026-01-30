@@ -35,7 +35,7 @@ These functions interface the vg* products of the BKG."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">ffm</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,7 @@ These functions interface the vg* products of the BKG."><meta property="og:image
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html"><span class="fa fa-search"></span> Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jslth/ffm/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -60,7 +61,7 @@ These functions interface the vg* products of the BKG."><meta property="og:image
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Administrative areas</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/jslth/ffm/blob/main/R/bkg_admin.R" class="external-link"><code>R/bkg_admin.R</code></a></small>
       <div class="d-none name"><code>bkg_admin.Rd</code></div>
     </div>
 
@@ -343,69 +344,70 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># You can use R-like operators to query the WFS</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">ags</span> <span class="op">%LIKE%</span> <span class="st">"05%"</span><span class="op">)</span> <span class="co"># districts in NRW</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 53 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 53 features and 26 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4031313 ymin: 3029642 xmax: 4283898 ymax: 3269981</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53 × 26</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2024-04-03     4     4     1 05111 05111 051110… Düss… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2024-04-03     4     4     1 05112 05112 051120… Duis… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2024-04-03     4     4     1 05113 05113 051130… Essen Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2024-04-03     4     4     1 05114 05114 051140… Kref… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2020-03-09     4     4     1 05116 05116 051160… Mönc… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2024-04-03     4     4     1 05117 05117 051170… Mülh… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2022-12-19     4     4     1 05119 05119 051190… Ober… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2024-04-03     4     4     1 05120 05120 051200… Rems… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2020-11-17     4     4     1 05122 05122 051220… Soli… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2024-04-03     4     4     1 05124 05124 051240… Wupp… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53 × 27</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg lkz   ars   ags   sdv_ars gen   bez  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05111 05111 051110… Düss… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05112 05112 051120… Duis… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05113 05113 051130… Essen Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05114 05114 051140… Kref… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2020-03-09     4     4     1 NW    05116 05116 051160… Mönc… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05117 05117 051170… Mülh… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05119 05119 051190… Ober… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05120 05120 051200… Rems… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2020-11-17     4     4     1 NW    05122 05122 051220… Soli… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2025-04-11     4     4     1 NW    05124 05124 051240… Wupp… Krei…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 43 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: ibz &lt;int&gt;, bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">sn_l</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">)</span> <span class="co"># does the same thing</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 53 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 53 features and 26 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4031313 ymin: 3029642 xmax: 4283898 ymax: 3269981</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53 × 26</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2024-04-03     4     4     1 05111 05111 051110… Düss… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2024-04-03     4     4     1 05112 05112 051120… Duis… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2024-04-03     4     4     1 05113 05113 051130… Essen Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2024-04-03     4     4     1 05114 05114 051140… Kref… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2020-03-09     4     4     1 05116 05116 051160… Mönc… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2024-04-03     4     4     1 05117 05117 051170… Mülh… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2022-12-19     4     4     1 05119 05119 051190… Ober… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2024-04-03     4     4     1 05120 05120 051200… Rems… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2020-11-17     4     4     1 05122 05122 051220… Soli… Krei…    40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2024-04-03     4     4     1 05124 05124 051240… Wupp… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 53 × 27</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    objid      beginn       ade    gf   bsg lkz   ars   ags   sdv_ars gen   bez  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05111 05111 051110… Düss… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05112 05112 051120… Duis… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05113 05113 051130… Essen Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05114 05114 051140… Kref… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> DEBKGVG20… 2020-03-09     4     4     1 NW    05116 05116 051160… Mönc… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05117 05117 051170… Mülh… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05119 05119 051190… Ober… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> DEBKGVG20… 2025-01-03     4     4     1 NW    05120 05120 051200… Rems… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> DEBKGVG20… 2020-11-17     4     4     1 NW    05122 05122 051220… Soli… Krei…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> DEBKGVG20… 2025-04-11     4     4     1 NW    05124 05124 051240… Wupp… Krei…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 43 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: ibz &lt;int&gt;, bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">gen</span> <span class="op">%LIKE%</span> <span class="st">"Ber%"</span><span class="op">)</span> <span class="co"># districts starting with Ber*</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 4 features and 25 fields</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 4 features and 26 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 4082950 ymin: 2710124 xmax: 4576603 ymax: 3290780</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: ETRS89-extended / LAEA Europe</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 26</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   objid beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz bem  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> DEBK… 2024-04-03     4     4     1 06431 06431 064310… Berg… Land…    43 --   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> DEBK… 2023-10-03     4     4     1 07231 07231 072310… Bern… Land…    43 --   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> DEBK… 2021-12-13     4     4     1 09172 09172 091720… Berc… Land…    43 --   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> DEBK… 2023-10-03     4     4     1 11000 11000 110000… Berl… Krei…    40 --   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more variables: nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;, sn_k &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;, ars_0 &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;, geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 27</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   objid beginn       ade    gf   bsg lkz   ars   ags   sdv_ars gen   bez     ibz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> DEBK… 2025-04-11     4     4     1 HE    06431 06431 064310… Berg… Land…    43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> DEBK… 2025-04-11     4     4     1 RP    07231 07231 072310… Bern… Land…    43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> DEBK… 2021-12-13     4     4     1 BY    09172 09172 091720… Berc… Land…    43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> DEBK… 2025-04-11     4     4     1 BE    11000 11000 110000… Berl… Krei…    40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: bem &lt;chr&gt;, nbd &lt;chr&gt;, sn_l &lt;chr&gt;, sn_r &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sn_k &lt;chr&gt;, sn_v1 &lt;chr&gt;, sn_v2 &lt;chr&gt;, sn_g &lt;chr&gt;, fk_s3 &lt;chr&gt;, nuts &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ars_0 &lt;chr&gt;, ags_0 &lt;chr&gt;, wsk &lt;date&gt;, dlm_id &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   geometry &lt;MULTIPOLYGON [m]&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># To query population and area, the key date must be December 31</span></span></span>
 <span class="r-in"><span><span class="fu">bkg_admin</span><span class="op">(</span><span class="va">ewz</span> <span class="op">&gt;</span> <span class="fl">500000</span>, key_date <span class="op">=</span> <span class="st">"1231"</span><span class="op">)</span> <span class="co"># districts over 500k people</span></span></span>
@@ -520,7 +522,7 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

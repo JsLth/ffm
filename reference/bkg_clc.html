@@ -23,7 +23,7 @@ This function interfaces the wfs_clc5_* products of the BKG."><meta property="og
 
     <a class="navbar-brand me-2" href="../index.html">ffm</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,7 @@ This function interfaces the wfs_clc5_* products of the BKG."><meta property="og
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html"><span class="fa fa-search"></span> Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jslth/ffm/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -48,7 +49,7 @@ This function interfaces the wfs_clc5_* products of the BKG."><meta property="og
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Corine Land Cover</h1>
-
+      <small class="dont-index">Source: <a href="https://github.com/jslth/ffm/blob/main/R/bkg_clc.R" class="external-link"><code>R/bkg_clc.R</code></a></small>
       <div class="d-none name"><code>bkg_clc.Rd</code></div>
     </div>
 
@@ -217,16 +218,11 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 394 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get only wetlands in Lower Saxony</span></span></span>
-<span class="r-in"><span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/local_options.html" class="external-link">local_options</a></span><span class="op">(</span>ffm_query_language <span class="op">=</span> <span class="st">"xml"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">lowsax</span> <span class="op">&lt;-</span> <span class="fu"><a href="bkg_admin.html">bkg_admin</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"lan"</span>, scale <span class="op">=</span> <span class="st">"5000"</span>, <span class="va">sn_l</span> <span class="op">==</span> <span class="st">"03"</span>, <span class="va">gf</span> <span class="op">==</span> <span class="fl">9</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">wetlands</span> <span class="op">&lt;-</span> <span class="fu">bkg_clc</span><span class="op">(</span><span class="va">clc18</span> <span class="op">%LIKE%</span> <span class="st">"4%"</span>, poly <span class="op">=</span> <span class="va">lowsax</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in bkg_wfs(type_name = paste0(endpoint, ":clc5"), endpoint = endpoint,     epsg = epsg, count = max, properties = properties, filter = filter):</span> Query is too large to be handled by CQL queries.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Consider setting `options(ffm_query_language = "xml")`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Alternatively, try to reduce the size of your query.</span>
+<span class="r-in"><span><span class="va">wetlands</span> <span class="op">&lt;-</span> <span class="fu">bkg_clc</span><span class="op">(</span><span class="va">clc18</span> <span class="op">%LIKE%</span> <span class="st">"4%"</span>, poly <span class="op">=</span> <span class="va">lowsax</span>, lang <span class="op">=</span> <span class="st">"xml"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">lowsax</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="bkg_clc-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wetlands</span><span class="op">$</span><span class="va">geometry</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'wetlands' not found</span>
+<span class="r-plt img"><img src="bkg_clc-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -238,7 +234,7 @@ or <code>options(ffm_query_language = "CQL")</code>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

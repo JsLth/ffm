@@ -1,0 +1,107 @@
+# Caching
+
+Downloading large amounts of complex geometries from the BKG servers can
+take some amount of time. Whether or not this time can be reduced
+depends on three factors:
+
+1.  Whether the data is retrieved from a WFS or the download server
+2.  Whether the data has already been downloaded
+3.  Whether the data is already pre-loaded in the package
+
+## WFS versus bulk downloads
+
+Some functions like
+[`bkg_admin()`](https://jslth.github.io/ffm/reference/bkg_admin.md) or
+[`bkg_dlm()`](https://jslth.github.io/ffm/reference/bkg_dlm.md)
+interface WFS servers while others like
+[`bkg_nuts()`](https://jslth.github.io/ffm/reference/bkg_nuts.md) or
+[`bkg_admin_archive()`](https://jslth.github.io/ffm/reference/bkg_admin.md)
+download entire ZIP files from a download server. While WFS servers
+allow for more flexibility, they do not allow for easy caching. `ffm`
+supports caching of static files. By default, files are cached in a
+temporary directory that is removed after the R session ends. You can
+set a permanent cache directory using `options(ffm_cache_dir = ...)`.
+
+## Repeated data downloads
+
+In case of a static data download, the first call will always download
+fresh data.
+
+``` r
+system.time(bkg_nuts(level = "3"))
+#>    user  system elapsed 
+#>    0.05    0.03    4.41
+```
+
+Subsequent calls will have significantly reduced time because the
+downloaded file is directly read from the cache.
+
+``` r
+system.time(bkg_nuts(level = "3"))
+#>    user  system elapsed 
+#>    0.05    0.00    0.09
+```
+
+In case you need to re-download the data, you can use the `update_cache`
+argument.
+
+``` r
+system.time(bkg_nuts(level = "3", update_cache = TRUE))
+#>    user  system elapsed 
+#>    0.05    0.02    4.72
+```
+
+## Pre-loaded datasets
+
+The most common datasets are already included in `ffm`. These include
+2023 data from
+[`bkg_admin()`](https://jslth.github.io/ffm/reference/bkg_admin.md) and
+[`bkg_nuts()`](https://jslth.github.io/ffm/reference/bkg_nuts.md) at a
+scale of 1:5,000,000.
+
+``` r
+bkg_krs
+#> Simple feature collection with 400 features and 24 fields
+#> Geometry type: MULTIPOLYGON
+#> Dimension:     XY
+#> Bounding box:  xmin: 4031295 ymin: 2684102 xmax: 4672497 ymax: 3551313
+#> Projected CRS: ETRS89-extended / LAEA Europe
+#> # A tibble: 400 × 25
+#>    objid  beginn       ade    gf   bsg ars   ags   sdv_ars gen   bez     ibz bem   nbd   sn_l  sn_r  sn_k  sn_v1 sn_v2 sn_g 
+#>    <chr>  <date>     <int> <int> <int> <chr> <chr> <chr>   <chr> <chr> <int> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
+#>  1 DEBKG… 2019-10-03     4     9     1 01001 01001 010010… Flen… Krei…    40 --    ja    01    0     01    00    00    000  
+#>  2 DEBKG… 2019-10-03     4     9     1 01002 01002 010020… Kiel  Krei…    40 --    ja    01    0     02    00    00    000  
+#>  3 DEBKG… 2019-10-03     4     9     1 01003 01003 010030… Lübe… Krei…    40 --    ja    01    0     03    00    00    000  
+#>  4 DEBKG… 2019-10-03     4     9     1 01004 01004 010040… Neum… Krei…    40 --    ja    01    0     04    00    00    000  
+#>  5 DEBKG… 2019-10-03     4     9     1 01051 01051 010510… Dith… Kreis    42 --    ja    01    0     51    00    00    000  
+#>  6 DEBKG… 2021-06-19     4     9     1 01053 01053 010530… Herz… Kreis    42 --    ja    01    0     53    00    00    000  
+#>  7 DEBKG… 2019-10-03     4     9     1 01054 01054 010540… Nord… Kreis    42 --    ja    01    0     54    00    00    000  
+#>  8 DEBKG… 2019-10-03     4     9     1 01055 01055 010550… Osth… Kreis    42 --    ja    01    0     55    00    00    000  
+#>  9 DEBKG… 2019-10-03     4     9     1 01056 01056 010560… Pinn… Kreis    42 --    ja    01    0     56    00    00    000  
+#> 10 DEBKG… 2019-10-03     4     9     1 01057 01057 010570… Plön  Kreis    42 --    ja    01    0     57    00    00    000  
+#> # ℹ 390 more rows
+#> # ℹ 6 more variables: fk_s3 <chr>, nuts <chr>, ars_0 <chr>, ags_0 <chr>, wsk <date>, geometry <MULTIPOLYGON [m]>
+```
+
+``` r
+bkg_nuts2
+#> Simple feature collection with 38 features and 6 fields
+#> Geometry type: MULTIPOLYGON
+#> Dimension:     XY
+#> Bounding box:  xmin: 280353.1 ymin: 5235878 xmax: 921261.6 ymax: 6101302
+#> Projected CRS: ETRS89 / UTM zone 32N
+#> # A tibble: 38 × 7
+#>    OBJID            BEGINN        GF NUTS_LEVEL NUTS_CODE NUTS_NAME                                                 geometry
+#>    <chr>            <date>     <int>      <int> <chr>     <chr>                                           <MULTIPOLYGON [m]>
+#>  1 DEBKGNU5000000B6 2021-10-04     9          2 DE11      Stuttgart     (((533236 5377030, 532410.6 5376422, 531497.3 53768…
+#>  2 DEBKGNU5000000B7 2021-10-04     9          2 DE12      Karlsruhe     (((471339.8 5493433, 470661.9 5493366, 470318.8 549…
+#>  3 DEBKGNU5000000B8 2021-10-04     9          2 DE13      Freiburg      (((429398.8 5394070, 430815.5 5395489, 431522.4 539…
+#>  4 DEBKGNU5000000B9 2021-10-04     9          2 DE14      Tübingen      (((582536.8 5314052, 581292.7 5313301, 581305.1 531…
+#>  5 DEBKGNU5000000BA 2021-10-04     9          2 DE21      Oberbayern    (((794293.6 5298232, 795275.6 5298403, 795573.8 529…
+#>  6 DEBKGNU5000000BB 2021-10-04     9          2 DE22      Niederbayern  (((827554.6 5386808, 828451 5385530, 828141.5 53843…
+#>  7 DEBKGNU5000000BC 2023-12-06     9          2 DE23      Oberpfalz     (((729727.5 5418506, 729341.6 5419385, 728572 54189…
+#>  8 DEBKGNU5000000BD 2023-12-06     9          2 DE24      Oberfranken   (((702619 5531689, 705057.5 5530518, 704989.1 55300…
+#>  9 DEBKGNU5000000BE 2021-10-04     9          2 DE25      Mittelfranken (((631678.8 5422644, 629641.9 5420651, 630270.2 541…
+#> 10 DEBKGNU5000000BF 2021-10-04     9          2 DE26      Unterfranken  (((566109.9 5492367, 565932.7 5492922, 565005.2 549…
+#> # ℹ 28 more rows
+```
