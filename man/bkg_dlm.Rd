@@ -124,7 +124,7 @@ Although this function lets you download each feature type in the DLM, you
 still need to know about what data is available and what the features in the
 output actually mean. Since the DLM gets pretty complicated, you are advised
 to take a look at the
-\href{https://www.adv-online.de/GeoInfoDok/Aktuelle-Anwendungsschemata/AAA-Anwendungsschema-7.1.2-Referenz-7.1/binarywriterservlet?imgUid=f2f70989-a7b6-0581-9393-b216067bef8a&uBasVariant=11111111-1111-1111-1111-111111111111}{GeoInfoDok}
+\href{https://www.adv-online.de/GeoInfoDok/Aktuelle-Anwendungsschemata/AAA-Anwendungsschema-7.1.2-Referenz-7.1/OK_AAA-Anwendungsschema_7125415.html?imgUid=78f7a5be-17ae-4819-393b-216067bef8a0&uBasVariant=11111111-1111-1111-1111-111111111111}{GeoInfoDok}
 object type catalog.
 
 This function interfaces the \code{dlm*} products of the BKG.
